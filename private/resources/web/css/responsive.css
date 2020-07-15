@@ -1,0 +1,164 @@
+/**
+ * All v1.1.0
+ * Copyright 2013-2018 Gurinder Singh
+ */
+/******Responsive starts Here******/
+@media screen and (width:1280px){
+
+}
+
+
+@media screen and (width:1024px){
+.navbar-light .navbar-brand {
+    max-width: 180px;
+}
+.main-head .navbar-nav li a.nav-link {
+        font-size: 14px;
+        padding: 0.5rem 0.5rem;
+
+}
+
+}
+
+@media screen and (max-width:992px){
+#principal-words .textimonial-wrap .text {
+    background-image: url(../../../web/images/testi.png);
+    background-position: bottom;
+}
+#main-footer .footer-text .form-control {
+    margin: 0 0 0.5rem 0 !important;
+}
+.navbar-light .navbar-toggler {
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+}
+#home-banner {
+    min-height: 30rem;
+}
+#home-banner .form-wrap {
+    max-width: 100%;
+    padding: 20px;
+}
+#tutor-area .row.no-gutters {
+    margin-top: 0;
+}
+#home-banner .form-wrap form .form-group {
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+}
+#home-banner .form-wrap form .btn.btn-primary {
+    width: 100%;
+}
+#home-banner .form-wrap form .form-group::after {
+    content: "";
+	display: none;
+}
+.main-head {
+    position: unset;
+    background: #472dcf;
+}
+.main-head .navbar-nav li.nav-item.active a.nav-link, .main-head .navbar-nav li.nav-item:hover a.nav-link {
+    background: #ffffff;
+    color: #472dcf !important;
+}
+#home-banner .form-wrap h1 {
+    font-size: 2rem;
+}
+.main-head .navbar-nav {
+    margin: 1rem 0 0 0;
+}
+.section-heading h1 {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+}
+#principal-words .testi-wrap .profile-mata {
+    width: 70%;
+}
+#principal-words .testi-wrap .profile-mata .text-wrap {
+    margin: 0.5rem 0 0 0;
+}
+#principal-words .testi-wrap .profile-mata .text-wrap h3 {
+    font-size: 15px;
+    margin: 0 0 0 0;
+}
+#principal-words .testi-wrap .profile-mata .text-wrap p {
+    font-size: 12px;
+}
+
+}
+@media screen and (max-width:767px){
+.pricing-page .pricing-wrap {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+#about-main .content-wrap .col-md-6{
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+#about .img-wrap {
+    padding: 10px 0 0 0;
+}
+#about .img-wrap.small {
+    max-height: unset;
+}
+#tutor-area .heading h3 {
+    font-size: 25px;
+}
+#about .text-wrap h2 {
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 0.5rem;
+}
+
+#book .heading {
+    margin: 0 0 1rem 0px;
+}
+#book .heading h2 {
+    font-size: 25px;
+}
+#counter-section .text-wrap .numscroller {
+    font-size: 25px;
+    margin: 0 0 0rem 0;
+}
+#counter-section .text-wrap {
+    margin: 0 0 1.5rem 0;
+}
+#book .book-list .text-wrap {
+    margin: 0 0 1rem 0;
+    min-height: unset;
+
+}
+}
+/*********Small***************/
+/*********Mobiles*************/
+/*********Starts**************/
+/*********Here****************/
+@media screen and (max-width:576px){
+.inner-cotent .form-wrap {
+    max-width: unset;
+    padding: 15px;
+}
+#main-footer .row .col-sm-4 {
+    margin: 0 0 1.5rem 0;
+}
+#tutor-area .tutors,#tutor-area .employees {
+    padding: 20px;
+}
+
+.main-head nav.navbar {
+    padding: 0.5rem 0rem;
+}
+
+.navbar-light .navbar-brand {
+    color: rgba(0, 0, 0, 0.9);
+    max-width: 200px;
+}
+
+}
+
+@media screen and (max-width:375px){
+
+
+}
+/******Responsive ends Here******/

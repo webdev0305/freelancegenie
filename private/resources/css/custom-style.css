@@ -1,0 +1,194 @@
+/* Abhimanyu **/
+.form-control {
+    border-radius: 0;
+}
+
+#progress { position: relative; height: 5px; background-color: #eee; margin-bottom: 20px; }
+#progress-complete { border: 0; position: absolute; height: 5px; min-width: 10px; background-color: #337ab7; transition: width .2s ease-in-out; }
+.commands { overflow: hidden; margin-top: 30px; }
+.prev {float:left}
+
+.next, .submit,.btn-success {float:right}
+fieldset {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width: auto;
+    padding: 0 10px;
+    border-bottom: none;
+}
+.content-part .form-wrap {
+    padding: 20px;
+    box-shadow: 0px 0px 19px rgba(0,0,0,.14);
+}
+.content-part button[type="submit"] {
+    padding: 8px 30px;
+    border-radius: 0;
+    background: #337ab7;
+    border-color: #337ab7;
+}
+.content-part .form-wrap .form-group .help-block {
+    margin: 0;
+    color: #ff0000;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.content-part .form-wrap .form-group .help-block * {
+    font-weight: inherit;
+    font-size: inherit;
+}
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    outline: none;
+}
+.dataTables_wrapper .dataTables_length select {
+    height: 34px;
+    padding: 6px;
+    outline: none;
+}
+.content-part .table .btn {
+    background: #337ab7;
+    margin: 0 2px;
+    color: #ffffff;
+    outline: none;
+    border-radius: 0;
+}
+.content-part .dataTables_wrapper .dataTables_paginate .paginate_button.current, .content-part .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: #fff !important;
+    border: 1px solid #337ab7;
+    background: #337ab7;
+    border-radius: 0;
+    outline: none;
+}
+.navbar-top-links .dropdown .dropdown-toggle {
+    background: #337ab7 !important;
+    color: #fff !important;
+ }
+#home-banner .form-wrap form .form-group {
+    padding-right: 2px;
+    background: #fff;
+}
+ #home-banner .form-wrap form .form-group .btn-group {
+    width: 100% !important;
+}
+#home-banner .form-wrap form .dropdown-menu {
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 400px;
+    text-align: left;
+}
+
+#home-banner .form-wrap form .dropdown-menu label {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+#home-banner .form-wrap form .dropdown-menu a {
+    display: inline-block;
+    width: 100%;
+    color: #868686;
+    font-size: 15px;
+}
+
+#home-banner .form-wrap form .dropdown-menu a input {
+    margin: 0 7px 0px 0;
+}
+#home-banner .form-wrap form .form-group .multiselect {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    font-size: 18px;
+    color: #434343;
+    cursor: pointer;
+    box-shadow: none;
+    background: transparent;
+}
+#home-banner .form-wrap form .btn.btn-primary {
+    width: 12%;
+	line-height: 27px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.form-wrap form .form-group .btn-group {
+    width: 100% !important;
+}
+.form-wrap form .dropdown-menu {
+    width: 400px;
+    text-align: left;
+}
+
+.form-wrap form .dropdown-menu label {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.form-wrap form .dropdown-menu a {
+    display: inline-block;
+    width: 100%;
+    color: #868686;
+    font-size: 15px;
+}
+.form-wrap form .dropdown-menu a input {
+    margin: 0 7px 0px 0;
+}
+.inner-cotent {
+    padding: 3% 0;
+}
+.inner-cotent .form-wrap {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: 0 0 18px rgba(0,0,0,.15);
+}
+
+.inner-cotent .form-wrap .form-control {
+    box-shadow: none;
+    border-radius: 0;
+    outline: none;
+}
+.inner-cotent .form-wrap button.btn {
+    padding: 8px 0px;
+    border: 1px solid #2b2b2b;
+    color: #2b2b2b !important;
+    display: inline-block;
+    border-radius: 5px;
+    width: 140px;
+    text-align: center;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.inner-cotent .form-wrap button i {
+    margin: 0 0 0 5px;
+}
+.form-inline .multiselect-container label.checkbox, .form-inline .multiselect-container label.radio {
+    flex-direction: inherit;
+    text-align: left;
+    justify-content: flex-start !important;
+}
+.multiselect-container>li.multiselect-group label {
+    font-weight: 700;
+    align-items: start;
+    flex-direction: column;
+}

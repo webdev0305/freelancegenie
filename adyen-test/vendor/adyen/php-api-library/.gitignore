@@ -1,0 +1,15 @@
+# ignore config file
+tests/config
+
+# Ignore the /vendor/ directory
+/vendor/
+
+# ignore Mac OS X file
+.DS_Store
+
+# ignore PhpStorm .idea folder
+.idea
+
+# ignore Vagrant metadata files
+# these files are unique to each user
+.vagrant

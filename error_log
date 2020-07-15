@@ -1,0 +1,17 @@
+[04-Jun-2019 17:44:30 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/freelan4/public_html/tutorsandtrainersonline/storage/framework/views/ed504a6d1ef2a1c735e8fb1ed64f140007876faa.php on line 16
+[31-Aug-2019 09:19:13 UTC] PHP Fatal error:  Uncaught ErrorException: Array to string conversion in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php:90
+Stack trace:
+#0 /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php(90): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Array to string...', '/home/freelan4/...', 90, Array)
+#1 [internal function]: App\Http\Controllers\Admin\TutorController->InvoicetoAccountant(Object(Illuminate\Http\Request))
+#2 /home/freelan4/public_html/tutor_design/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(55): call_user_func_array(Array, Array)
+#3 /home/freelan4/public_html/tutor_design/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(44): Illuminate\Routing\Controller->callAction('InvoicetoAccoun...', Array)
+#4 /home/freelan4/public_html/tutor_design/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), O in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php on line 90
+[10-Sep-2019 12:43:42 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php on line 452
+[21-Sep-2019 06:44:02 UTC] PHP Fatal error:  Cannot declare class App\User, because the name is already in use in /home/freelan4/public_html/tutor_design/app/Model/User.php on line 9
+[21-Sep-2019 06:44:10 UTC] PHP Fatal error:  Cannot declare class App\User, because the name is already in use in /home/freelan4/public_html/tutor_design/app/Model/User.php on line 9
+[28-Sep-2019 09:49:59 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php on line 262
+[28-Sep-2019 09:50:09 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php on line 262
+[28-Sep-2019 09:53:09 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/Admin/TutorController.php on line 262
+[09-Nov-2019 04:47:35 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/TutorController.php on line 97
+[09-Nov-2019 04:51:07 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/TutorController.php on line 97
+[09-Nov-2019 04:51:11 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/freelan4/public_html/tutor_design/app/Http/Controllers/TutorController.php on line 97
