@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 
-class PrivacyController extends Controller
+class TermsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class PrivacyController extends Controller
      */
     public function index()
     {
-        $privacy=About::where('slug','privacy')->first();
-        return View('admin.privacy_view', compact('privacy'));
+        $terms=About::where('slug','terms')->first();
+        return View('admin.terms_view', compact('terms'));
         
     }
 
@@ -46,19 +46,19 @@ class PrivacyController extends Controller
     {
         try {
             $data = $request->input();
-            $validation = Validator::make($data, ValidationRequest::$privacy);
+            $validation = Validator::make($data, ValidationRequest::$terms);
             // var_dump($data);die();
             if ($validation->fails()) {
                 $errors = $validation->messages();
                 return Redirect::back()->with('errors', $errors);
             }
-            $privacy=About::where('slug','privacy')->first();
-            $privacy->title = $data['title'];
+            $terms=About::where('slug','terms')->first();
+            $terms->title = $data['title'];
             // $about->shot = $data['shot'];
-            $privacy->description = $data['description'];
+            $terms->description = $data['description'];
 			// $about->keyword = $data['keyword'];
 			// $about->seo_description = $data['seo_description'];
-            $privacy->save();
+            $terms->save();
             Session::flash('success', Config::get('message.options.UPDATE_SUCCESS'));
             return Redirect::back();
         } catch (Exception $ex) {

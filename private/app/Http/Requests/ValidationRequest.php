@@ -150,6 +150,14 @@ class ValidationRequest extends FormRequest
         'shot' => 'required|min:2|max:500',
         'description' => 'required|min:2',
     );
+    public static $privacy = array(
+        'title' => 'required|min:2|max:255',
+        'description' => 'required|min:2',
+    );
+    public static $terms = array(
+        'title' => 'required|min:2|max:255',
+        'description' => 'required|min:2',
+    );
 	public static $email_template = array(
         'title' => 'required|min:2|max:255',
         'body' => 'required|min:2',

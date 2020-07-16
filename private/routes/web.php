@@ -216,12 +216,21 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('students_data', 'Admin\JobController@StudentsData');
     Route::resource('types', 'Admin\TypesController');
     Route::resource('about', 'Admin\AboutController');
-    Route::get('/privacy', function(){
-        return View::make('web.privacy_policy');
-    });
-     Route::get('/terms', function(){
-        return View::make('web.termsandcondition');
-    });
+    Route::resource('privacy', 'Admin\PrivacyController');
+    Route::resource('terms', 'Admin\TermsController');
+
+    // Route::get('/privacy', function(){
+    //     return View::make('web.privacy_policy');
+    // });
+    // Route::get('/terms', function(){
+    //     return View::make('web.termsandcondition');
+    // });
+
+
+    
+
+
+    
 	Route::resource('emailtemplate', 'Admin\EmailTemplateController');
     Route::post('assign_job', 'Admin\JobController@assignJob');
     Route::resource('faq', 'Admin\FaqController');

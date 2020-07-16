@@ -108,6 +108,7 @@
 </section>
 <section class="how_it_works">
 	<div class="container">
+
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="title">Working Process</h2>
