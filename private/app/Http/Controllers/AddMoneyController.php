@@ -51,7 +51,7 @@ class AddMoneyController extends Controller
          return view('paywithstripe',compact('plan','plan_id'));
     }
     public function postPaymentWithStripe(Request $request)
-    {		//die('I am working here');
+    {	//die('I am working here');
 		$data = $request->input();       // print_r($data);               // die('checking here');               
         $plan_id = $data['plan_id'];       
         //die('here');

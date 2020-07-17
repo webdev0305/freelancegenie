@@ -55,18 +55,18 @@ namespace App\Http\Controllers\Admin {
         }
         public function uploadSubmit(Request $request)
         {
-        foreach ($request->photos as $photo) {
-            $original=$photo->getClientOriginalName();
-            $filename = $photo->store('photos');
-            UserDoc::create([
-                'user_id' => \Sentinel::getUser()->id,
-                'filename' => $filename,
-                'originalname' =>$original,
-                'global' =>1
-            ]);
-        }
-        Session::flash('success','Upload successful!');
-        return Redirect::back();
+            foreach ($request->photos as $photo) {
+                $original=$photo->getClientOriginalName();
+                $filename = $photo->store('photos');
+                UserDoc::create([
+                    'user_id' => \Sentinel::getUser()->id,
+                    'filename' => $filename,
+                    'originalname' =>$original,
+                    'global' =>1
+                ]);
+            }
+            Session::flash('success','Upload successful!');
+            return Redirect::back();
         }
 
 

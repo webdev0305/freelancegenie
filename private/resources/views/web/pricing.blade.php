@@ -15,21 +15,19 @@
                 <div class="pricing-wrap">
                     <div class="pricing-inner">
                         <div class="img-wrap">
-                            <img style="max-width: 50px;" src="web/images/plan{{$plan->plan_no}}.png" alt="mini-plan" />
+                            <img style="max-width: 50px;" src="web/images/mini-plan.png" alt="mini-plan" />
                         </div>
                         <div class="cost-wrap">
-                            <span>£</span>59
-                            <h6>28 days Access</h6>
+                            <span>£</span>{{$plan->price}}
+                            <h6>{{$plan->duration}}</h6>
                         </div>
                         <div class="title-wrap">
                             <h3>{{$plan->title}}</h3>
                             <strong>{{$plan->sub_title}}</strong>
                         </div>
-                        <ul class="text-wrap">
-                            <li class="tick">Post a Standard Advert Assignment to be circulated among our Tutor network
-                                and wait for someone to accept.<br>
-                                Note: No tutor guaranteed to accept.</li>
-                        </ul>
+                        
+                        {!!$plan->details!!}
+                        
                         <div class="button-wrap">
                             @if (!empty(\Sentinel::check()) && Sentinel::getUser()->inRole('employer'))
                             <a class="btn" href="{{url('subscription').'/'.encrypt('1')}}">Subscribe up</a>

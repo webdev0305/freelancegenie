@@ -60,7 +60,7 @@ Route::get('/policy', function () { //using basic routing
     return View::make('web.privacy_policy');    
 });
 Route::get('/pricing', function () {
-    $pricing = \App\Model\Plan::where("post_assignment",">","1")->get();
+    $pricing = \App\Model\Plan::where("post_assignment",">=","1")->get();
     return View::make('web.pricing',compact('pricing'));
 });
 Route::get('/courses', function () {
@@ -133,16 +133,19 @@ Route::get('employer/detail_assignment/{id}', 'EmployerController@AssignmentDeta
 Route::post('tutor/assignment_lazy', 'TutorController@AssignmentLazy');
 Route::post('employer/assignment_lazy', 'EmployerController@AssignmentLazy');
 Route::get('tutor/tutor_swap', 'TutorController@Swapdata');
+
+
 Route::group(['middleware' => 'tutor'], function () {
     Route::get('tutor/change_password', function () {
         return View::make('web.change_password');
     });
- Route::get('tutor/upload', function () {
-        //return View::make('web.upload_form');
-    $userdoc = \App\Model\UserDoc::where('user_id',\Sentinel::getUser()->id)->get();
-     $globaldoc = \App\Model\UserDoc::where('global',1)->get();
-    return View::make('web.upload_form',compact('userdoc','globaldoc'));
-});
+
+    Route::get('tutor/upload', function () {
+            //return View::make('web.upload_form');
+        $userdoc = \App\Model\UserDoc::where('user_id',\Sentinel::getUser()->id)->get();
+        $globaldoc = \App\Model\UserDoc::where('global',1)->get();
+        return View::make('web.upload_form',compact('userdoc','globaldoc'));
+    });
 
     Route::resource('/tutor', 'TutorController');
     Route::match(['put', 'patch'], 'tutor_update/{tutor}', 'Admin\TutorController@update');
