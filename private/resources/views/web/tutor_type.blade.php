@@ -10,172 +10,47 @@
     <div class="container">
         <div class="pricing-list">
             <div class="center">
+                @foreach($tutor_types as $type)
                 <div class="pricing-wrap premium">
                     <div class="pricing-inner">
-						 <div class="ribbon ribbon-top-left"><span>Recommended</span></div>
-                        <div class="img-wrap">  <img style="max-width: 50px;" src="web/images/1st_icon.png"/> </div>
-						<div class="title-wrap">
-							<h3>Must use our complete 360, P.A.Y.E umbrella solutions.</h3>
-							
-							<strong>Free Sign up using 'Our' UMBRELLA Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer</li>
-                            <li class="tick">We manage your Income Tax</li>
-                            <li class="tick">We manage your N.I. Contributions</li>
-                            <li class="tick">We can offer pension assistance</li>
-                            <li class="tick">We provide Professional Indemnity</li>
-                            <li class="tick">We provide Public Liability</li>
-                            <li class="tick">We provide Employers Liability</li>
-                            <!--<li class="cross">lorem ipsum</li>-->
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('7')}}">Sign
-                                Up</a> </div>
+                        @if($type->plan_no == 7)
+                        <div class="ribbon ribbon-top-left"><span>Recommended</span></div>
+                        @endif
+                        <div class="img-wrap">
+                            <img style="max-width: 50px;" src="web/images/{{$type->image}}" />
+                        </div>
+                        <div class="title-wrap">
+                            <h3>{{$type->title}}</h3>
+                            <strong>{{$type->sub_title}}</strong>
+                        </div>
+                        {!!$type->details!!}
+                        <div class="button-wrap">
+                            <a class="btn" href="{{url('register/tutor/').'/'.encrypt('7')}}">Sign Up</a>
+                        </div>
                     </div>
                 </div>
-                <div class="pricing-wrap premium">
-					
-                    <div class="pricing-inner">
-						
-                        <div class="img-wrap"> <img style="max-width: 50px;" src="web/images/2nd_icon.png"/>  </div>
-						<div class="title-wrap">
-							<h3>Use 'Without' our Complete 360 Accounting Service.</h3>
-							<strong>Free Sign up using 'Your Own'  LTD Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer - Ltd Status Operator</li>
-                            <li class="tick">Responsible for your own Income Tax</li>
-                            <li class="tick">Responsible for your own N.I.</li>
-                            <li class="tick">Responsible for own Pension</li>
-                            <li class="tick">Must provide Public liability cert</li>
-                            <li class="tick">Must provide Professional Indemnity cert</li>
-                            <li class="tick">Must provide Employers Liability cert</li>
-                            <li class="tick">Must provide Company Reg No.</li>
-                            <li class="tick">Must provide Company Bank Account Details</li>
-                            <li class="tick">Must provide Vat Reg No, if applicable</li>
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('8')}}">Sign
-                                Up</a> </div>
-                    </div>
-                </div>
-                <div class="pricing-wrap premium">
-					
-                    <div class="pricing-inner">
-						
-                        <div class="img-wrap"> <img style="max-width: 50px;" src="web/images/3rd-icon.png"/></div>
-						<div class="title-wrap">
-							<h3>Use 'With' our Complete 360 Accounting Service.</h3>
-							<strong>Free Sign up using 'Your Own'  LTD Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer - Ltd Status Operator –With Complete Accounting
-                                Service.</li>
-                            <li class="tick">WE Take Care of you’re...</li>
-                            <li class="tick">Income Tax</li>
-                            <li class="tick">N.I.</li>
-                            <li class="tick">Pension Cont</li>
-                            <li class="tick">Public Liability</li>
-                            <li class="tick">Professional Indemnity</li>
-                            <li class="tick">Employers Liability</li>
-                            <li class="tick">What we’ll Need...</li>
-                            <li class="tick">You’re Company Reg No.</li>
-                            <li class="tick">Your Company Bank Account Details</li>
-                            <li class="tick">Your Vat Reg No, if applicable</li>
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('9')}}">Sign
-                                Up</a> </div>
-                    </div>
-                </div>
-				<div class="pricing-wrap premium">
-					
-                    <div class="pricing-inner">
-						 <div class="ribbon ribbon-top-left"><span>Recommended</span></div>
-                        <div class="img-wrap">  <img style="max-width: 50px;" src="web/images/1st_icon.png"/> </div>
-						<div class="title-wrap">
-							<h3>Must use our complete 360, P.A.Y.E umbrella solutions.</h3>
-							
-							<strong>Free Sign up using 'Our' UMBRELLA Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer</li>
-                            <li class="tick">We manage your Income Tax</li>
-                            <li class="tick">We manage your N.I. Contributions</li>
-                            <li class="tick">We can offer pension assistance</li>
-                            <li class="tick">We provide Professional Indemnity</li>
-                            <li class="tick">We provide Public Liability</li>
-                            <li class="tick">We provide Employers Liability</li>
-                            <!--<li class="cross">lorem ipsum</li>-->
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('7')}}">Sign
-                                Up</a> </div>
-                    </div>
-                </div>
-                <div class="pricing-wrap premium">
-					
-                    <div class="pricing-inner">
-						
-                        <div class="img-wrap"><img style="max-width: 50px;" src="web/images/2nd_icon.png"/>  </div>
-						<div class="title-wrap">
-							<h3>Use 'Without' our Complete 360 Accounting Service.</h3>
-							<strong>Free Sign up using 'Your Own'  LTD Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer - Ltd Status Operator</li>
-                            <li class="tick">Responsible for your own Income Tax</li>
-                            <li class="tick">Responsible for your own N.I.</li>
-                            <li class="tick">Responsible for own Pension</li>
-                            <li class="tick">Must provide Public liability cert</li>
-                            <li class="tick">Must provide Professional Indemnity cert</li>
-                            <li class="tick">Must provide Employers Liability cert</li>
-                            <li class="tick">Must provide Company Reg No.</li>
-                            <li class="tick">Must provide Company Bank Account Details</li>
-                            <li class="tick">Must provide Vat Reg No, if applicable</li>
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('8')}}">Sign
-                                Up</a> </div>
-                    </div>
-                </div>
+                @endforeach
+                @foreach($tutor_types as $type)
                 <div class="pricing-wrap premium">
                     <div class="pricing-inner">
-						
-                        <div class="img-wrap"> <img style="max-width: 50px;" src="web/images/3rd-icon.png"/> </div>
-						<div class="title-wrap">
-							<h3>Use 'With' our Complete 360 Accounting Service.</h3>
-							<strong>Free Sign up using 'Your Own'  LTD Company - Pay-as you earn Fees Apply Within</strong>
-						</div>
-                        <ul class="text-wrap">
-                            <li class="tick">‘Free’ Sign up</li>
-                            <li class="tick">Full UK Driving Licence & Own Car Required</li>
-                            <li class="tick">Self Employed Freelancer - Ltd Status Operator –With Complete Accounting
-                                Service.</li>
-                            <li class="tick">WE Take Care of you’re...</li>
-                            <li class="tick">Income Tax</li>
-                            <li class="tick">N.I.</li>
-                            <li class="tick">Pension Cont</li>
-                            <li class="tick">Public Liability</li>
-                            <li class="tick">Professional Indemnity</li>
-                            <li class="tick">Employers Liability</li>
-                            <li class="tick">What we’ll Need...</li>
-                            <li class="tick">You’re Company Reg No.</li>
-                            <li class="tick">Your Company Bank Account Details</li>
-                            <li class="tick">Your Vat Reg No, if applicable</li>
-                        </ul>
-                        <div class="button-wrap"> <a class="btn" href="{{url('register/tutor/').'/'.encrypt('9')}}">Sign
-                                Up</a> </div>
+                        @if($type->plan_no == 7)
+                        <div class="ribbon ribbon-top-left"><span>Recommended</span></div>
+                        @endif
+                        <div class="img-wrap">
+                            <img style="max-width: 50px;" src="web/images/{{$type->image}}" />
+                        </div>
+                        <div class="title-wrap">
+                            <h3>{{$type->title}}</h3>
+                            <strong>{{$type->sub_title}}</strong>
+                        </div>
+                        {!!$type->details!!}
+                        <div class="button-wrap">
+                            <a class="btn" href="{{url('register/tutor/').'/'.encrypt('$type->plan_no')}}">Sign Up</a>
+                        </div>
                     </div>
                 </div>
-				
-			</div>
+                @endforeach
+            </div>
         </div>
     </div>
 </section>
