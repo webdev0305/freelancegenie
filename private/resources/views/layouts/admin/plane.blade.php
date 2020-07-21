@@ -18,7 +18,7 @@
 <body>
 	@yield('body')
 
-	<script src="{{ asset("assets/admin/scripts/frontend.js") }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/admin/scripts/frontend.js') }}" type="text/javascript"></script>
 	<script>
 		//Sidebar-nav
 		$(document).ready(function() {

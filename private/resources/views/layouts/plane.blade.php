@@ -24,7 +24,7 @@
 	
 	@include('includes.footer')
 	
-	<script src="{{ asset("assets/web/scripts/frontend.js") }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/web/scripts/frontend.js') }}" type="text/javascript"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>
 	<script>    
 	// ===== Scroll to Top ==== 

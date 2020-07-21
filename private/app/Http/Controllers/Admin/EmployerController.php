@@ -42,7 +42,6 @@ class EmployerController extends Controller
         $users = User::whereHas('roles', function ($q) {
             $q->whereIn('slug', ['employer']);
         })->get();
-
         return Datatables::of($users)
             ->addColumn(/**
              * @param $userd

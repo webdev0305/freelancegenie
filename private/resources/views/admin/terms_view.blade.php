@@ -3,7 +3,7 @@
 @section('section')
 
     <div class="view-page">
-        <div class="text-wrap  mb2">
+        <div class="text-wrap mb2">
             @include('message.message')
             <form class="form-hrizontal" method="POST" action="{{ url('admin/privacy') }}">
                 {{ csrf_field() }}

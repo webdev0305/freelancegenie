@@ -167,6 +167,43 @@ class ValidationRequest extends FormRequest
         'description' => 'required|min:2',
         //'visible'=>'required'
     );
+    public static $tutorplan = array(
+        'title' => 'required|min:2|max:255',
+        'sub_title' => 'required|min:2',
+        // 'price' => 'required|min:2|max:50',
+        'duration' => 'required|min:2|max:255',
+        'status' => 'required',
+        'details' => 'required|min:2',
+        'post_assignment' => 'required',
+        'premium' => 'required',
+        'book_tutor' => 'required',
+        'image' => 'required',
+        //'visible'=>'required'
+    );
+    public static $tutorplan_edit = array(
+        'title' => 'required|min:2|max:255',
+        'sub_title' => 'required|min:2',
+        // 'price' => 'required|min:2|max:50',
+        'duration' => 'required|min:2|max:255',
+        'status' => 'required',
+        'details' => 'required|min:2',
+        'post_assignment' => 'required',
+        'premium' => 'required',
+        'book_tutor' => 'required',
+        // 'image' => 'required',
+        //'visible'=>'required'
+    );
+    public static $employerplan = array(
+        'title' => 'required|min:2|max:255',
+        'sub_title' => 'required|min:2',
+        'details' => 'required|min:2',
+        'image' => 'required',
+    );
+    public static $employerplan_edit = array(
+        'title' => 'required|min:2|max:255',
+        'sub_title' => 'required|min:2',
+        'details' => 'required|min:2',
+    );
 
     public static $assignJob = array(
         'tutor_assign' => 'required',
