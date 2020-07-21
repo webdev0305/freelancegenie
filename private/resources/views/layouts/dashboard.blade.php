@@ -1,10 +1,10 @@
 @extends('layouts.plane')
 @section('body')
-@if (empty(\Sentinel::check()) && !(Request::has('live')))
+<!-- @if (empty(\Sentinel::check()) && !(Request::has('live')))
 <div id="overlay">
 
 </div>
-@endif
+@endif -->
 <style>
     #overlay {
         position: fixed;
