@@ -31,18 +31,19 @@ class AddMoneyController extends Controller
        //die('here');//gives plan id when plan expired
         
         if (!empty(\Sentinel::check())){
-        //die('1st cond');
-        $user_id=\Sentinel::getUser()->id;
-        $plan_id=decrypt(\Request::segment(2));//Gives plan id when plan expired
-        $plan  =  Plan::find($plan_id)->price;
+            // die('1st cond');
+            $user_id=\Sentinel::getUser()->id;
+            $plan_id=decrypt(\Request::segment(2));//Gives plan id when plan expired
+            $plan  =  Plan::find($plan_id)->price;
         }else{
-        //die('2nd cond'); 
-        $user_id=decrypt(\Request::segment(2));//Gives user id when user is registering
-        
-        $subs =  Subscription::whereUserId($user_id)->first();
-        ///echo '<pre>';print_r($subs); 
-        $plan_id=$subs['plan_id'];
-        $plan  =  Plan::find($plan_id)->price;
+            //die('2nd cond'); 
+            $user_id=decrypt(\Request::segment(2));//Gives user id when user is registering
+            
+            $subs =  Subscription::whereUserId($user_id)->first();
+            
+            ///echo '<pre>';print_r($subs); 
+            $plan_id = $subs['plan_id'];
+            $plan  =  Plan::find($plan_id)->price;
         }
         
         //echo $user_id;
@@ -54,7 +55,7 @@ class AddMoneyController extends Controller
     {	//die('I am working here');
 		$data = $request->input();       // print_r($data);               // die('checking here');               
         $plan_id = $data['plan_id'];       
-        //die('here');
+        // die('here');
         if (!empty(\Sentinel::check())){
             $user_id=\Sentinel::getUser()->id;
 			$redirect='/dashboard';
@@ -72,7 +73,7 @@ class AddMoneyController extends Controller
         }
 		$input = $request->all();
         $input = array_except($input, array('_token'));
-        $stripe = Stripe::make('sk_test_PVXtzkhKGE6eV0iuxTqgh4iZ');
+        $stripe = Stripe::make('pk_test_JspMJwlo1veVAnX7h3u65QSZ008USAKRAR');
         try {
             $token = $stripe->tokens()->create([
                 'card' => [

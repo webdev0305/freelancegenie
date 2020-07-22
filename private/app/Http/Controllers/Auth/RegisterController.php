@@ -49,7 +49,7 @@ class RegisterController extends Controller
     {
         try {
             $data = $request->input();
-            //die('checking here');
+            
             $validation = Validator::make($data, ValidationRequest::$register);
             if ($validation->fails()) {
                 $errors = $validation->messages();
@@ -92,10 +92,10 @@ class RegisterController extends Controller
                 $role->users()->attach($user);
 				$admin_email=GlobalSettings::where('name','admin_email')->first()->value;
 				$admin_info_email=GlobalSettings::where('name','admin_info_email')->first()->value;
-					// Always set content-type for all emails
-					$headers = "MIME-Version: 1.0" . "\r\n";
-					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-					$headers .= 'From: <'.$admin_email.'>' . "\r\n";
+				// Always set content-type for all emails
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				$headers .= 'From: <'.$admin_email.'>' . "\r\n";
                 if ($data["type"] == 'tutor') {
 					$type = new \App\Model\TutorProfile;
                     $type->uuid = mt_rand();
@@ -129,7 +129,7 @@ class RegisterController extends Controller
 					$message=str_replace('<title></title>',$title,$email_template->body);
 					$message=str_replace('<p></p>',$content,$message);
 					mail($to, $subject, $message, $headers);
-					} else {
+				} else {
                     $type = new \App\Model\EmployerProfile;
                     $type->user_id = $user->id;
                     $type->save();
@@ -138,28 +138,28 @@ class RegisterController extends Controller
                     $subs->user_id = $user->id;
 					$subs->onaccount = 0;
                     $subs->save();
-					$title = '<title>Employer Signup</title>';
-					$subject = "Employer Signup";
-                    //Send Email to Admin
-					$content = 	"<p>An Employer has been Signup.Below are the details:</p>
-					Name: ".$data['first_name']." ".$data['last_name']."<br>
-					Email: ".$data['email']."<br>				
-					<p>Thanks</p>
-					<p>FL Genie</p>";
-					$message=str_replace('<title></title>',$title,$email_template->body);
-					$message=str_replace('<p></p>',$content,$message);                
-					mail($admin_info_email, $subject, $message, $headers);
-					//Send Email to Employer
-					$to = $data['email'];				               
-					$content = "<p>Welcome ".$data['first_name']." 
-					".$data['last_name']."</p>               
-					<p>You have successfully sinup with 
-					us. Please <a href='http://www.freelancegenie.co.uk/tutorsandtrainersonline/public/login'><span>Login</span></a> and complete your profile.
-					Please make sure you have all the necessary document (DL etc)</p>				
-					<p>Thanks</p>
-					<p>FL Genie</p>";               
-					mail($to, $subject, $message, $headers);
-				return Redirect::to('subscription/'.encrypt($user->id));
+					// $title = '<title>Employer Signup</title>';
+					// $subject = "Employer Signup";
+     //                //Send Email to Admin
+					// $content = 	"<p>An Employer has been Signup.Below are the details:</p>
+					// Name: ".$data['first_name']." ".$data['last_name']."<br>
+					// Email: ".$data['email']."<br>				
+					// <p>Thanks</p>
+					// <p>FL Genie</p>";
+					// $message=str_replace('<title></title>',$title,$email_template->body);
+					// $message=str_replace('<p></p>',$content,$message);                
+					// mail($admin_info_email, $subject, $message, $headers);
+					// //Send Email to Employer
+					// $to = $data['email'];				               
+					// $content = "<p>Welcome ".$data['first_name']." 
+					// ".$data['last_name']."</p>               
+					// <p>You have successfully sinup with 
+					// us. Please <a href='http://www.freelancegenie.co.uk/tutorsandtrainersonline/public/login'><span>Login</span></a> and complete your profile.
+					// Please make sure you have all the necessary document (DL etc)</p>				
+					// <p>Thanks</p>
+					// <p>FL Genie</p>";               
+					// mail($to, $subject, $message, $headers);
+			        return Redirect::to('subscription/'.encrypt($user->id));
                 }
 
                 Session::flash('error', Config::get('message.options.REGISTERED_USER'));
@@ -167,7 +167,6 @@ class RegisterController extends Controller
                 Session::flash('error', Config::get('message.options.REGISTERED_NOT_USER'));
 
             }
-
 
             return Redirect::back();
         } catch (Exception $ex) {

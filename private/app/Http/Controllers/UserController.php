@@ -52,7 +52,7 @@ class UserController extends Controller
 
         //\Sentinel::logout();
 
-        //die('user cont');
+        // die('user cont');
 
         $categories = Category::with('children')->get();
 

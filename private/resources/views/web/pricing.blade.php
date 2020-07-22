@@ -30,10 +30,10 @@
                         {!!$plan->details!!}
                         <div class="button-wrap">
                             @if (!empty(\Sentinel::check()) && Sentinel::getUser()->inRole('employer'))
-                            <a class="btn" href="{{url('subscription').'/'.encrypt('$plan->id')}}">Subscribe up</a>
+                            <a class="btn" href="{{url('subscription').'/'.encrypt($plan->id)}}">Subscribe up</a>
                             @else
                                 @if($plan->status== 0)
-                                <a class="btn" href="{{url('register/employer/').'/'.encrypt('$plan->id')}}">Subscribe</a>
+                                <a class="btn" href="{{url('register/employer/').'/'.encrypt($plan->id)}}">Subscribe</a>
                                 @else
                                 <a id="ultimate" data-toggle="modal" data-target="#date_modal" class="btn">Enquire Now</a>
                                 @endif
