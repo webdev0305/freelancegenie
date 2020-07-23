@@ -13,6 +13,7 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "stripe/stripe-php": "^7.44",
         "yajra/laravel-datatables-oracle": "^8.7"
     },
     "require-dev": {

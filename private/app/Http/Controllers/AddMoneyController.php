@@ -55,7 +55,6 @@ class AddMoneyController extends Controller
     {	//die('I am working here');
 		$data = $request->input();       // print_r($data);               // die('checking here');               
         $plan_id = $data['plan_id'];       
-        // die('here');
         if (!empty(\Sentinel::check())){
             $user_id=\Sentinel::getUser()->id;
 			$redirect='/dashboard';
@@ -65,15 +64,19 @@ class AddMoneyController extends Controller
 			$redirect='/login';
 			$plan_type=2;
         }
-		$subs =  Subscription::whereUserId($user_id)->first();
+        $subs =  Subscription::whereUserId($user_id)->first();
+        
         $validation = Validator::make($data, ValidationRequest::$stripeValid);
         if ($validation->fails()) {
             $errors = $validation->messages();
             return Redirect::back()->with('errors', $errors);
         }
-		$input = $request->all();
+        $input = $request->all();
         $input = array_except($input, array('_token'));
-        $stripe = Stripe::make('pk_test_JspMJwlo1veVAnX7h3u65QSZ008USAKRAR');
+        
+        // $stripe = Stripe::make('sk_test_51Fj4rvCxpWLiTHp6wrbUhCpC34d499CRyQWa1EcF407hn4fQERZVK4wPNce8sc0npZdjtY8WlLAgVJeF21bno2p200YyD2xyut');
+        $stripe = \Stripe::setApiKey(env('STRIPE_SECRET'));
+        // var_dump($stripe);die();
         try {
             $token = $stripe->tokens()->create([
                 'card' => [
@@ -83,19 +86,23 @@ class AddMoneyController extends Controller
                     'cvc' => $request->get('cvvNumber'),
                 ],
             ]);
+            
+            // var_dump($token);die();
+            
             if (!isset($token['id'])) {
                 return Redirect::back();
             }
           
-          $plan  =  Plan::find($plan_id);
-		  
-             $charge = $stripe->charges()->create([
+            $plan  =  Plan::find($plan_id);
+            
+            // var_dump($plan);die();
+            $charge = $stripe->charges()->create([
                 'card' => $token['id'],
                 'currency' => 'gbp',
                 'amount' => $plan['price'],
                 'description' => '',
             ]);
-
+            // var_dump($charge);die();
             if ($charge['status'] == 'succeeded') {
                 $subs->trans_id = $charge['id'];
                 $subs->amount = $charge['amount'];
