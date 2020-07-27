@@ -27,9 +27,6 @@ class UserController extends Controller
     public function index()
 
     {
-
-        //\Sentinel::logout();
-
         // die('user cont');
 
         $categories = Category::with('children')->get();
