@@ -24,8 +24,8 @@
     </div>
 
     @push('scripts')
-        <script src="{{ asset("js/admin/formtowizard.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/admin/bootstrap-multiselect.js") }}" type="text/javascript"></script>
-        <link rel="stylesheet" href="{{ asset("css/bootstrap-multiselect.css") }}"/>
+        <script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/admin/bootstrap-multiselect.js') }}" type="text/javascript"></script>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}"/>
     @endpush
 @stop

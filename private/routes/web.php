@@ -37,6 +37,8 @@ Route::get('/register/{type}/{plan?}', function () { //using basic routing
 });
 Route::get('/pdf','EmployerController@generatePdf');
 Route::get('/viewpdf','EmployerController@viewPdf');
+Route::get('/employer_makepdf/{id}','EmployerController@employer_makepdf');
+Route::get('/tutor_makepdf/{id}','TutorController@tutor_makepdf');
 
 Route::get('subscription/{id?}', array('as' => 'subscription','uses' => 'AddMoneyController@payWithStripe'));
 Route::get('booking/{id?}', array('as' => 'booking','uses' => 'AddMoneyController@payBooking'));
@@ -73,6 +75,8 @@ $categories = \App\Model\Category::with('children')->where('disciplines_id',60)-
 Route::get('/how_it_works', function () {
     return View::make('web.how_it_works');
 });
+Route::get('/cookie', 'PagesController@setCookie');
+
 /*Route::get('/course_description', function () {
 $categories = \App\Model\Category::with('children')->where('id',input::get('cat_id'))->get();
     return View::make('web.care_course_description',compact('categories'));
@@ -126,7 +130,8 @@ Route::resource('rating', 'RatingController');
 Route::get('rating', 'RatingController@index');
 Route::post('rating/create', 'RatingController@create');
 Route::post('rating/store', 'RatingController@store');
-Route::get('tutor/assignment', 'TutorController@Assignment');Route::post('tutor/assignment_lazy', 'TutorController@AssignmentLazy');
+Route::get('tutor/assignment', 'TutorController@Assignment');
+Route::post('tutor/assignment_lazy', 'TutorController@AssignmentLazy');
 Route::get('tutor/detail_assignment/{id}', 'TutorController@AssignmentDetail');
 Route::get('tutor/swap_detail/{id}', 'TutorController@SwapDetail');
 Route::get('tutor/job_detail/{id}', 'TutorController@JobDetail');
@@ -134,6 +139,8 @@ Route::get('employer/detail_assignment/{id}', 'EmployerController@AssignmentDeta
 Route::post('tutor/assignment_lazy', 'TutorController@AssignmentLazy');
 Route::post('employer/assignment_lazy', 'EmployerController@AssignmentLazy');
 Route::get('tutor/tutor_swap', 'TutorController@Swapdata');
+Route::get('tutor/freelancer_agree', 'TutorController@Freelanceragree');
+
 
 
 
@@ -143,14 +150,13 @@ Route::group(['middleware' => 'tutor'], function () {
     Route::get('tutor/change_password', function () {
         return View::make('web.change_password');
     });
-
+    
     Route::get('tutor/upload', function () {
             //return View::make('web.upload_form');
         $userdoc = \App\Model\UserDoc::where('user_id',\Sentinel::getUser()->id)->get();
         $globaldoc = \App\Model\UserDoc::where('global',1)->get();
         return View::make('web.upload_form',compact('userdoc','globaldoc'));
     });
-
     Route::resource('/tutor', 'TutorController');
     Route::match(['put', 'patch'], 'tutor_update/{tutor}', 'Admin\TutorController@update');
     Route::post('tutor/change_job_status', 'TutorController@ChangeJobStatus');
@@ -164,27 +170,23 @@ Route::group(['middleware' => 'tutor'], function () {
     Route::post('tutor/students_data', 'TutorController@StudentsData');
 	Route::get('tutor/invoice/{id}', 'TutorController@Invoice');
     Route::get('tutor/calendar/{id}', 'TutorController@TutorCalendar');
-	
-    
-    
 	//Route::post('tutor/check_dbs', 'TutorController@CheckDbs');
     Route::post('tutor/upload', 'TutorController@uploadSubmit');
     Route::post('tutor/invoice_sent', 'TutorController@InvoiceSent');
-	Route::post('tutor/set_availability', 'TutorController@SetAvailability');
-    
+    Route::post('tutor/set_availability', 'TutorController@SetAvailability');
+    Route::post('tutor/savecontract', 'TutorController@Savecontract');
 });
 
 
 Route::group(['middleware' => 'employer' ], function () {
 
     Route::get('employer/assignment', 'EmployerController@assignments');
-
     Route::get('employer/change_password', function () {
         return View::make('web.change_password');
     });
-
+    Route::get('employer/service_agree', 'EmployerController@Serviceagree');
+    Route::post('employer/savecontract', 'EmployerController@Savecontract');
     Route::resource('/employer', 'EmployerController');
-	
     Route::match(['put', 'patch'], 'employer_update/{tutor}', 'Admin\EmployerController@update');
 	Route::get('employer/request_dbs_update/{id}', 'EmployerController@RequestDbsUpdate');
     //Route::get('employer/emp_calendar/{id}', 'EmployerController@EmpCalendar');

@@ -151,14 +151,14 @@ class AddMoneyController extends Controller
 					//mail($tutor_email, $subject, $message, $headers);
 				
 				}else{ // Plan Renewal
-				$subject = "Freelance Genie Plan Renewal";  
+				    $subject = "Freelance Genie Plan Renewal";  
 					$title = '<title>Freelance Genie Plan Renewal</title>';
 					 //Send Email to Admin				
 					$content = "<p>Dear ".ucfirst($user->first_name) ." ".$user->last_name . ", You have successfully renewed your plan.</p>
-				<p>Below are the new plan details:</p>
-				<p>Plan: ".$plan->title."<br>Duration: ".$plan->duration."<br>Cost: £".$plan->price."<br></p>
-				<p>Thanks</p>
-				<p>Freelance Genie</p>";
+                    <p>Below are the new plan details:</p>
+                    <p>Plan: ".$plan->title."<br>Duration: ".$plan->duration."<br>Cost: £".$plan->price."<br></p>
+                    <p>Thanks</p>
+                    <p>Freelance Genie</p>";
 					$message=str_replace('<title></title>',$title,$email_template->body);
 					$message=str_replace('<p></p>',$content,$message);
 					//mail($tutor_email, $subject, $message, $headers);

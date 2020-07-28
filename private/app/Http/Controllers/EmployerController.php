@@ -8,6 +8,7 @@ use App\Model\Language;
 use App\Model\QualifiedLevel;
 use App\model\TutorProfile;
 use App\Model\UserJobs;
+use App\Model\EmployerProfile;
 use App\User;
 use App\Model\EmailTemplate;
 use App\Model\Students;
@@ -38,30 +39,11 @@ class EmployerController extends Controller
     public function index()
 	{
 
-    $user_id=\Sentinel::getUser()->id;
-
+        $user_id=\Sentinel::getUser()->id;
         $jobs = Jobs::with('userJobsMeta')->where(['employer_id'=>$user_id, 'assignment'=>"0"])->orderBy('id', 'desc')->get();
-
         $status = '0';
-
-         $subs =  Subscription::with('plan')->whereUserId($user_id)->first();
-
-         $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
-
-         
-
-        //echo '<pre>';
-
-        //print_r($subs);die;
-
-
-
-        /*$categories = Category::with('children')->get();
-
-        $levels = QualifiedLevel::with('childrenLevels')->get();
-
-        $disciplines = Disciplines::with('childrenDisciplines')->get();*/
-
+        $subs =  Subscription::with('plan')->whereUserId($user_id)->first();
+        $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
         return view('web/employer_dashboard',compact('jobs','status','subs','SubscriptionLimit'));
 
     }
@@ -73,15 +55,19 @@ class EmployerController extends Controller
             'date' => date("Y-m-d")
         ];
 
-//         $pdf = \App::make('dompdf.wrapper');
-// $pdf->loadHTML('<h1>Test</h1>');
-// return $pdf->stream();
-
         $pdf = PDF::loadView('web.certificate_pdf', $data);
         return $pdf->download($request->stuname.'-'.$request->sirname.'-certificate.pdf');
     }
     function viewPdf() {
         return view('web.certificate_pdf');
+    }
+    function employer_makepdf($id) {
+        $down = EmployerProfile::where('user_id', $id)->first()->contract;
+        $pdf = [
+            'data' => $down,
+        ];
+        $pdf = PDF::loadView('web.service_agree_pdf', $pdf);
+        return $pdf->download('user'.$id.'-serviceagreement.pdf');
     }
     public function StudentsData(Request $request)
     {	$data = $request->input();
@@ -239,9 +225,9 @@ class EmployerController extends Controller
 
     {
 
-     $data = $request->input();
+        $data = $request->input();
 
-    if(isset($data['limit'])){
+        if(isset($data['limit'])){
 
             $jobs = Jobs::with('JobDocs')->where([['employer_id','=',\Sentinel::getUser()->id],['assignment','!=',"0"]])->skip($data['start'])->take($data['limit']);
 
@@ -470,6 +456,53 @@ class EmployerController extends Controller
     {
 
         //
+
+    }
+    public function Serviceagree()
+	{
+
+        $user_id=\Sentinel::getUser()->id;
+        
+        return view('web/service_agree',compact('user_id'));
+
+    }
+
+    public function Savecontract(Request $request)
+
+    {
+        try {
+            $data = $request->input();
+            $user_id=\Sentinel::getUser()->id;
+
+            EmployerProfile::where('user_id', $user_id)->update(['contract' => $data['contract']]);
+            
+            $date = date("Y-m-d H:i:s");
+            $user = User::find($user_id);
+            $from_email = $user->email;
+            $email_template=EmailTemplate::first();
+            $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
+            $subject = "Service Agreement";  
+            $title = '<title>Service Agreement</title>';
+            $content = "<p>Dear Freelance Genie I have read your Terms & Conditions carefully and agree with Freelance Genie.</p>
+            <p>I have signed in Contract and Send it to you. You can check it on my Profile<br></p>
+            <p>Thanks</p>
+            <p>".ucfirst($user->first_name) ." ".$user->last_name . "</p>
+            <p>".$date."</p>";
+            $message=str_replace('<title></title>',$title,$email_template->body);
+            $message=str_replace('<p></p>',$content,$message);
+            
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            $headers .= 'From: <'.$from_email.'>' . "\r\n";
+
+            mail($admin_email,$subject,$message,$headers);
+            // \Session::flash('success', 'Service Agreement updated and sent successfully');
+           
+            return Response(array('success' => '1', 'data' => null, 'errors' => null ));
+        } catch (Exception $ex) {
+            return View::make('errors.exception')->with('Message', $ex->getMessage());
+        }
 
     }
 

@@ -25,7 +25,7 @@
 	@include('includes.footer')
 	
 	<script src="{{ asset('assets/web/scripts/frontend.js') }}" type="text/javascript"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>
 	<script>    
 	// ===== Scroll to Top ==== 
 $(window).scroll(function() {
@@ -144,6 +144,26 @@ function myFunction() {
     header.classList.remove("cstm-sticky");
   }
 }
+$(document).on('click','#cookie_btn', function(e) {
+    e.preventDefault();
+    $.ajax({
+        method: 'get',
+        url: "{{url('/cookie')}}",
+        data : {
+            'name' : 'accept-cookie',
+            'value' : true
+        },
+        success: function (response) {
+            $('#footer').hide();
+        },
+        error: function (error) {
+            alert('Error: Please refresh the page');
+        },
+    });
+});
+$(document).on('click','#decline_btn', function(e) {
+    $('#footer').hide();
+});
 </script>
 </body>
 </html>

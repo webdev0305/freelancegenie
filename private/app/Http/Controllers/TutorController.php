@@ -39,6 +39,7 @@ use App\Http\Controllers\Controller;
 use View;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class TutorController extends Controller
 {
@@ -537,5 +538,56 @@ for ($i=$date_from; $i<=$date_to; $i+=86400) {
     public function destroy($id)
     {
         //
+    }
+    public function Freelanceragree()
+	{
+        $user_id=\Sentinel::getUser()->id;
+        return view('web/freelancer_agree',compact('user_id'));
+    }
+    public function Savecontract(Request $request)
+
+    {
+        try {
+            $data = $request->input();
+            $user_id=\Sentinel::getUser()->id;
+
+            TutorProfile::where('user_id', $user_id)->update(['contract' => $data['contract']]);
+            
+            $date = date("Y-m-d H:i:s");
+            $user = User::find($user_id);
+            $from_email = $user->email;
+            $email_template=EmailTemplate::first();
+            $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
+            $subject = "Service Agreement";  
+            $title = '<title>Service Agreement</title>';
+            $content = "<p>Dear Freelance Genie I have read your Terms & Conditions carefully and agree with Freelance Genie.</p>
+            <p>I have signed in Contract and Send it to you. You can check it on my Profile<br></p>
+            <p>Thanks</p>
+            <p>".ucfirst($user->first_name) ." ".$user->last_name . "</p>
+            <p>".$date."</p>";
+            $message=str_replace('<title></title>',$title,$email_template->body);
+            $message=str_replace('<p></p>',$content,$message);
+            
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            $headers .= 'From: <'.$from_email.'>' . "\r\n";
+
+            // mail($admin_email,$subject,$message,$headers);
+            // \Session::flash('success', 'Service Agreement updated and sent successfully');
+           
+            return Response(array('success' => '1', 'data' => null, 'errors' => null ));
+        } catch (Exception $ex) {
+            return View::make('errors.exception')->with('Message', $ex->getMessage());
+        }
+
+    }
+    function tutor_makepdf($id) {
+        $down = TutorProfile::where('user_id', $id)->first()->contract;
+        $pdf = [
+            'data' => $down,
+        ];
+        $pdf = PDF::loadView('web.freelancer_agree_pdf', $pdf);
+        return $pdf->download('user'.$id.'-freelanceragreement.pdf');
     }
 }

@@ -118,21 +118,19 @@
 			<div class="col-md-12">
 				<nav>
 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+							role="tab" aria-controls="nav-profile" aria-selected="true">For Tutor</a>
 						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-							role="tab" aria-controls="nav-home" aria-selected="true">For Tutor</a>
-						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-							role="tab" aria-controls="nav-profile" aria-selected="false">For Employer</a>
+							role="tab" aria-controls="nav-home" aria-selected="false">For Employer</a>
 					</div>
 				</nav>
 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 						<h2>Book a Tutor</h2>
 						<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
-
 							<div class="row screenshot_block">
 								<div class="col-md-6">
 									<div class="bg-slider-img">
-
 										<div class="carousel-inner">
 											<div class="carousel-item active">
 												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
@@ -156,7 +154,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 								<div class="col-md-6">
 									<div class="carousel-indicators how-it-indicator">
@@ -196,76 +193,69 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
+					</div>
 
-						<h2>Post Assignment</h2>
+					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+						<h2>Register</h2>
 						<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
 							<div class="row screenshot_block">
 								<div class="col-md-6">
 									<div class="bg-slider-img">
-
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/reg_screenshot_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/reg_screenshot_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/reg_screenshot_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
-													alt="Third slide">
+												<img class="d-block w-100" src="web/images/reg_screenshot_4.png"
+													alt="Fouth slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_5.png"
-													alt="Third slide">
+												<img class="d-block w-100" src="web/images/reg_screenshot_5.png"
+													alt="Fifth slide">
 											</div>
 										</div>
 									</div>
-
 								</div>
 								<div class="col-md-6">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators2" data-slide-to="0"
 											class="active_cir active">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry.</p>
+											<h2 class="title">Click on Regsiter</h2>
+											<p>Click on For Tutor button and select the Regsiter</p>
 											<div class="circle_text">1</div>
 										</div>
 										<div data-target="#carouselExampleIndicators2" data-slide-to="1"
 											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry.</p>
+											<h2 class="title">Select The Tutor</h2>
+											<p>The page of membership will be shown. You can select the membership from the list based on rating and skill and click on Sign Up.</p>
 											<div class="circle_text">2</div>
 										</div>
 										<div data-target="#carouselExampleIndicators2" data-slide-to="2"
 											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry.</p>
+											<h2 class="title">Click on Register</h2>
+											<p>Fill the register form. Preview the complete profile of the user and click on Regsiter button. </p>
 											<div class="circle_text">3</div>
 										</div>
 										<div data-target="#carouselExampleIndicators2" data-slide-to="3"
 											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry.</p>
+											<h2 class="title">Click on Login</h2>
+											<p>Register is done. You can login now. Fill the Login form and click on Login button.</p>
 											<div class="circle_text">4</div>
 										</div>
 										<div data-target="#carouselExampleIndicators2" data-slide-to="4"
 											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry.</p>
+											<h2 class="title">View your Dashboard</h2>
+											<p>You can see your dashboard table in your dashboard page.</p>
 											<div class="circle_text">5</div>
 										</div>
 									</div>
@@ -273,67 +263,6 @@
 							</div>
 
 						</div>
-
-
-
-					</div>
-
-
-
-					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-						<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
-							<div class="row screenshot_block">
-								<div class="col-md-6">
-									<div class="bg-slider-img">
-										<div class="carousel-inner">
-											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/Screenshot_1.png"
-													alt="First slide">
-											</div>
-											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/Screenshot_1.png"
-													alt="Second slide">
-											</div>
-											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/Screenshot_1.png"
-													alt="Third slide">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<div class="col-md-6">
-									<div class="carousel-indicators how-it-indicator">
-										<div data-target="#carouselExampleIndicators1" data-slide-to="0"
-											class="active_cir active">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry. Lorem Ipsum has been the industry's standard dummy text ever
-												since the 1500s.</p>
-											<div class="circle_text">1</div>
-										</div>
-										<div data-target="#carouselExampleIndicators1" data-slide-to="1"
-											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry. Lorem Ipsum has been the industry's standard dummy text ever
-												since the 1500s.</p>
-											<div class="circle_text">2</div>
-										</div>
-										<div data-target="#carouselExampleIndicators1" data-slide-to="2"
-											class="active_cir">
-											<h2 class="title">Lorem Ipsum</h2>
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry. Lorem Ipsum has been the industry's standard dummy text ever
-												since the 1500s.</p>
-											<div class="circle_text">3</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
 					</div>
 				</div>
 			</div>

@@ -23,23 +23,17 @@ class EmployerMiddleware
         $user = \Sentinel::check();
         if (!empty($user) && $user != '') {
             if (\Sentinel::getUser()->roles()->first()->slug == 'employer') {
-
-            $subs =  json_decode(json_encode(Subscription::whereUserId($user->id)->first()));
-
+                $subs =  json_decode(json_encode(Subscription::whereUserId($user->id)->first()));
                 if($subs->trans_id == ''){
                     Session::flash('error','You have to subscribe us to use feature');
                     return Redirect::to('subscription/'.encrypt($user->id));
                 }
-                //echo $subs->plan_id;die('here');
-             $plan =  json_decode(json_encode(Plan::find($subs->plan_id)));
-			 $subs_end=strtotime($subs->updated_at . ' + '.$plan->duration);
-             if(time() > $subs_end){
-                 Session::flash('error','Your subscription has been expired.Please pay to continue the same plan. You can also choose another plan.');
-                 return Redirect::to('subscription/'.encrypt($subs->plan_id).'?expire=1');
-             }
-
-           //    print_r($plan->duration);
-
+                $plan =  json_decode(json_encode(Plan::find($subs->plan_id)));
+                $subs_end=strtotime($subs->updated_at)  + $plan->duration * 86400;
+                if(time() > $subs_end){
+                    Session::flash('error','Your subscription has been expired.Please pay to continue the same plan. You can also choose another plan.');
+                    return Redirect::to('subscription/'.encrypt($subs->plan_id).'?expire=1');
+                }
                 $response = $next($request);
                 return $response->header('Cache-Control', 'nocache, no-store, max-age=0, must-revalidate')
                     ->header('Pragma', 'no-cache')

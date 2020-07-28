@@ -21,7 +21,7 @@
                             @if($plan->status== 0)
                             <span>£</span>{{$plan->price}}
                             @endif
-                            <h6>{{$plan->duration}}</h6>
+                            <h6>{{$plan->duration}} days Access</h6>
                         </div>
                         <div class="title-wrap">
                             <h3>{{$plan->title}}</h3>
