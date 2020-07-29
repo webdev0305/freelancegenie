@@ -15,7 +15,7 @@
                 <div class="pricing-wrap">
                     <div class="pricing-inner">
                         <div class="img-wrap">
-                            <img style="max-width: 50px;" src="web/images/{{$plan->image}}" alt="image-plan" />
+                            <img style="max-width: 50px;" src="web/images/{{$plan->image}}" alt="" />
                         </div>
                         <div class="cost-wrap">
                             @if($plan->status== 0)
