@@ -27,16 +27,10 @@ class UserController extends Controller
     public function index()
 
     {
-        // die('user cont');
-
         $categories = Category::with('children')->get();
-
         $categoriesSubs = Category::where('status','1')->get();
-
         $levels = QualifiedLevel::with('childrenLevels')->orderBy('priority', 'asc')->get();
-
         $disciplines = Disciplines::where(['Search_form'=>1])->orderBy('priority','asc')->get();
-
         $countrys = Country::all();
 
         $about = About::select('id','shot')->first();
