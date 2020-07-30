@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ValidationRequest;
 use View;
 
-
 class UserController extends Controller
 {
 
@@ -58,137 +57,67 @@ class UserController extends Controller
     }
 
     /*public function sessionFail(Request $request)
-
     {
-
-    try{
-
-        $user_id=\Sentinel::getUser()->id;
-
-        $crtoken = CreditToken::where(['user_id'=>$user_id,'token_year'=>date("Y")])->first();
-
+        try{
+            $user_id=\Sentinel::getUser()->id;
+            $crtoken = CreditToken::where(['user_id'=>$user_id,'token_year'=>date("Y")])->first();
             if($crtoken){
-
-                
-
-                    $crtoken->token=$crtoken->token+1;
-
-                    $crtoken->updated_at=date('Y-m-d h:i:s');
-
-                    $crtoken->save();
-
-                    return Response(array('success' => '1', 'errors' => ''));
-
-                
-
+                $crtoken->token=$crtoken->token+1;
+                $crtoken->updated_at=date('Y-m-d h:i:s');
+                $crtoken->save();
+                return Response(array('success' => '1', 'errors' => ''));
             }
-
         }catch(\Exception $e){
-
-        die($e->getMessage());
-
+            die($e->getMessage());
         }
-
     }*/
 
     public function checkSubscriptions()
-
+    {
+        $users = User::with('Subscription','plan')->whereHas('roles', function ($q) {
+            $q->whereIn('slug', ['employer']);
+        })->get();
+        $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
+        //echo '<pre>';print_r($users);echo '</pre>';die('I am here');
+        $users->each(function($user) // foreach($posts as $post) { }
         {
-
-            $users = User::with('Subscription','plan')->whereHas('roles', function ($q) {
-
-                $q->whereIn('slug', ['employer']);
-
-            })->get();
-            $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
-
-            //echo '<pre>';print_r($users);echo '</pre>';die('I am here');
-
-            $users->each(function($user) // foreach($posts as $post) { }
-
-            {
-
-                $subs_end=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'], strtotime($user['Subscription']['updated_at'])));
-
-                $subs_30=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'].' - 30 days', strtotime($user['Subscription']['updated_at'])));
-
-                $subs_10=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'].' - 10 days', strtotime($user['Subscription']['updated_at'])));
-
-                //echo $user['id'].$user['Subscription']['updated_at'].$subs_end.$subs_10.$subs_30;
-
-                //echo $user['id'];echo date('Y-m-d'); echo $subs_10;echo $subs_end;
-
-                if(date('Y-m-d') == $subs_30){
-
+            $subs_end=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'], strtotime($user['Subscription']['updated_at'])));
+            $subs_30=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'].' - 30 days', strtotime($user['Subscription']['updated_at'])));
+            $subs_10=date('Y-m-d', strtotime(' + '.$user['plan'][0]['duration'].' - 10 days', strtotime($user['Subscription']['updated_at'])));
+            //echo $user['id'].$user['Subscription']['updated_at'].$subs_end.$subs_10.$subs_30;
+            //echo $user['id'];echo date('Y-m-d'); echo $subs_10;echo $subs_end;
+            if(date('Y-m-d') == $subs_30){
                 echo $user['id'];echo 'send a mail before 30 days';
-
-                }
-
-                if(date('Y-m-d') >= $subs_10 && date('Y-m-d') <= $subs_end){
-
+            }
+            if(date('Y-m-d') >= $subs_10 && date('Y-m-d') <= $subs_end){
                 /*$data=array('email'=>'a@gmail.com','subject'=>'test','name'=>'arjun','body'=>'this is the mail content');
-
                 echo $user->id; echo 'send mails before 10 days';
-
                 \Mail::to('krishankmr.bbdit@gmail.com')->send(new \App\Mail\CheckSubscription($data));*/
-
                 $to = $user->email;
-
                 $subject = "Subscription Expire Notification";
-
-
-
                 $message = "
-
                 <html>
-
                 <head>
-
                 <title>Subscription Expire</title>
-
                 </head>
-
                 <body>
-
                 <p>Dear ".$user->first_name ." ".$user->last_name . ", Your Subscription is going to expire on ". $subs_end. ". Please renew your subscription soon.</p>
-
                 <p>Thanks</p>
-
                 <p>FL Genie</p>
-
                 </body>
-
                 </html>
-
                 ";
-
-
-
                 // Always set content-type when sending HTML email
-
                 $headers = "MIME-Version: 1.0" . "\r\n";
-
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-
-
                 // More headers
-
                 $headers .= 'From: <webmaster@example.com>' . "\r\n";
-
                 $headers .= 'Cc: myboss@example.com' . "\r\n";
-
-
-
                 mail($to,$subject,$message,$headers);
-
-                }
-
-             echo '<pre>';print_r($user['plan'][0]['duration']);echo '</pre>';
-
-            });
-
-        }
+            }
+            echo '<pre>';print_r($user['plan'][0]['duration']);echo '</pre>';
+        });
+    }
 
 
 
