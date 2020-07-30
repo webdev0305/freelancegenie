@@ -32,13 +32,9 @@ class UserController extends Controller
         $levels = QualifiedLevel::with('childrenLevels')->orderBy('priority', 'asc')->get();
         $disciplines = Disciplines::where(['Search_form'=>1])->orderBy('priority','asc')->get();
         $countrys = Country::all();
-
         $about = About::select('id','shot')->first();
-
         $tutor_profiles = TutorProfile::distinct()->get(['zip']);
-
         return View::make('web.index', compact('categories', 'disciplines', 'countrys', 'levels','about','categoriesSubs','tutor_profiles'));
-
     }
 
 public function quarterly(Request $request)
