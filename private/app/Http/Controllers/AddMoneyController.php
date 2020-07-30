@@ -172,7 +172,7 @@ class AddMoneyController extends Controller
 				$headers .= 'From: <'.$admin_email.'>' . "\r\n";
 				//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
-				mail($to,$subject,$message,$headers);
+				// mail($to,$subject,$message,$headers);
                 return Redirect::to($redirect);
             } else {
                 \Session::flash('error', 'Money not add in wallet!!');

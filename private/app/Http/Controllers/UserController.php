@@ -1,50 +1,28 @@
 <?php
-
-
-
 namespace App\Http\Controllers;
 
 use App\Model\About;
 use App\Model\GlobalSettings;
 use App\Model\Activations;
-
 use App\Model\Category;
-
 use App\Model\Country;
-
 use App\Model\Disciplines;
-
 use App\Model\QualifiedLevel;
-
 use App\model\TutorProfile;
-
 use App\CreditToken;
-
 use App\User;
-
 use App\Model\Subscription;
-
 use Illuminate\Http\Request;
-
 use Exception;
-
 use Illuminate\Support\Facades\Config;
-
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Support\Facades\Redirect;
-
 use App\Http\Requests\ValidationRequest;
-
 use View;
 
 
-
 class UserController extends Controller
-
 {
-
-
 
     public function index()
 
