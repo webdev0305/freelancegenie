@@ -426,7 +426,7 @@ class UserController extends Controller
                     echo    $msg = 'You are already subscribed.';
                     break;
                 default:
-                    echo     $msg = 'Some problem occurred, please try again.';
+                    echo    $msg = 'Some problem occurred, please try again.';
                     break;
             }
             print_r($msg);
