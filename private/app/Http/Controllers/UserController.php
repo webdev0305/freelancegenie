@@ -25,7 +25,6 @@ class UserController extends Controller
 {
 
     public function index()
-
     {
         $categories = Category::with('children')->get();
         $categoriesSubs = Category::where('status','1')->get();
@@ -37,48 +36,25 @@ class UserController extends Controller
         return View::make('web.index', compact('categories', 'disciplines', 'countrys', 'levels','about','categoriesSubs','tutor_profiles'));
     }
 
-public function quarterly(Request $request)
-
+    public function quarterly(Request $request)
     {
-
-    try{
-
-        $posts = TutorProfile::all();
-
-        $posts->each(function($post) // foreach($posts as $post) { }
-
-        {
-
-            $tutor_id=$post['user_id'];
-
-            $crtoken = CreditToken::where(['user_id'=>$tutor_id,'token_year'=>date("Y")])->first();
-
-            if($crtoken){
-
-                $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($crtoken->updated_at)));
-
-                if($crtoken && $crtoken->token < 5 && !$crtoken->used && $effectiveDate == date('Y-m-d')){ // Credit token can be 5 in a year
-
-                    $crtoken->token=$crtoken->token+1;
-
-                    $crtoken->updated_at=date('Y-m-d h:i:s');
-
-                    $crtoken->save();
-
+        try{
+            $posts = TutorProfile::all();
+            $posts->each(function($post) { // foreach($posts as $post) { }
+                $tutor_id=$post['user_id'];
+                $crtoken = CreditToken::where(['user_id'=>$tutor_id,'token_year'=>date("Y")])->first();
+                if($crtoken){
+                    $effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($crtoken->updated_at)));
+                    if($crtoken && $crtoken->token < 5 && !$crtoken->used && $effectiveDate == date('Y-m-d')){ // Credit token can be 5 in a year
+                        $crtoken->token=$crtoken->token+1;
+                        $crtoken->updated_at=date('Y-m-d h:i:s');
+                        $crtoken->save();
+                    }
                 }
-
-            }
-
-    //do something
-
-        }); die('here');
-
+            }); die('here');
         }catch(\Exception $e){
-
-        die($e->getMessage());
-
+            die($e->getMessage());
         }
-
     }
 
     /*public function sessionFail(Request $request)
