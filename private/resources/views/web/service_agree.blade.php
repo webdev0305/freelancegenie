@@ -13,7 +13,6 @@
     <link rel="shortcut icon" href="{{asset('web/images/favicon.png')}}" type="image/x-icon" />
 
     <link rel="stylesheet" href="{{ asset('assets/web/stylesheets/styles.css') }}" />
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800|Raleway:400,500,600,700,800"
         rel="stylesheet">
@@ -603,11 +602,6 @@
     <script>
         $(document).ready(function () {
 
-            //msieversion();
-            /*if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1))
-            {
-            	$('#browser_msg').show();
-            }*/
             $('.center').slick({
                 centerMode: true,
                 slidesToScroll: 1,
