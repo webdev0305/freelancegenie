@@ -47,7 +47,6 @@
                         <fieldset>
                             <legend>Assignment Information</legend>
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label class="control-label " for="title">
@@ -60,20 +59,16 @@
                                             <small id="title-error"></small>
                                         </span>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-
                                     <div class="form-group ">
                                         <label class="control-label" for="Rate">
                                             Day Rate(£)<span class="asteriskField">*</span>
                                         </label>
                                         <input class="form-control" name="rate" type="number" min="0" max="10000"
                                             id="rate">
-
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -107,11 +102,8 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="row">
-
                                 <div class="col-md-12">
                                     <div class="form-group ">
                                         <label class="control-label " for="type_levels">
@@ -132,23 +124,18 @@
                                             </optgroup>
                                             @endif
                                             @endforeach
-
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
-
-
                             <div class="row">
-
                                 <div class="col-md-12">
                                     <div class="form-group ">
                                         <label class="control-label " for="date">
                                             Booking Date(s)<span class="asteriskField">*</span>
                                         </label>
-                                        <div id='datePick'></div>
-                                        <input name="date" class="form-control" id="altField" type="hidden" />
+                                        <div id='date'></div>
+                                        <input name="date" id="altField" type="hidden" />
                                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                         <span class="text-danger">
                                             <small id="date-error"></small>
@@ -157,7 +144,6 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label class="control-label " for="time_start">
@@ -175,7 +161,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -209,7 +194,6 @@
                                     <small id="booking_address-error"></small>
                                 </span>
                             </div>
-
                             <div id="address_box" style="display: none;">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
@@ -229,13 +213,8 @@
                                             <input class="form-control" id="street_name" name="street_name" type="text">
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
                                 <div class="row">
-
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group ">
                                             <label class="control-label " for="city">
@@ -262,34 +241,24 @@
 
                                                 </optgroup>
                                             </select>
-
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group ">
                                             <label class="control-label " for="country">
                                                 Country
                                             </label>
-
                                             <select class="form-control" id="country" name="country">
                                                 <option selected>UK</option>
                                             </select>
-
                                             @if ($errors->has('country'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('country') }}</strong>
                                             </span>
                                             @endif
                                         </div>
-
                                     </div>
-
-
                                 </div>
-
-
-
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group ">
@@ -300,16 +269,11 @@
                                         </div>
                                     </div>
                                     <!--<div class="col-md-6">
-                            <div class="form-group ">
-                                
-                                <input type="button" name="checkd" data-tutor_id="29" id="checkd" value="Check Distance" class="btn btn-success">
-							</div>
-
-                        </div>-->
-
+                                        <div class="form-group ">
+                                            <input type="button" name="checkd" data-tutor_id="29" id="checkd" value="Check Distance" class="btn btn-success">
+                                        </div>
+                                    </div>-->
                                 </div>
-
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -418,9 +382,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -438,11 +400,9 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>
-
                                             Do any of the Audience have any learning difficulties or disabilities that
                                             we
                                             need to be aware of?
@@ -460,7 +420,6 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div id="difficulty_div" class="col-md-6 col-sm-6" style="display:none;">
                                     <div class="form-group">
                                         <label class="control-label" for="difficulty_info">
@@ -470,7 +429,6 @@
                                             rows="3"></textarea>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>
@@ -487,8 +445,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -536,10 +492,18 @@
 
 @push('scripts')
 <script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" ></script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" ></script>
 <script src="{{ asset('js/admin/jquery-ui.multidatespicker.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $('#date').multiDatesPicker({
+            altField: '#altField',
+			dateFormat: "dd/mm/yy",
+			minDate: 3, // Booking dates should be selected after 2 days of current date
+            
+        });
+    });
     $(document).ready(function () {
         $('#insert_form #step0Next').click(function (e) {
             /*var options = $('#disciplines').find(":selected").text();
@@ -638,13 +602,7 @@
     }
 
     var disabledArr = [""];
-    $(document).ready(function () {
-        $('#datePick').multiDatesPicker({
-            altField: '#altField',
-            dateFormat: "dd/mm/yy",
-            minDate: 3, // Booking dates should be selected after 2 days of current date
-        });
-    });
+    
 
 
     $('#myModal1').click(function (e) {
@@ -658,7 +616,6 @@
             success: function (data) {
                 //var response=$.parseJSON(data);
                 //console.log(data);
-                //alert (data);
                 if (parseInt(data)) {
                     //$('#myModal').modal('toggle');
                     $('#myModal').modal({

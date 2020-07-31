@@ -1192,8 +1192,7 @@
 <!-- /Course Modal -->
 @push('scripts')
 <script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" >
-</script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" ></script>
 <script src="{{ asset('js/admin/jquery-ui.multidatespicker.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script>
@@ -1434,7 +1433,7 @@
 
 		$("#insert_form")[0].reset();
 		$('#title-error').html("");
-		// $('#date-error').html("");
+		$('#date-error').html("");
 		$('#specialist-error').html("");
 		$('#qualified_levels-error').html("");
 		$('#type_levels-error').html("");
@@ -1486,7 +1485,7 @@
 			}
 		});
 		$('#title-error').html("");
-		// $('#date-error').html("");
+		$('#date-error').html("");
 		$('#specialist-error').html("");
 		$('#qualified_levels-error').html("");
 		$('#type_levels-error').html("");
@@ -1500,7 +1499,7 @@
 				console.log(data);
 				if (data.errors) {
 					$('#title-error').html(data.errors.title);
-					// $('#date-error').html(data.errors.date);
+					$('#date-error').html(data.errors.date);
 					$('#specialist-error').html(data.errors.specialist);
 					$('#qualified_levels-error').html(data.errors.qualified_levels);
 					$('#type_levels-error').html(data.errors.type_levels);

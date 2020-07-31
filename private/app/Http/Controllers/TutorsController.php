@@ -199,9 +199,7 @@ class TutorsController extends Controller
     {
         try {
             $data = $request->input();
-            
 			if(isset($data['care_tutor'])){ // care trainer
-                
                 $care_tutor=1;
 				$status="1";
                 $validation = \Validator::make($request->all(), ValidationRequest::$carejobPost);
@@ -210,14 +208,15 @@ class TutorsController extends Controller
                     return Response::json(['errors' => $validation->errors()]);
                 }
 			}elseif(isset($data['assignment'])){ // Assignment
-				$care_tutor=2;
+                $care_tutor=2;
 				$status="0";
-				$validation = \Validator::make($request->all(), ValidationRequest::$assignmentPost);
-					if ($validation->fails()) {
-						$errors = $validation->messages();
-						return Response::json(['errors' => $validation->errors()]);
+                $validation = \Validator::make($request->all(), ValidationRequest::$assignmentPost);
+                
+                if ($validation->fails()) {
+                    $errors = $validation->messages();
+                    return Response::json(['errors' => $validation->errors()]);
 
-					}
+                }
 			}else{  // Direct tutor booking
 				$status="1";
 				$validation = \Validator::make($request->all(), ValidationRequest::$jobPost);
