@@ -416,17 +416,17 @@ class UserController extends Controller
         $result = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        //print_r($result);die;
+        //print_r($httpCode);die;
         // store the status message based on response code
         if ($httpCode == 200) {
             echo 'You have successfully subscribed to our news letter.';
         } else {
             switch ($httpCode) {
                 case 214:
-                    echo    $msg = 'You are already subscribed.';
+                    echo $msg = 'You are already subscribed.';
                     break;
                 default:
-                    echo    $msg = 'Some problem occurred, please try again.';
+                    echo $msg = 'Some problem occurred, please try again.';
                     break;
             }
             print_r($msg);

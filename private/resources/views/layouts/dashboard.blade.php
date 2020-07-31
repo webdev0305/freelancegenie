@@ -86,14 +86,14 @@
                             <a class="dropdown-item" target="_blank"
                                 href="https://secure.crbonline.gov.uk/crsc/subscriber">Update DBS</a>
                             <a class="dropdown-item" href="{{url('tutor/upload')}}">My Docs</a>
-                            <a class="dropdown-item" href="{{url('tutor/faq')}}">FAQ</a>
+                            <a class="dropdown-item" href="{{url('faq')}}">FAQ</a>
                             <a class="dropdown-item" href="{{url('tutor/change_password')}}">Change Password</a>
                             @else
                             <a class="dropdown-item" href="{{url('employer')}}">Dashboard</a>
                             <a class="dropdown-item"
                                 href="{{url('employer').'/'.encrypt($user->id).'/edit'}}">Profile</a>
                             <a class="dropdown-item" href="{{url('employer/assignment')}}">Live Assignments</a>
-                            <a class="dropdown-item" href="{{url('employer/faq')}}">FAQ</a>
+                            <a class="dropdown-item" href="{{url('faq')}}">FAQ</a>
                             <a class="dropdown-item" href="{{url('pricing')}}">Renew Plan</a>
                             <a class="dropdown-item" href="{{url('employer/change_password')}}">Change Password</a>
                             @endif

@@ -106,6 +106,7 @@ Route::get('employer/faq', function () {
     return View::make('web.FAQ', compact('faqs'));
 });
 Route::get('tutor/faq', function () {
+    
     $faqs = \App\Model\Faq::where('visible',"1")->get();
     $faqs = json_decode(json_encode($faqs));
     return View::make('web.FAQ', compact('faqs'));

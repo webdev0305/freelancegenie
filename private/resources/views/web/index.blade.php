@@ -219,11 +219,11 @@ h2{
 	<section id="tutor-area">
   <div class="container">
         <div class="row no-gutters">
-            <div class="col-md-6 tutors data-aos="fade-right"">
+            <div class="col-md-6 tutors data-aos=" fade-right"">
 				<div class="tooltip_custom">
                 <div class="row heading">
                     <div class="col-sm-8 col-8">
-                        <h3>For Tutor</h3>
+                        <h3>FOR TUTORS</h3>
                     </div>
                     <div class="col-sm-4 col-4">
                         <img src="web/images/icon-4.png" class="img-fluid">
@@ -245,7 +245,7 @@ h2{
 				<div class="tooltip_custom">
                 <div class="row heading">
                     <div class="col-sm-8 col-8">
-                        <h3>For Employer</h3>
+                        <h3>FOR EMPLOYERS</h3>
                     </div>
                     <div class="col-sm-4 col-4">
                         <img src="web/images/icon-3.png" class="img-fluid">

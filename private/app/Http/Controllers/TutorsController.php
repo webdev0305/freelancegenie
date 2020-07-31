@@ -199,16 +199,16 @@ class TutorsController extends Controller
     {
         try {
             $data = $request->input();
-
+            
 			if(isset($data['care_tutor'])){ // care trainer
-				$care_tutor=1;
+                
+                $care_tutor=1;
 				$status="1";
-				$validation = \Validator::make($request->all(), ValidationRequest::$carejobPost);
-					if ($validation->fails()) {
-						$errors = $validation->messages();
-						return Response::json(['errors' => $validation->errors()]);
-
-					}
+                $validation = \Validator::make($request->all(), ValidationRequest::$carejobPost);
+                if ($validation->fails()) {
+                    $errors = $validation->messages();
+                    return Response::json(['errors' => $validation->errors()]);
+                }
 			}elseif(isset($data['assignment'])){ // Assignment
 				$care_tutor=2;
 				$status="0";
@@ -228,7 +228,7 @@ class TutorsController extends Controller
 				}
 				$care_tutor=0;
 			}
-          /* if ($data['tutor_id'] != '') {
+            /* if ($data['tutor_id'] != '') {
                 $ckeJob = Jobs::where('tutor_id', $data['tutor_id'])->where('employer_id', \Sentinel::getUser()->id)->first();
                 if (!empty($ckeJob)) {
                     return Response::json(['success' => '2', 'message' => Config::get('message.options.JOBSUBMTD')]);
@@ -239,11 +239,11 @@ class TutorsController extends Controller
             $jobs->tutor_id = $data['tutor_id'] == NULL ? NULL : $data['tutor_id'];
 			$msg=Config::get('message.options.JOB_SUBMITED');// msg for tutor booking successfully
 			if(!$care_tutor){// Direct booking
-			$jobs->category_id = $data['specialist'];
-            $jobs->qualified_levels_id = $data['qualified_levels'];
-            $jobs->sub_disciplines_id = $data['type_levels'];
-			$jobs->type = $data['type'];
-			$msg=Config::get('message.options.JOB_SUBMITED');// msg for tutor Care Course Tutor booking successfully
+                $jobs->category_id = $data['specialist'];
+                $jobs->qualified_levels_id = $data['qualified_levels'];
+                $jobs->sub_disciplines_id = $data['type_levels'];
+                $jobs->type = $data['type'];
+                $msg=Config::get('message.options.JOB_SUBMITED');// msg for tutor Care Course Tutor booking successfully
 			}
             $jobs->rate = $data['rate'];
 			$jobs->mileage = $data['mileage'];
@@ -256,20 +256,19 @@ class TutorsController extends Controller
 			$jobs->equipment_info = isset($data['equipment_info'])?$data['equipment_info']:'';
 			$jobs->difficulty_info = isset($data['difficulty_info'])?$data['difficulty_info']:'';
 			if($care_tutor == 2){ // For Assignment
-			$msg=Config::get('message.options.ASSIGNMENT_SUBMITED');
-            $jobs->awarding = $data['awarding'];
-            //$data['total']=$data['rate'];
-            $data['distance_value']="0";
-            if(isset($data['premium'])){
-                $jobs->assignment="2";
-            }else{
-                $jobs->assignment="1";
-            }
-            
+                $msg=Config::get('message.options.ASSIGNMENT_SUBMITED');
+                $jobs->awarding = $data['awarding'];
+                //$data['total']=$data['rate'];
+                $data['distance_value']="0";
+                if(isset($data['premium'])){
+                    $jobs->assignment="2";
+                }else{
+                    $jobs->assignment="1";
+                }
             }
             //$total= $data['total'];
             //$data['total']=$data['rate'];
-           // print_r($data);die;
+            // print_r($data);die;
 			$jobs->description = $data['description'];
 			$jobs->title = $data['title'];
 			$jobs->booking_address = $data['booking_address'];
@@ -277,11 +276,11 @@ class TutorsController extends Controller
 			$jobs->hotel_charges = 50;
 
 			if($jobs->booking_address){
-			$jobs->address = $data['address'];
-			$jobs->street_name = $data['street_name'];
-			$jobs->city = $data['city'];
-			$jobs->country_id = $data['country'];
-			$jobs->zip = $data['zip'];
+                $jobs->address = $data['address'];
+                $jobs->street_name = $data['street_name'];
+                $jobs->city = $data['city'];
+                $jobs->country_id = $data['country'];
+                $jobs->zip = $data['zip'];
 			}
             $jobs->employer_id = $user_id;
             $jobs->date = $data['date'];
@@ -291,11 +290,11 @@ class TutorsController extends Controller
             $jobs->status = $status;
 			
             if($care_tutor !=2){
-            $jobs->total = $data['total'];
+                $jobs->total = $data['total'];
             }
             $subs =  Subscription::whereUserId($user_id)->first();
 
-            $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
+            $SubscriptionLimit = SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
             if($care_tutor==2){
 				if ($SubscriptionLimit){
 					$SubscriptionLimit->assignment=$SubscriptionLimit->assignment+1;
@@ -312,46 +311,45 @@ class TutorsController extends Controller
 					}
 				}
             }else{
-            if ($SubscriptionLimit){
-            $SubscriptionLimit->booked=$SubscriptionLimit->booked+1;
-
-            }else{
-            $SubscriptionLimit =new SubscriptionLimit;
-            $SubscriptionLimit->user_id=$user_id;
-            $SubscriptionLimit->subscription_code=$subs->subscription_code;
-            $SubscriptionLimit->booked=1;
-
-            }
+                if ($SubscriptionLimit){
+                    $SubscriptionLimit->booked=$SubscriptionLimit->booked+1;
+                }else{
+                    $SubscriptionLimit =new SubscriptionLimit;
+                    $SubscriptionLimit->user_id=$user_id;
+                    $SubscriptionLimit->subscription_code=$subs->subscription_code;
+                    $SubscriptionLimit->booked=1;
+                }
             }
 			//print_r($jobs);die('working here');
             $SubscriptionLimit->save();
             $jobs->save();
 			//$job = Jobs::find($jobs->id); 
             if (Input::hasFile('photos')){  
-            try{  
-            foreach ($request->photos as $photo) {
-            $original=$photo->getClientOriginalName();              
-            $filename = $photo->store('photos');             
-            \App\Model\JobDocs::create([ 
-            'job_id' => $jobs->id,             
-            'filename' => $filename,
-            'originalname' =>$original,             
-            'logo'    =>0
-            ]);            }                         
-            }catch(\Exception $e){// do task when error            
-            die($e->getMessage());
-            }   
+                try{  
+                    foreach ($request->photos as $photo) {
+                        $original=$photo->getClientOriginalName();              
+                        $filename = $photo->store('photos');             
+                        \App\Model\JobDocs::create([ 
+                            'job_id' => $jobs->id,             
+                            'filename' => $filename,
+                            'originalname' =>$original,             
+                            'logo'    =>0
+                            ]);
+                    }                         
+                }catch(\Exception $e){// do task when error            
+                    die($e->getMessage());
+                }   
             }   
             if (Input::hasFile('logo')){  
-            $logo=$request->logo;            
-            $original=$logo->getClientOriginalName();
-            $filename = $logo->store('logo');
-            \App\Model\JobDocs::create([
-            'job_id' => $jobs->id,
-            'filename' => $filename,
-            'originalname' =>$original,
-            'logo'    =>1
-            ]);
+                $logo=$request->logo;            
+                $original=$logo->getClientOriginalName();
+                $filename = $logo->store('logo');
+                \App\Model\JobDocs::create([
+                    'job_id' => $jobs->id,
+                    'filename' => $filename,
+                    'originalname' =>$original,
+                    'logo'    =>1
+                ]);
             }
 
            $jobs->userJobs()->sync($data['tutor_id']);
@@ -359,19 +357,19 @@ class TutorsController extends Controller
 		   $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
 		   $to="krishankmr.bbdit@gmail.com";
 		   // Always set content-type for all emails
-					$headers = "MIME-Version: 1.0" . "\r\n";
-					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-					$headers .= 'From: <'.$admin_email.'>' . "\r\n";
-					$subject = "Freelance Genie Live Assignment";  
-					$title = '<title>Freelance Genie Live Assignment</title>';
-					 //Send Email to Admin				
-					$content = "<p>Thanks for posting assignment on Freelance Genie.</p>
-								<p>Our expert frerlancers will accept your assignment shortly.</p>		
-					<p>Thanks</p>
-					<p>FL Genie</p>";
-					$message=str_replace('<title></title>',$title,$email_template->body);
-					$message=str_replace('<p></p>',$content,$message);
-					mail($to, $subject, $message, $headers);
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= 'From: <'.$admin_email.'>' . "\r\n";
+            $subject = "Freelance Genie Live Assignment";  
+            $title = '<title>Freelance Genie Live Assignment</title>';
+                //Send Email to Admin				
+            $content = "<p>Thanks for posting assignment on Freelance Genie.</p>
+                        <p>Our expert frerlancers will accept your assignment shortly.</p>		
+            <p>Thanks</p>
+            <p>FL Genie</p>";
+            $message=str_replace('<title></title>',$title,$email_template->body);
+            $message=str_replace('<p></p>',$content,$message);
+            // mail($to, $subject, $message, $headers);
 			return Response::json(['care_tutor'=>$care_tutor,'job_id'=>$jobs->id,'success' => '1', 'message' => $msg]);
 
         } catch (Exception $ex) {
@@ -380,40 +378,40 @@ class TutorsController extends Controller
     }
 	
     function CheckLimit(Request $request){
-     $data = $request->input();
-     $check = $data['check'];
-     $user_id=\Sentinel::getUser()->id;
-     $subs =  Subscription::with('Plan')->whereUserId($user_id)->first();
-    // echo '<pre>';print_r($subs);die('checking here');
-     $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
-     $no_booking=0;
-     $no_assignment=0;
-	 $no_prem_assignment=0;
-     if($SubscriptionLimit){
-     $no_booking=$SubscriptionLimit->booked;
-     $no_assignment=$SubscriptionLimit->assignment;
-	 $no_prem_assignment=$SubscriptionLimit->premium;
-     }
-     $allowed_booking=$subs->plan->book_tutor;
-     $allowed_assignment=$subs->plan->post_assignment;
-	 $allowed_prem_assignment=$subs->plan->premium;
-     if($check=='booked'){
-     if($no_booking >= $allowed_booking){
-     return 0;
-     }else{
-     return 1;
-     }
-     }else{
-     if($no_assignment >= $allowed_assignment){
-     return 0;
-     }else{
-		 if($no_prem_assignment < $allowed_prem_assignment){
-			return 2; //Can post both premium and standard
-		 }else{
-			 return 1; //Can post only standard
-		 }
-     }
-     }
+        $data = $request->input();
+        $check = $data['check'];
+        $user_id=\Sentinel::getUser()->id;
+        $subs =  Subscription::with('Plan')->whereUserId($user_id)->first();
+        // echo '<pre>';print_r($subs);die('checking here');
+        $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
+        $no_booking=0;
+        $no_assignment=0;
+        $no_prem_assignment=0;
+        if($SubscriptionLimit){
+            $no_booking=$SubscriptionLimit->booked;
+            $no_assignment=$SubscriptionLimit->assignment;
+            $no_prem_assignment=$SubscriptionLimit->premium;
+        }
+        $allowed_booking=$subs->plan->book_tutor;
+        $allowed_assignment=$subs->plan->post_assignment;
+        $allowed_prem_assignment=$subs->plan->premium;
+        if($check=='booked'){
+            if($no_booking >= $allowed_booking){
+                return 0;
+            }else{
+            return 1;
+            }
+        }else{
+            if($no_assignment >= $allowed_assignment){
+                return 0;
+            }else{
+		        if($no_prem_assignment < $allowed_prem_assignment){
+			        return 2; //Can post both premium and standard
+		        }else{
+			        return 1; //Can post only standard
+		        }
+            }
+        }
     }
 
 function GetCoordinates(Request $request)
