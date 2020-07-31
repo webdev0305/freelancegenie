@@ -208,17 +208,11 @@ class EmployerController extends Controller
     }
 
     public function assignments()
-
     {
-
 		$disciplines = Disciplines::where(['Search_form'=>1])->get();
-
         $jobs = Jobs::with('userJobsMeta')->where([['employer_id','=',\Sentinel::getUser()->id],['assignment','!=',"0"]])->orderBy('id', 'desc')->get();
-
         $status = '0';
-
         return view('web/employer_assignments',compact('jobs','status','disciplines'));
-
     }
 
 	public function AssignmentLazy(Request $request)
