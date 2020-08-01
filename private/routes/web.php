@@ -143,9 +143,6 @@ Route::get('tutor/tutor_swap', 'TutorController@Swapdata');
 Route::get('tutor/freelancer_agree', 'TutorController@Freelanceragree');
 
 
-
-
-
 Route::group(['middleware' => 'tutor'], function () {
     
     Route::get('tutor/change_password', function () {

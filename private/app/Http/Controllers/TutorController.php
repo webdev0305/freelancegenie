@@ -94,11 +94,11 @@ class TutorController extends Controller
     }
 	public function Swapdata()
     {	
-	$user_id=\Sentinel::getUser()->id;
-	$tutor_request=SwapRequests::with('Jobs','User')->where(['to_tutor_id'=>$user_id,'status'=>0])->get();
-	//echo '<pre>';print_r($tutor_request);
-	//die;
-	return view('web/tutor_swap', compact('tutor_request'));
+        $user_id=\Sentinel::getUser()->id;
+        $tutor_request=SwapRequests::with('Jobs','User')->where(['to_tutor_id'=>$user_id,'status'=>0])->get();
+        //echo '<pre>';print_r($tutor_request);
+        //die;
+        return view('web/tutor_swap', compact('tutor_request'));
     }
 	public function SwapDetail($id){
         $jobs = Jobs::with('JobDocs')->where(['id'=>$id])->first();
@@ -128,77 +128,70 @@ class TutorController extends Controller
 	}
     public function AssignmentLazy(Request $request)
     {
-     $data = $request->input();
-    if(isset($data['limit'])){
+        $data = $request->input();
+       
+        if(isset($data['limit'])){
             $jobs = Jobs::with('JobDocs')->where([['assignment','!=',"0"],['status','=',"0"]])->skip($data['start'])->take($data['limit']);
             $jobs_count =$jobs->count();
             if($jobs){
-            $jobs =$jobs->orderBy('id','desc')->get();
-			
-            $i=0;
-            foreach($jobs as $job){
-            $jobs[$i]->rate=($job->rate > 0)?$job->rate:'--';
-            $jobs[$i]->posted=round((strtotime(date('y-m-d')) - strtotime($job->created_at))/86400);
-			$jobs[$i]->description=str_limit($job->description,115);
-            $i++;
-            }
-            }else{
-            $jobs='';
-            }
-			//print_r($jobs);die('Working here');
+                $jobs =$jobs->orderBy('id','desc')->get();
+                $i=0;
+                foreach($jobs as $job){
+                    $jobs[$i]->rate=($job->rate > 0)?$job->rate:'--';
+                    $jobs[$i]->posted=round((strtotime(date('y-m-d')) - strtotime($job->created_at))/86400);
+                    $jobs[$i]->description=str_limit($job->description,115);
+                    $i++;
+                }
+                }else{
+                    $jobs='';
+                }
+			    //print_r($jobs);die('Working here');
             return Response::json(['success' => '1','jobs_lazy'=>$jobs,'records'=>$jobs_count,'start'=>$data['start'],'limit'=>$data['limit']]);
         }
     }
-    public function AssignmentDetail($id){
+    public function AssignmentDetail($id)
+    {
         $jobs = Jobs::with('JobDocs','EmployerProfile')->where(['id'=>$id])->first();
-       //echo '<pre>'; print_r($jobs);die;
-            $jobs->rate=($jobs->rate > 0)?$jobs->rate:'--';
-            $jobs->posted=round((strtotime(date('y-m-d')) - strtotime($jobs->created_at))/86400);
+        // echo '<pre>'; print_r($jobs);die;
+        $jobs->rate=($jobs->rate > 0)?$jobs->rate:'--';
+        $jobs->posted=round((strtotime(date('y-m-d')) - strtotime($jobs->created_at))/86400);
         return View::make('web.assignment_detail',compact('jobs'));
     }
     public function Assignment(Request $request)
     {
-    //die('I am here');
-    $data = $request->input();
+        // die('I am here');
+        $data = $request->input();
         
-        
-    if (!empty(input::get('date'))) {
-        $date=input::get('date');
-        //$jobs=$jobs->where(['from_date', '<=',$date,'to_date', '>=',$date]);
-        $jobs=Jobs::where([
-            ['from_date', '<=',$date],
-            ['to_date', '>=',$date],
-        
-        ])->orderBy('id','desc')->get();
-                
-                
-        }
-        else{
-        //$jobs=Jobs::where('assignment',"1")->take(2)->orderBy('id','desc')->get();
-       $jobs = DB::table('jobs')->where(['assignment'=>"1",'status'=>"0"])->take(5)->get();
-       //$jobs=Jobs::where(['assignment'=>"1",'status'=>"0"])->orderBy('id','desc')->get();
+        if (!empty(input::get('date'))) {
+            $date=input::get('date');
+            //$jobs=$jobs->where(['from_date', '<=',$date,'to_date', '>=',$date]);
+            $jobs=Jobs::where([
+                ['from_date', '<=',$date],
+                ['to_date', '>=',$date],
+            ])->orderBy('id','desc')->get();
+        }else{
+            //$jobs=Jobs::where('assignment',"1")->take(2)->orderBy('id','desc')->get();
+            $jobs = DB::table('jobs')->where(['assignment'=>"1",'status'=>"0"])->take(5)->get();
+            //$jobs=Jobs::where(['assignment'=>"1",'status'=>"0"])->orderBy('id','desc')->get();
         }
         
-         $job_dates=Jobs::where('assignment',"1")->orderBy('id','desc')->get();
-           $booked_dates=array();
+        $job_dates=Jobs::where('assignment',"1")->orderBy('id','desc')->get();
+        $booked_dates=array();
         foreach($job_dates as $job){
-        $date_from = $job->from_date;
-        //$date_from = "2010-02-03";   
-        $date_from = strtotime($date_from); // Convert date to a UNIX timestamp  
-  
-// Specify the end date. This date can be any English textual format  
-$date_to = $job->to_date; 
-$date_to = strtotime($date_to); // Convert date to a UNIX timestamp  
-  
-// Loop from the start date to end date and output all dates inbetween  
-for ($i=$date_from; $i<=$date_to; $i+=86400) {  
-    $booked_dates[]=date("j-n-Y", $i); //print_r($booked_dates);die('I am here'); 
-}
-
+            $date_from = $job->from_date;
+            //$date_from = "2010-02-03";   
+            $date_from = strtotime($date_from); // Convert date to a UNIX timestamp  
+            // Specify the end date. This date can be any English textual format  
+            $date_to = $job->to_date; 
+            $date_to = strtotime($date_to); // Convert date to a UNIX timestamp  
+            // Loop from the start date to end date and output all dates inbetween  
+            for ($i=$date_from; $i<=$date_to; $i+=86400) {  
+                $booked_dates[]=date("j-n-Y", $i); //print_r($booked_dates);die('I am here'); 
+            }
         }
         $booked_dates=array_unique($booked_dates);
-    //echo '<pre>';print_r($jobs);die;
-    return View::make('web.liveassignments',compact('jobs','booked_dates'));
+        // echo '<pre>';print_r($booked_dates);die;
+        return View::make('web.liveassignments',compact('jobs','booked_dates'));
     }
     public function TutorCalendar()
     {
@@ -214,14 +207,14 @@ for ($i=$date_from; $i<=$date_to; $i+=86400) {
         //$date_from = "2010-02-03";   
         $date_from = strtotime($date_from); // Convert date to a UNIX timestamp  
   
-// Specify the end date. This date can be any English textual format  
-$date_to = $job->userJobs->to_date; 
-$date_to = strtotime($date_to); // Convert date to a UNIX timestamp  
-  
-// Loop from the start date to end date and output all dates inbetween  
-for ($i=$date_from; $i<=$date_to; $i+=86400) {  
-    $booked_dates[]=date("j-n-Y", $i); //print_r($booked_dates);die('I am here'); 
-}
+        // Specify the end date. This date can be any English textual format  
+        $date_to = $job->userJobs->to_date; 
+        $date_to = strtotime($date_to); // Convert date to a UNIX timestamp  
+        
+        // Loop from the start date to end date and output all dates inbetween  
+        for ($i=$date_from; $i<=$date_to; $i+=86400) {  
+            $booked_dates[]=date("j-n-Y", $i); //print_r($booked_dates);die('I am here'); 
+        }
 
         }
         $booked_dates=array_unique($booked_dates);
@@ -328,48 +321,46 @@ for ($i=$date_from; $i<=$date_to; $i+=86400) {
         $data = $request->input();
         
         if(isset($data['tutor_id'])){
-        $job=new userJobs;
-        $job->user_id=$data['tutor_id'];
-        $job->job_id=decrypt($data['jobid']);
-        $job->status=$data['status'];
-        $job->save(); // Tutor Accept job
-        $jobs = Jobs::where(['id'=>decrypt($data['jobid'])])->first();
-        $jobs->status=$data['status'];
-        $jobs->save();
-		$email_template=EmailTemplate::first();
-		$admin_email=GlobalSettings::where('name','admin_email')->first()->value;
-		$tutor_email="krishankmr.bbdit@gmail.com";
-		// Always set content-type for all emails
-					$headers = "MIME-Version: 1.0" . "\r\n";
-					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-					$headers .= 'From: <'.$admin_email.'>' . "\r\n";
-		$subject = "Assignment Accepted by Tutor on Freelance Genie";  
-					$title = '<title>Assignment Accepted</title>';
-					 //Send Email to Admin				
-					$content = "<p>Your assignment has been accepted.</p>
-					<p>Please login to your dashboard and confirm the booking.</p>				
-					<p>Thanks</p>
-					<p>FL Genie</p>";
-					$message=str_replace('<title></title>',$title,$email_template->body);
-					$message=str_replace('<p></p>',$content,$message);
-					mail($tutor_email, $subject, $message, $headers);
+            $job=new userJobs;
+            $job->user_id=$data['tutor_id'];
+            $job->job_id=decrypt($data['jobid']);
+            $job->status=$data['status'];
+            $job->save(); // Tutor Accept job
+            $jobs = Jobs::where(['id'=>decrypt($data['jobid'])])->first();
+            $jobs->status=$data['status'];
+            $jobs->save();
+            $email_template=EmailTemplate::first();
+            $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
+            $tutor_email="krishankmr.bbdit@gmail.com";
+		    // Always set content-type for all emails
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= 'From: <'.$admin_email.'>' . "\r\n";
+            $subject = "Assignment Accepted by Tutor on Freelance Genie";  
+            $title = '<title>Assignment Accepted</title>';
+                //Send Email to Admin				
+            $content = "<p>Your assignment has been accepted.</p>
+            <p>Please login to your dashboard and confirm the booking.</p>				
+            <p>Thanks</p>
+            <p>FL Genie</p>";
+            $message=str_replace('<title></title>',$title,$email_template->body);
+            $message=str_replace('<p></p>',$content,$message);
+            // mail($tutor_email, $subject, $message, $headers);
         }else{
-        /*$job = UserJobs::find(decrypt($data['jobid']));
-        $job->status=$data['status'];
-        $job->save();*/
-        //echo decrypt($data['jobid']);
-        //echo $data['jobid'];die;
-        
-        $jobs = Jobs::where(['id'=>$data['jobid']])->first();
-        //print_r($jobs);
-        //die('here');
-        $jobs->status=$data['status'];
-        $jobs->save();
+            /*$job = UserJobs::find(decrypt($data['jobid']));
+            $job->status=$data['status'];
+            $job->save();*/
+            //echo decrypt($data['jobid']);
+            //echo $data['jobid'];die;
+            $jobs = Jobs::where(['id'=>$data['jobid']])->first();
+            //print_r($jobs);
+            //die('here');
+            $jobs->status=$data['status'];
+            $jobs->save();
         }
-        
-        
         Session::flash('success', Config::get('message.options.UPDATE_SUCCESS'));
-        return Redirect::back();
+        // return Redirect::back();
+        return Redirect::to('/tutor');
     }
 	public function SwapRequest(Request $request)
     {
