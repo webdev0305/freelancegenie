@@ -50,7 +50,8 @@ class TutorController extends Controller
      */
 	 
     public function index()
-    {	$user_id=\Sentinel::getUser()->id;
+    {	
+        $user_id=\Sentinel::getUser()->id;
 		$user_email=\Sentinel::getUser()->email;
 		$tutor_profile=TutorProfile::where('user_id',$user_id)->first(['certificate_issued']);
 		//print_r($tutor_profile);die('here');
@@ -223,8 +224,6 @@ class TutorController extends Controller
 
         return view('web/tutor_calendar', compact('booked_dates'));
     }
-    
-
     public function uploadSubmit(Request $request)
     {
         foreach ($request->photos as $photo) {
@@ -275,7 +274,7 @@ class TutorController extends Controller
     }
     public function InvoiceSent(Request $request)
     {	$data = $request->input();
-    //print_r($data);die;
+        //print_r($data);die;
 		$invoice_no=mt_rand(1000, 100000);
         $user=User::find($data['tutor_id']);
 		//$invoice=Invoice::where('booking_no',$data['jobid'])->first();
@@ -393,10 +392,7 @@ class TutorController extends Controller
     }
 	 /* public function CheckDbs($id)
         {
-		 $data[] = [
-               "dbsid"=>,15
-               "dob"=>,16
-           ];
+		 $data[] = ["dbsid"=>15, "dob"=>16           ];
        return  json_encode($data);
        }
 	    public function CheckDbs(Request $request)
