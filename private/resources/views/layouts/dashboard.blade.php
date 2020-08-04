@@ -127,7 +127,7 @@
                     </li>
                     <li class="employer dropdown">
                         <a class=" tooltip_custom" href="#" id="navbardrop" data-toggle="dropdown"><span>For
-                                Employer</span>
+                                Employers</span>
                             <div class="tooltiptext">Do you need access to freelance tutors & Trainers. <br>Join Here
                             </div>
                         </a>

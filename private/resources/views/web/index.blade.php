@@ -223,7 +223,7 @@ h2{
 				<div class="tooltip_custom">
                 <div class="row heading">
                     <div class="col-sm-8 col-8">
-                        <h3>FOR TUTORS</h3>
+                        <h3>For Tutors</h3>
                     </div>
                     <div class="col-sm-4 col-4">
                         <img src="web/images/icon-4.png" class="img-fluid">
@@ -245,7 +245,7 @@ h2{
 				<div class="tooltip_custom">
                 <div class="row heading">
                     <div class="col-sm-8 col-8">
-                        <h3>FOR EMPLOYERS</h3>
+                        <h3>For Employers</h3>
                     </div>
                     <div class="col-sm-4 col-4">
                         <img src="web/images/icon-3.png" class="img-fluid">
@@ -295,7 +295,7 @@ h2{
 			<div class="col-md-6">
 				<div class="inner_box">
 				<div class="left_img"><img src="web/images/icon-4.png"></div>
-				<div class="content"><h2>How It Works For Tutor</h2>
+				<div class="content"><h2>How It Works For Tutors</h2>
 				<p>The Freelance Genie platform is one of the most exciting opportunities for freelance trainers. As a freelance tutor or Subcontractor, you can easily sign up through our free online registration where you will have access to a simple online facility used to find assignments and manage each of your bookings.</p><p> Across the platform, you will have access to a wide variety of live assignments and can maximise your earning potential by accepting and rejecting freelance tutor jobs online. The entire service is completely flexible, helping you to maintain a healthy work-life balance and manage your own workflow - with all mileage and expenses covered. Through our simple onboarding process, you can start your job search immediately and have the ability to subsidise your income, maximising your time through providing course tuition, working as and when you want.  </p>
 				<a href="{{url('how_it_works')}}">Read More</a></div>
 				</div>
@@ -303,7 +303,7 @@ h2{
 			<div class="col-md-6">
 				<div class="inner_box employer_work">
 				<div class="left_img"><img src="web/images/icon-3.png"></div>
-				<div class="content"><h2>How It Works For Employer</h2>
+				<div class="content"><h2>How It Works For Employers</h2>
 				<p>With our 24/7 access online platform, you can easily find Independent freelance tutors, trainers and subcontractors online who have each been fully vetted and verified - giving you complete peace of mind with regular DBS updates.</p><p> We offer simple subscription options which allow you to post live assignments that can be auto accepted by trainers, with accurate and transparent pricing structures for all bookings. Detailed in our terms, our dedicated team pay and manage all tutor costs, covering any absences and sickness - guaranteeing the arrival of your tutor, keeping to your agreed schedule and avoiding changes. Our entire service is quick and easy, as well as fully compliant. You will no longer have to worry about interviewing individual candidates and cancelling courses, as everything will be managed by us. </p>
 				<a href="{{url('how_it_works')}}">Read More</a></div>
 				</div>

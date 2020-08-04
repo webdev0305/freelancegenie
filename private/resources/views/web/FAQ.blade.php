@@ -25,9 +25,9 @@
 		<div class="cstm-tab-btn">
 			<ul class="nav nav-pills cstm-tab-section">
 				<li>
-					<a href="#1a" class="active tutemp" data-toggle="tab">FOR TUTORS</a>
+					<a href="#1a" class="active tutemp" data-toggle="tab">For Tutors</a>
 				</li>
-				<li class="emplyr"><a href="#2a" class="tutemp" data-toggle="tab">FOR EMPLOYERS</a>
+				<li class="emplyr"><a href="#2a" class="tutemp" data-toggle="tab">For Employers</a>
 				</li>
 			</ul>
 		</div>

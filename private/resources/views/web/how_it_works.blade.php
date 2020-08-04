@@ -119,9 +119,9 @@
 				<nav>
 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link " id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-							role="tab" aria-controls="nav-profile" aria-selected="true">For Tutor</a>
+							role="tab" aria-controls="nav-profile" aria-selected="true">For Tutors</a>
 						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-							role="tab" aria-controls="nav-home" aria-selected="false">For Employer</a>
+							role="tab" aria-controls="nav-home" aria-selected="false">For Employers</a>
 					</div>
 				</nav>
 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -231,7 +231,7 @@
 										<div data-target="#carouselExampleIndicators2" data-slide-to="0"
 											class="active_cir active">
 											<h2 class="title">Click on Regsiter</h2>
-											<p>Click on For Tutor button and select the Regsiter</p>
+											<p>Click on For Tutors button and select the Regsiter</p>
 											<div class="circle_text">1</div>
 										</div>
 										<div data-target="#carouselExampleIndicators2" data-slide-to="1"

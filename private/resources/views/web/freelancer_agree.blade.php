@@ -619,7 +619,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
-                                                <p>For Employer</p>
+                                                <p>For Employers</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
