@@ -413,53 +413,53 @@ class TutorsController extends Controller
         }
     }
 
-function GetCoordinates(Request $request)
-{
-	$data = $request->input();
-	$tutor_id=$data['tutor_id'];
-	//$tutor_profiles = json_decode(json_encode(User::with(['Country','TutorProfile'])->find($tutor_id)));
-	$tutor_profiles = TutorProfile::select('address','city','street_name','country_id','zip')->where('user_id',$tutor_id)->first();
-	//echo '<pre>';print_r($tutor_profiles);
-	$ohouse_no= $tutor_profiles['address'];
-	$ocity=Country::where(['id'=>$tutor_profiles->country_id])->first()->name;
-    $ostreet=$tutor_profiles->street_name;
-    $ocountry='UK';
-	$ozip=$tutor_profiles->zip;
-	//$origin = urlencode($house_no.','.$ocity.','.$ostreet.','.$ozip.','.$ocountry);
-	$origin = urlencode($ohouse_no.','.$ocity.','.$ostreet.','.$ozip.','.$ocountry);
-    //$data['booking_address']=1;
-	if($data['address_option']){
-		$house_no= $data['address'];
-		$city= $data['city'];
-		$street= $data['street_name'];
-		$country= $data['country'];
-		$zip= $data['zip'];
-		}else{
-		$employer_id=\Sentinel::getUser()->id;
-		$employer_profiles = json_decode(json_encode(User::with(['CountryEmployer', 'EmployerProfile'])->find($employer_id)));
-	//$employer_profiles = EmployerProfile::select('address','city','street_name','country_id','zip')->where('user_id',$employer_id)->first();
-	//echo '<pre>';print_r($employer_profiles);die;
-	$house_no= $employer_profiles->employer_profile->company_address;
-	$city=Country::where(['id'=>$employer_profiles->employer_profile->comp_country_id])->first()->name;
-    $street=$employer_profiles->employer_profile->comp_street_name;
-    $country=$employer_profiles->employer_profile->comp_city;
-	$zip=$employer_profiles->employer_profile->comp_postcode;
-		}
-	$destination = urlencode($house_no.','.$city.','.$street.','.$zip.','.$country);
-    $url="https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&units=imperial&key=AIzaSyCrnv5HH8NgX42n_80dG61HSgmMouEFfjE";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    //$response_a = json_decode($response);
-   // echo '<pre>';print_r($response_a);echo '</pre>';
-    //$status = $response_a->status;
-	return $response;
-}
+    function GetCoordinates(Request $request)
+    {
+        $data = $request->input();
+        $tutor_id=$data['tutor_id'];
+        //$tutor_profiles = json_decode(json_encode(User::with(['Country','TutorProfile'])->find($tutor_id)));
+        $tutor_profiles = TutorProfile::select('address','city','street_name','country_id','zip')->where('user_id',$tutor_id)->first();
+        //echo '<pre>';print_r($tutor_profiles);
+        $ohouse_no= $tutor_profiles['address'];
+        $ocity=Country::where(['id'=>$tutor_profiles->country_id])->first()->name;
+        $ostreet=$tutor_profiles->street_name;
+        $ocountry='UK';
+        $ozip=$tutor_profiles->zip;
+        //$origin = urlencode($house_no.','.$ocity.','.$ostreet.','.$ozip.','.$ocountry);
+        $origin = urlencode($ohouse_no.','.$ocity.','.$ostreet.','.$ozip.','.$ocountry);
+        //$data['booking_address']=1;
+        if($data['address_option']){
+            $house_no= $data['address'];
+            $city= $data['city'];
+            $street= $data['street_name'];
+            $country= $data['country'];
+            $zip= $data['zip'];
+            }else{
+            $employer_id=\Sentinel::getUser()->id;
+            $employer_profiles = json_decode(json_encode(User::with(['CountryEmployer', 'EmployerProfile'])->find($employer_id)));
+        //$employer_profiles = EmployerProfile::select('address','city','street_name','country_id','zip')->where('user_id',$employer_id)->first();
+        //echo '<pre>';print_r($employer_profiles);die;
+        $house_no= $employer_profiles->employer_profile->company_address;
+        $city=Country::where(['id'=>$employer_profiles->employer_profile->comp_country_id])->first()->name;
+        $street=$employer_profiles->employer_profile->comp_street_name;
+        $country=$employer_profiles->employer_profile->comp_city;
+        $zip=$employer_profiles->employer_profile->comp_postcode;
+            }
+        $destination = urlencode($house_no.','.$city.','.$street.','.$zip.','.$country);
+        $url="https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&units=imperial&key=AIzaSyCrnv5HH8NgX42n_80dG61HSgmMouEFfjE";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        //$response_a = json_decode($response);
+        // echo '<pre>';print_r($response_a);echo '</pre>';
+        //$status = $response_a->status;
+        return $response;
+    }
 	public function price_calculation(Request $request)
     {
 
@@ -689,19 +689,14 @@ function GetCoordinates(Request $request)
     public function getLevelByCat(Request $request)
     {
         $data = $request->input();
-
         if($data['get_option'] == ''){
             return Response::json(['status' => '0']);
         }
-
         $disIds = CategoryUser::with('QualifiedLevel')->where('user_id',decrypt($data['tutor_id']))->where('category_id', $data['get_option'])->first();
-
-//            $categories[] = "<option value='" . $disId['categories']->id . "'>" . $disId['categories']->name . "</option>";
-            $qualifiedlevel = "<option value='" . $disIds['qualifiedlevel']->id . "'> " . $disIds['qualifiedlevel']->level . "</option>";
-           $rate = $disIds->rate;
+        //$categories[] = "<option value='" . $disId['categories']->id . "'>" . $disId['categories']->name . "</option>";
+        $qualifiedlevel = "<option value='" . $disIds['qualifiedlevel']->id . "'> " . $disIds['qualifiedlevel']->level . "</option>";
+        $rate = $disIds->rate;
         return Response::json(['qualifiedlevel' => $qualifiedlevel,'rate' => $rate]);
-
-
     }
 
 

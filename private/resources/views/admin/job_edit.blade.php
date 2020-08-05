@@ -526,9 +526,9 @@
 
                                 </script>
 
-                                <script src="{{ asset("js/admin/bootstrap-multiselect.js") }}"
+                                <script src="{{ asset('js/admin/bootstrap-multiselect.js') }}"
                                         type="text/javascript"></script>
-                                <link rel="stylesheet" href="{{ asset("css/bootstrap-multiselect.css") }}"/>
+                                <link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}"/>
 
                                 <script>
                                     $('#tutor_assign').multiselect({

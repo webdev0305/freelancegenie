@@ -150,7 +150,7 @@ Route::group(['middleware' => 'tutor'], function () {
     });
     
     Route::get('tutor/upload', function () {
-            //return View::make('web.upload_form');
+        //return View::make('web.upload_form');
         $userdoc = \App\Model\UserDoc::where('user_id',\Sentinel::getUser()->id)->get();
         $globaldoc = \App\Model\UserDoc::where('global',1)->get();
         return View::make('web.upload_form',compact('userdoc','globaldoc'));

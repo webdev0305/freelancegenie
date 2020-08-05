@@ -1194,8 +1194,13 @@
 <script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js" ></script>
 <script src="{{ asset('js/admin/jquery-ui.multidatespicker.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript" ></script>
+<script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+<link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 <script>
+
+	
+
 	$(document).ready(function () {
 		$('#date').multiDatesPicker({
 			altField: '#altField',

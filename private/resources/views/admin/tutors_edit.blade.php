@@ -33,11 +33,11 @@
 
     @push('scripts')
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <script src="{{ asset("js/admin/formtowizard.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/admin/bootstrap-multiselect.js") }}" type="text/javascript"></script>
-        <link rel="stylesheet" href="{{ asset("css/bootstrap-multiselect.css") }}"/>
-        <script src="{{ asset("js/admin/tutor_certificates.js") }}" type="text/javascript"></script>
-        <script src="{{ asset("js/admin/tutor_work.js") }}" type="text/javascript"></script>
+        <script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/admin/bootstrap-multiselect.js') }}" type="text/javascript"></script>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}"/>
+        <script src="{{ asset('js/admin/tutor_certificates.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/admin/tutor_work.js') }}" type="text/javascript"></script>
         <script> $("#czContainer").czMore();</script>
         <script> $("#czContainerWork").czMores();</script>
         @if($usersMeta->tutor_profile->status == '1')

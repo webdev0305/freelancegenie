@@ -442,8 +442,8 @@
 					</div>
 
 					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-						<h2>Register</h2>
-						<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+						<h2>HOW TO REGISTER</h2>
+						<div id="carouselExampleIndicators6" class="carousel slide" data-ride="carouse6">
 							<div class="row screenshot_block">
 								<div class="col-md-6">
 									<div class="bg-slider-img">
@@ -468,40 +468,44 @@
 												<img class="d-block w-100" src="web/images/reg_screenshot_5.png"
 													alt="Fifth slide">
 											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/reg_screenshot_5.png"
+													alt="Fifth slide">
+											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="carousel-indicators how-it-indicator">
-										<div data-target="#carouselExampleIndicators2" data-slide-to="0"
+										<div data-target="#carouselExampleIndicators6" data-slide-to="0"
 											class="active_cir active">
-											<h2 class="title">Click on Regsiter</h2>
-											<p>Click on For Tutors button and select the Regsiter</p>
+											<h2 class="title">Click ‘Freelancer’ icon at the top of the screen </h2>
 											<div class="circle_text">1</div>
 										</div>
-										<div data-target="#carouselExampleIndicators2" data-slide-to="1"
+										<div data-target="#carouselExampleIndicators6" data-slide-to="1"
 											class="active_cir">
-											<h2 class="title">Select The Tutor</h2>
-											<p>The page of membership will be shown. You can select the membership from the list based on rating and skill and click on Sign Up.</p>
+											<h2 class="title">Select ‘register’</h2><br>
 											<div class="circle_text">2</div>
 										</div>
-										<div data-target="#carouselExampleIndicators2" data-slide-to="2"
+										<div data-target="#carouselExampleIndicators6" data-slide-to="2"
 											class="active_cir">
-											<h2 class="title">Click on Register</h2>
-											<p>Fill the register form. Preview the complete profile of the user and click on Regsiter button. </p>
+											<h2 class="title">Choose an option and click ‘subscribe’</h2>
 											<div class="circle_text">3</div>
 										</div>
-										<div data-target="#carouselExampleIndicators2" data-slide-to="3"
+										<div data-target="#carouselExampleIndicators6" data-slide-to="3"
 											class="active_cir">
-											<h2 class="title">Click on Login</h2>
-											<p>Register is done. You can login now. Fill the Login form and click on Login button.</p>
+											<h2 class="title">Follow all steps and complete the form and all fields.</h2>
 											<div class="circle_text">4</div>
 										</div>
-										<div data-target="#carouselExampleIndicators2" data-slide-to="4"
+										<div data-target="#carouselExampleIndicators6" data-slide-to="4"
 											class="active_cir">
-											<h2 class="title">View your Dashboard</h2>
-											<p>You can see your dashboard table in your dashboard page.</p>
+											<h2 class="title">Click ‘submit’ </h2><br>
 											<div class="circle_text">5</div>
+										</div>
+										<div data-target="#carouselExampleIndicators6" data-slide-to="5"
+											class="active_cir">
+											<h2 class="title">You will now receive an email from your nominated 3rd party payment provider, follow all steps, and that’s it, your done! </h2>
+											<div class="circle_text">6</div>
 										</div>
 									</div>
 								</div>
