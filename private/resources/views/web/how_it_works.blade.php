@@ -126,7 +126,10 @@
 				</nav>
 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-						<h2>Book a Tutor</h2>
+						<h2>HOW TO GET STARTED AS AN EMPLOYER/CLIENT?</h2>
+						<div style="text-align: center;padding-bottom: 30px;">
+							<h3>HOW TO REGISTER</h3>
+						</div>
 						<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
 							<div class="row screenshot_block">
 								<div class="col-md-6">
@@ -159,36 +162,278 @@
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators1" data-slide-to="0"
 											class="active_cir active">
-											<h2 class="title">Fill the tutor search form</h2>
-											<p>Select the suitable fields of form as per your need and click on find
-												button.</p>
+											<h2 class="title">Click ‘EMPLOYERS’ icon at the top of the screen</h2>
 											<div class="circle_text">1</div>
 										</div>
 										<div data-target="#carouselExampleIndicators1" data-slide-to="1"
 											class="active_cir">
-											<h2 class="title">Select the tutor</h2>
-											<p>A list of all tutors matching your search terms will be shown. You can
-												select the tutor from the list based on rating and price.</p>
+											<h2 class="title">Select ‘register’</h2><br>
 											<div class="circle_text">2</div>
 										</div>
 										<div data-target="#carouselExampleIndicators1" data-slide-to="2"
 											class="active_cir">
-											<h2 class="title">Click on Go to Booking</h2>
-											<p>Review the complete profile of the user and click on Go to Booking
-												button.</p>
+											<h2 class="title">Choose a plan and click ‘subscribe’</h2><br>
 											<div class="circle_text">3</div>
 										</div>
 										<div data-target="#carouselExampleIndicators1" data-slide-to="3"
 											class="active_cir">
-											<h2 class="title">Click on Book a Tutor</h2>
-											<p>Fill the booking form and click on Book a Tutor button.</p>
+											<h2 class="title">Follow all steps and complete the form and all fields. </h2>
 											<div class="circle_text">4</div>
 										</div>
 										<div data-target="#carouselExampleIndicators1" data-slide-to="4"
 											class="active_cir">
-											<h2 class="title">View your dashboard</h2>
-											<p>Booking is done. You can view your booking in your dashboard.</p>
+											<h2 class="title">Click ‘submit’ and that’s it, your done!</h2>
 											<div class="circle_text">5</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="text-align: center;padding-bottom: 30px;">
+							<h3>HOW TO LOG IN</h3>
+						</div>
+						<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carouse2">
+							<div class="row screenshot_block">
+								<div class="col-md-6">
+									<div class="bg-slider-img">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+													alt="First slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+													alt="Second slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+													alt="Fourth slide">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="carousel-indicators how-it-indicator">
+										<div data-target="#carouselExampleIndicators2" data-slide-to="0"
+											class="active_cir active">
+											<h2 class="title">Click ‘EMPLOYERS’ icon at the top of the screen </h2>
+											<div class="circle_text">1</div>
+										</div>
+										<div data-target="#carouselExampleIndicators2" data-slide-to="1"
+											class="active_cir">
+											<h2 class="title">Select ‘log in’</h2><br>
+											<div class="circle_text">2</div>
+										</div>
+										<div data-target="#carouselExampleIndicators2" data-slide-to="2"
+											class="active_cir">
+											<h2 class="title">Enter your details and create a username and password</h2><br>
+											<div class="circle_text">3</div>
+										</div>
+										<div data-target="#carouselExampleIndicators2" data-slide-to="3"
+											class="active_cir">
+											<h2 class="title">If your payment was successful, you will now be required to log in</h2>
+											<div class="circle_text">4</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<h2 style="padding-top:80px">HOW TO BOOKING A FREELANCER?</h2>
+						<div style="text-align: center;padding-bottom: 30px;">
+							<h3>Booking a ‘care or staff training course’</h3>
+						</div>
+						<div id="carouselExampleIndicators3" class="carousel slide" data-ride="carouse3">
+							<div class="row screenshot_block">
+								<div class="col-md-6">
+									<div class="bg-slider-img">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+													alt="First slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+													alt="Second slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="carousel-indicators how-it-indicator">
+										<div data-target="#carouselExampleIndicators3" data-slide-to="0"
+											class="active_cir active">
+											<h2 class="title">There are 3 ways an Employer/Client can book a Freelancer. The first is by booking and purchasing a ‘course’ from the course areas here? And follow the steps within,</h2>
+											<div class="circle_text">1</div>
+										</div>
+										<div data-target="#carouselExampleIndicators3" data-slide-to="1"
+											class="active_cir">
+											<h2 class="title">After you have followed the steps, you will see your booking form. Fill in the form providing as much detail as possible. – Then hit ‘Next’</h2>
+											<div class="circle_text">2</div>
+										</div>
+										<div data-target="#carouselExampleIndicators3" data-slide-to="2"
+											class="active_cir">
+											<h2 class="title">Review your payment, Make Payment and that’s it, ‘Your done’!</h2>
+											<div class="circle_text">3</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="text-align: center;padding-bottom: 30px;">
+							<h3>Home page Search Bar</h3>
+						</div>
+						<div id="carouselExampleIndicators4" class="carousel slide" data-ride="carouse4">
+							<div class="row screenshot_block">
+								<div class="col-md-6">
+									<div class="bg-slider-img">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+													alt="First slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+													alt="Second slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+													alt="Fourth slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+													alt="Fourth slide">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="carousel-indicators how-it-indicator">
+										<div data-target="#carouselExampleIndicators4" data-slide-to="0"
+											class="active_cir active">
+											<h2 class="title">Using the search area allows you to select your criteria, see results and book a Tutor/Freelancer in a few simple steps,… <br>Once you have selected your criteria, hit ‘find’ and you will now see a list of results related only to your selection. – Click the Candidate number here, for full view. </h2>
+											<div class="circle_text">1</div>
+										</div>
+										<div data-target="#carouselExampleIndicators4" data-slide-to="1"
+											class="active_cir">
+											<h2 class="title">You can now browse through the profiles and see a synopsis of each freelancer’s credentials including rating and verification status. - See Profile page for further details.</h2>
+											<div class="circle_text">2</div>
+										</div>
+										<div data-target="#carouselExampleIndicators4" data-slide-to="2"
+											class="active_cir">
+											<h2 class="title">Once you have made your selection, click ‘book’ </h2><br>
+											<div class="circle_text">3</div>
+										</div>
+										<div data-target="#carouselExampleIndicators4" data-slide-to="3"
+											class="active_cir">
+											<h2 class="title">You will now see a booking form. Complete the booking form providing as much detail as possible. You can choose to add mileage, hotel stay if required, or offer a flat inclusive rate. Please see Terms of Service agreement for full details. </h2>
+											<div class="circle_text">4</div>
+										</div>
+										<div data-target="#carouselExampleIndicators4" data-slide-to="4"
+											class="active_cir">
+											<h2 class="title">You will also see your ‘Terms of Service agreement’ here which you will be required to read and sign before proceeding. </h2>
+											<div class="circle_text">5</div>
+										</div>
+										<div data-target="#carouselExampleIndicators4" data-slide-to="5"
+											class="active_cir">
+											<h2 class="title">When you are done and ready to proceed, choose a payment option, and that’s it your done!<br><p style="color:#e8058e;">Note: Please ensure that you choose the appropriate qualifications and levels if you are booking within Scotland.</p> </h2>
+											<div class="circle_text">6</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="text-align: center;padding-bottom: 30px;">
+							<h3>Live assignment postings</h3>
+						</div>
+						<div id="carouselExampleIndicators5" class="carousel slide" data-ride="carouse2">
+							<div class="row screenshot_block">
+								<div class="col-md-6">
+									<div class="bg-slider-img">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+													alt="First slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+													alt="Second slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+													alt="Fourth slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+													alt="Second slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+													alt="Third slide">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+													alt="Fourth slide">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="carousel-indicators how-it-indicator">
+										<div data-target="#carouselExampleIndicators5" data-slide-to="0"
+											class="active_cir active">
+											<h2 class="title">Employers/Clients can post ‘Live assignments’ these are essentially live bookings that are posted in ‘real time’. – ‘Live assignment’ postings are also included within your membership plan so be sure to use them before your plan ends. </h2>
+											<div class="circle_text">1</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="1"
+											class="active_cir">
+											<h2 class="title">click on top right member icon, here, and it will display a dropdown menu.  </h2>
+											<div class="circle_text">2</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="2"
+											class="active_cir">
+											<h2 class="title">Select ‘Live assignment’ where you will now see ‘live’ assignment posts, </h2>
+											<div class="circle_text">3</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="3"
+											class="active_cir">
+											<h2 class="title">Now select ‘post a job’ and you will now see the booking form. Complete the booking form in as much detail as possible and including all your requirements<br><p style="color:#e8058e">Note: Post cannot be edited. If the user makes a mistake here then they will need to cancel the post entirely and re-post another at the employer’s cost. </p> </h2>
+											<div class="circle_text">4</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="4"
+											class="active_cir">
+											<h2 class="title">Once posted, your advert will be seen only by Freelancers who match the skills/specialism that you have selected.</h2>
+											<div class="circle_text">5</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="5"
+											class="active_cir">
+											<h2 class="title">These Freelancers will now have the option to accept or decline. If someone accepts, the booking will appear in both of your dashboard. And that’s it, your done!</h2>
+											<div class="circle_text">6</div>
+										</div>
+										<div data-target="#carouselExampleIndicators5" data-slide-to="6"
+											class="active_cir">
+											<h2 class="title">If they decline, the ‘assignment’ will automatically repost until a suitable and available Freelancer accepts.<br><p style="color:#e8058e;">Note: If your post is a ‘managed ad’ then we will actively provide you with a match.  If unmanaged, then there is no guarantee of acceptance. </p>  </h2>
+											<div class="circle_text">7</div>
 										</div>
 									</div>
 								</div>

@@ -24487,7 +24487,7 @@ ul.left_social_icon li:last-child {
 .how-it-indicator .active {
     background-color: #fbfbfb;
 }
-.how-it-indicator::before {
+/* .how-it-indicator::before {
     content: "";
     background: url(../../../web/images/line.png);
     position: absolute;
@@ -24496,7 +24496,7 @@ ul.left_social_icon li:last-child {
     width: 100%;
     background-repeat: no-repeat;
     top: 34px;
-}
+} */
 .how_it_works .screenshot_block .title::before {
     content: "";
     background: url(../../../web/images/outside_circle.png);
