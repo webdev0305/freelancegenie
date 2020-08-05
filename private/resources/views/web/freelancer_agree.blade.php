@@ -189,7 +189,6 @@
                                 <form action="" method="POST">
                                     <input name="_method" type="hidden" value="PUT">
                                     {{ csrf_field() }}
-
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
@@ -200,7 +199,7 @@
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
                                                 <input class="form-control" id="date" name="date" type="text"
-                                                    value="<?php echo date("Y-m-d"); ?>" style="background-color:rgba(230,230,230,0.5)"/>
+                                                style="background-color:rgba(230,230,230,0.5)" value="<?php echo date("Y-m-d"); ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -245,360 +244,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <p><strong>SERVICES PROVIDED</strong></p>
-                                            <p>
-                                                <strong>1.</strong> Freelance Genie hereby agrees to engage the
-                                                Freelance subcontractors to provide Freelance Genie with the following
-                                                services (the "Services"):<br>
-                                                • Perform services on a freelance basis for separately contracted
-                                                Employers/Clients as agreed and confirmed on the Freelance Genie
-                                                platform and as outlined in this Agreement and any applicable terms and
-                                                conditions.<br>
-                                                <strong>2.</strong> The Services will also include any other tasks which
-                                                the Parties may agree on. The Freelance subcontractors hereby agrees to
-                                                provide such Services to Freelance Genie.
-
-                                            </p>
-                                            <p><strong>TERM OF AGREEMENT</strong></p>
-                                            <p>
-                                                <strong>3.</strong> The term of this Agreement (the "Term") will begin
-                                                on the date of this Agreement and will remain in full force and effect
-                                                indefinitely until terminated as provided in this Agreement.
-                                                In the event that either Party wishes to terminate this Agreement, that
-                                                Party will be required to provide written notice to the other Party
-                                                within 30 days. However, you must also ensure there are no outstanding
-                                                future bookings that you have accepted prior, and if so, you will still
-                                                be responsible for arranging alternative cover via the mechanisms
-                                                provided. <br>
-                                                <strong>4.</strong> In the event that either Party breaches a material
-                                                provision under this Agreement, the non-defaulting Party may terminate
-                                                this Agreement immediately and require the defaulting Party to indemnify
-                                                the non-defaulting Party against all reasonable damages.<br>
-                                                <strong>5.</strong> This Agreement may be terminated at any time by
-                                                mutual agreement of the Parties.<br>
-                                                <strong>6.</strong> Except as otherwise provided in this Agreement, the
-                                                obligations of the Freelance subcontractors will end upon the
-                                                termination of this Agreement.
-                                            </p>
-                                            <p><strong>PERFORMANCE</strong></p>
-                                            <p>
-                                                <strong>7.</strong> The Freelance subcontractors must attend every
-                                                confirmed booking and perform a high standard service for the
-                                                Clients/Employers selected by Freelance Genie.<br>
-                                                <strong>8.</strong> Freelance subcontractors must give Freelance Genie
-                                                at least 72 hours notice in cases where they are unable to attend a
-                                                confirmed booking. Freelance subcontractors have the option to find a
-                                                suitable replacement for themselves using the “Tutor Swap” option on the
-                                                platform. Alternatively, they can offer the position to other available
-                                                Freelance subcontractors on the platform. If a replacement is found
-                                                within a 72 hour period, no charges will be due.<br>
-                                                <strong>9.</strong> If no suitable replacement is found and the
-                                                Freelance subcontractor does not attend the confirmed booking, 10% of
-                                                the value of that booking will be charged as a penalty. <br>
-                                                <strong>10.</strong> If no notice of the Freelance subcontractors
-                                                inability to attend is served within the 72 hours period, the Freelance
-                                                subcontractors shall receive a “Failure to Attend Warning Notification”.
-                                                The number of FTA notifications that a Freelance subcontractor can
-                                                generate is 3 within any given 12-month period. Freelance Genie reserves
-                                                the right to automatically deduct 10% of the value of the Freelance
-                                                subcontractors next invoice as a penalty charge. <br>
-                                                <strong>11.</strong> Freelance Genie reserves the right to impose
-                                                restrictions on Freelance subcontractors accounts who failed to attend
-                                                confirmed bookings. Any account that have 3 FTA shall be suspended for a
-                                                period of 6 months after which can be reactivated by the Tutor.
-
-                                            </p>
-                                            <p><strong>RESTRICTIVE COVENANT</strong></p>
-                                            <p>
-                                                <strong>12.</strong> Freelance Genie guarantees the freedom of the
-                                                Freelance subcontractors to take any bookings via other platforms.
-                                                However no client taken via the Freelance Genie platform shall be in any
-                                                way contacted privately. The Freelance subcontractor is not permitted to
-                                                take any work from the client within 6 months of the end of the last
-                                                booking with Freelance Genie or the termination of this Agreement
-                                                whichever comes later in time. Failure to comply with this provision
-                                                will result in 12 month ban from any services offered and performed by
-                                                Freelance Genie.<br>
-                                            </p>
-                                            <p><strong>PAYMENT</strong></p>
-                                            <p>
-                                                <strong>13.</strong> Payment can only be claimed after a job has been
-                                                closed on the platform for the purposes of confirmation of physical
-                                                attendance of a booked session. Payments are sent directly to the
-                                                nominated bank account the Freelance subcontractors supplied during the
-                                                registration process and will be paid via the nominated third-party
-                                                solution provider. <br>
-                                                <strong>14.</strong> In cases where a CQC Mandatory Short Course or
-                                                Staff Training Course(s) have been delivered by the Freelance
-                                                subcontractor, the Freelance subcontractor must follow all instructions
-                                                within their dashboard daily, in order to ensure the system calculates
-                                                correctly to be subsequently paid correctly. Failure to comply and
-                                                follow the process could/may result in miscalculations. Payment will be
-                                                received within 30 days of the date of the invoice.
-                                            </p>
-                                            <p>
-                                                <strong>15.</strong> In cases of non-CQC Mandatory Short Courses or
-                                                Staff Training, the Freelance subcontractor/s must invoice Freelance
-                                                Genie every week, the cut off for all submissions is every Tuesday
-                                                12:00pm. Invoices submitted by the Tutor to Freelance Genie are paid a
-                                                week in arrears every Friday. <br>
-                                                <strong>16.</strong> The Payment as stated in this Agreement does not
-                                                include Value Added Tax. Any Value Added Tax required will be charged in
-                                                addition to the Payment. <br>
-                                                <strong>17.</strong> Freelance Genie reserves the right to withhold
-                                                payment if any unsatisfactory work has not been rectified by the
-                                                Freelance subcontractors up to the required standard.<br>
-                                                <strong>18.</strong> The Freelance subcontractors will be charged 12.5%
-                                                of the value of each booking as an administration and operational fee
-                                                that will be automatically deducted before any payments are cleared.
-                                                <br>
-                                                <strong>19.</strong> The Freelance subcontractors will be reimbursed for
-                                                some expenses incurred in connection with providing the Services of this
-                                                Agreement. Examples of applicable expenses are as listed below:<br>
-                                                ● Mileage - only where an Employer has specified that mileage is allowed
-                                                and it is separate to the day rate agreed. Mileage can be claimed at a
-                                                flat rate of £0.30 per mile. Mileage will be automatically calculated
-                                                and will appear on the invoice.<br>
-                                                ● Accommodation - only where a booking venue is more than 1.5 hours away
-                                                or approximately 100 miles. To be able to claim accommodation expenses,
-                                                the Tutor must book a hotel with applicable rate of up to £60 per night.
-                                                Note: Employers may also choose to offer one flat rate, inclusive of all
-                                                mileage and any other related expenses.
-
-                                            </p>
-                                            <p><strong>CONFIDENTIALITY</strong></p>
-                                            <p>
-                                                <strong>20.</strong> Confidential information (the "Confidential
-                                                Information") refers to any data or information relating to Freelance
-                                                Genie, whether business or personal, which would reasonably be
-                                                considered to be private or proprietary to Freelance Genie and that is
-                                                not generally known and where the release of that Confidential
-                                                Information could reasonably be expected to cause harm to Freelance
-                                                Genie.<br>
-                                                <strong>21.</strong> The Tutor agrees that they will not disclose,
-                                                divulge, reveal, report or use, for any purpose, any Confidential
-                                                Information which the Tutor has obtained, except as authorized by
-                                                Freelance Genie or as required by law. The obligations of
-                                                confidentiality will apply during the Term and will end on the
-                                                termination of this Agreement, except in the case of any Confidential
-                                                Information which is a trade secret in which case those obligations will
-                                                last indefinitely.<br>
-                                                <strong>22.</strong> All written and oral information and material
-                                                disclosed or provided by Freelance Genie to the Freelance subcontractors
-                                                under this Agreement is Confidential Information regardless of whether
-                                                it was provided before or after the date of this Agreement or how it was
-                                                provided to the Tutor.<br>
-                                                Freelance Genie will not display any personal or contact information
-                                                about the Freelance subcontractors on the platform with the exception of
-                                                documents confirming the Freelance subcontractors right to work, any
-                                                CVs, (personal details will be removed), Teaching
-                                                qualifications/certificates, DBS and any other applicable certifications
-                                                where required. Freelance subcontractors are not permitted to share any
-                                                personal information privately with the Employer/Client unless it is
-                                                strictly and only for the purpose of being able to fulfill an ongoing
-                                                obligation. Any other such sharing which is not for the purpose of
-                                                fulfilling an ongoing obligation, when discovered directly or indirectly
-                                                by Freelance Genie, will be deemed as a material breach of this
-                                                Agreement and Freelance Genie reserves the right to terminate it without
-                                                prior notice. <br>
-                                                <strong>23.</strong> Freelance subcontractors shall not be permitted to
-                                                share any personal information or documents with the clients of
-                                                Freelance Genie outside of the platform and ‘should not’ adopt this
-                                                practice in relation to solicitation. This prohibition extends to
-                                                business cards, email addresses or personal websites, except for the
-                                                purpose mentioned in (22). Any such sharing used in connection with
-                                                solicitation other than to fulfil the obligation of the booking/s,
-                                                whether directly or indirectly, shall be deemed a breach of this
-                                                Agreement and Freelance Genie reserves the right to terminate it with
-                                                immediate effect. <br>
-
-                                            </p>
-                                            <p><strong>OWNERSHIP OF INTELLECTUAL PROPERTY</strong></p>
-                                            <p>
-                                                <strong>24.</strong> All intellectual property and related material,
-                                                including any trade secrets, moral rights, goodwill, relevant
-                                                registrations or applications for registration, and rights in any
-                                                patent, copyright, trademark, trade dress, industrial design and trade
-                                                name (the "Intellectual Property") that is developed or produced under
-                                                this Agreement, will be the sole property of Freelance Genie. The use of
-                                                the Intellectual Property by Freelance Genie will not be restricted in
-                                                any manner. <br>
-                                                <strong>25.</strong> The Freelance subcontractor may not use the
-                                                Intellectual Property for any purpose other than that contracted for in
-                                                this Agreement except with the written consent of Freelance Genie. The
-                                                Freelance subcontractors will be responsible for any and all damages
-                                                resulting from the unauthorised use of the Intellectual Property.<br>
-                                                <strong>26.</strong> Any images uploaded by the Freelance subcontractors
-                                                including any profile photos shall remain the property of the
-                                                Freelancer. However, no images containing any copyrighted, explicit or
-                                                in any other way offensive materials will not be accepted and it is the
-                                                Freelance subcontractors responsibility to ensure that no such material
-                                                is published on Freelance Genie’s platform. Freelance Genie cannot be
-                                                held liable for any such material uploaded by independent contractors or
-                                                employees external to the company.<br>
-
-                                            </p>
-                                            <p><strong>RETURN OF PROPERTY</strong></p>
-                                            <p>
-                                                <strong>27.</strong> Upon the expiry or termination of this Agreement,
-                                                the Freelance subcontractors will return to Freelance Genie any
-                                                property, documentation, records, or Confidential Information which is
-                                                the property of Freelance Genie.<br>
-                                            </p>
-                                            <p><strong>CAPACITY</strong></p>
-                                            <p>
-                                                <strong>28.</strong> In providing the Services under this Agreement, it
-                                                is expressly agreed that the Freelance subcontractor is acting as an
-                                                independent contractor and not as an employee. The Freelance
-                                                subcontractors and Freelance Genie acknowledge that this Agreement does
-                                                not create a partnership or joint venture between them, and is
-                                                exclusively a contract for service.<br>
-                                                <strong>29.</strong> The Freelance subcontractors will be responsible
-                                                for all income tax liabilities and National Insurance or similar
-                                                contributions relating to the payment, which will be facilitated via the
-                                                nominated 3rd party of their choosing at registration, and the Freelance
-                                                subcontractors will indemnify Freelance Genie in respect of any such
-                                                payments required to be made by Freelance Genie.- However if in the
-                                                event that there is a dispute raised regarding the quality or
-                                                performance, payments may be placed on hold at the request of the
-                                                employer/client pending an investigation. Disclosure and Barring Service
-                                                (DBS) checks must be obtained and paid for by the Freelance
-                                                subcontractor. – We offer this at registration at an exclusive rate.<br>
-                                                <strong>30.</strong> If the Freelance subcontractor does not hold a
-                                                valid DBS Certificate, Freelance Genie will facilitate the registration
-                                                for one via the link on the registration page. <br>
-                                                <strong>31.</strong> If the Freelance subcontractor holds a valid DBS
-                                                certificate, it must be dated within the last 3 years and it must have
-                                                at least 12 months before the date of expiry. <br>
-                                                <strong>32.</strong> The Freelance subcontractor must keep their DBS
-                                                details up to date at all times and ensure compliance with the legal
-                                                requirements of DBS checks.<br>
-
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <p><strong>NOTICE</strong></p>
-                                            <p>
-                                                <strong>33.</strong> All notices, requests, demands or other
-                                                communications required or permitted by the terms of this Agreement will
-                                                be given in writing and delivered to the Parties at the following
-                                                addresses including email addresses:
-                                            </p>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <div class="form-group ">
-                                                <p>a.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11">
-                                            <div class="form-group ">
-                                                <p>
-                                                    Freelance Genie Ltd - Union House, 111 New Union Street, Coventry,
-                                                    West Midlands,CV1 2NT, admin@freelancegenie.co.uk
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <div class="form-group ">
-                                                <p>b.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11">
-                                            <div class="form-group ">
-                                                <input class="form-control" id="notice" name="notice" type="text" style="background-color:rgba(230,230,230,0.5)"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-sm-12">
-                                            <p>
-                                                or to such other address as either Party may from time to time notify
-                                                the other.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <p><strong>INDEMNIFICATION</strong></p>
-                                            <p>
-                                                <strong>34.</strong> Except to the extent paid in settlement from any
-                                                applicable insurance policies, and to the extent permitted by applicable
-                                                law, each Party agrees to indemnify and hold harmless the other Party,
-                                                and its respective affiliates, officers, agents, employees, and
-                                                permitted successors and assigns against any and all claims, losses,
-                                                damages, liabilities, penalties, punitive damages, expenses, reasonable
-                                                legal fees and costs of any kind or amount whatsoever, which result from
-                                                or arise out of any act or omission of the indemnifying party, its
-                                                respective affiliates, officers, agents, employees, and permitted
-                                                successors and assigns that occurs in connection with this Agreement.
-                                                This indemnification will survive the termination of this Agreement.
-                                            </p>
-                                            <p><strong>MODIFICATION OF AGREEMENT</strong></p>
-                                            <p>
-                                                <strong>35.</strong> Any amendment or modification of this Agreement or
-                                                additional obligation assumed by either Party in connection with this
-                                                Agreement will only be binding if evidenced in writing signed by each
-                                                Party or an authorised representative of each Party.
-                                            </p>
-                                            <p><strong>TIME OF THE ESSENCE</strong></p>
-                                            <p>
-                                                <strong>36.</strong> Time is of the essence in this Agreement. No
-                                                extension or variation of this Agreement will operate as a waiver of
-                                                this provision.
-                                            </p>
-                                            <p><strong>ASSIGNMENT</strong></p>
-                                            <p>
-                                                <strong>37.</strong> The Freelance subcontractors will not voluntarily,
-                                                or by operation of law, assign or otherwise transfer its obligations
-                                                under this Agreement without the prior written consent of Freelance
-                                                Genie.
-                                            </p>
-                                            <p><strong>ENTIRE AGREEMENT</strong></p>
-                                            <p>
-                                                <strong>38.</strong> It is agreed that the entire agreement between the
-                                                Freelance subcontractor and Freelance Genie consists of this Agreement,
-                                                the applicable Terms of Service, other company policies and written
-                                                communication between the parties.
-                                            </p>
-                                            <p><strong>ENUREMENT</strong></p>
-                                            <p>
-                                                <strong>39.</strong> This Agreement will enure to the benefit of and be
-                                                binding on the Parties and their respective heirs, executors,
-                                                administrators and permitted successors and assigns.
-                                            </p>
-                                            <p><strong>TITLES/HEADINGS</strong></p>
-                                            <p>
-                                                <strong>40.</strong> Headings are inserted for the convenience of the
-                                                Parties only and are not to be considered when interpreting this
-                                                Agreement.
-                                            </p>
-                                            <p><strong>GOVERNING LAW</strong></p>
-                                            <p>
-                                                <strong>41.</strong> This Agreement will be governed by and construed in
-                                                accordance with the laws of England and Wales.
-                                            </p>
-                                            <p><strong>SEVERABILITY</strong></p>
-                                            <p>
-                                                <strong>42.</strong> In the event that any of the provisions of this
-                                                Agreement are held to be invalid or unenforceable in whole or in part,
-                                                all other provisions will nevertheless continue to be valid and
-                                                enforceable with the invalid or unenforceable parts severed from the
-                                                remainder of this Agreement.
-                                            </p>
-                                            <p><strong>WAIVER</strong></p>
-                                            <p>
-                                                <strong>43.</strong> The waiver by either Party of a breach, default,
-                                                delay or omission of any of the provisions of this Agreement by the
-                                                other Party will not be construed as a waiver of any subsequent breach
-                                                of the same or other provisions.
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <?php echo $freelancer->description; ?>
 
                                     <div class="row">
                                         <div class="col-md-12 col-sm-6" style="text-align:center">
@@ -619,7 +265,7 @@
                                         </div>
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
-                                                <p>For Employers</p>
+                                                <p>For Freelancer</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
@@ -650,8 +296,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group " style="text-align:center">
-                                                <input class="form-control" type="text"
-                                                    value="<?php echo date("Y-m-d"); ?>" style="background-color:rgba(230,230,230,0.5)"/>
+                                                <input class="form-control" type="text" style="background-color:rgba(230,230,230,0.5)"
+                                                    value="<?php echo date("Y-m-d"); ?>" />
                                             </div>
                                         </div>
                                     </div>

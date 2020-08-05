@@ -231,6 +231,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('about', 'Admin\AboutController');
     Route::resource('privacy', 'Admin\PrivacyController');
     Route::resource('terms', 'Admin\TermsController');
+    Route::resource('serviece_agree', 'Admin\ServiceController');
+    Route::resource('freelancer_agree', 'Admin\FreelancerController');
 
     // Route::get('/privacy', function(){
     //     return View::make('web.privacy_policy');

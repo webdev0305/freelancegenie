@@ -456,8 +456,8 @@ class EmployerController extends Controller
 	{
 
         $user_id=\Sentinel::getUser()->id;
-        
-        return view('web/service_agree',compact('user_id'));
+        $service = \App\Model\About::where("slug","service")->first();
+        return view('web/service_agree',compact('user_id', 'service'));
 
     }
 
@@ -490,7 +490,7 @@ class EmployerController extends Controller
 
             $headers .= 'From: <'.$from_email.'>' . "\r\n";
 
-            mail($admin_email,$subject,$message,$headers);
+            // mail($admin_email,$subject,$message,$headers);
             // \Session::flash('success', 'Service Agreement updated and sent successfully');
            
             return Response(array('success' => '1', 'data' => null, 'errors' => null ));

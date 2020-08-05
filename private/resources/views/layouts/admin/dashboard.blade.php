@@ -138,6 +138,29 @@
 					</div>
 				</div>
 				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="heading91">
+						<h4 class="panel-title">
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
+								href="#collapse91" aria-expanded="false" aria-controls="collapse91">
+								<i class="fas fa-pen-nib"></i>&nbsp;&nbsp;Contracts
+								<span class="fas fa-angle-down"></span>
+							</a>
+						</h4>
+					</div>
+					<div id="collapse91" class="panel-collapse collapse {{ (Request::is('*admin/about/faq') ? 'in' : '') }}" role="tabpanel" aria-labelledby="heading91">
+						<div class="panel-body">
+							<ul class="nav">
+								<li>
+									<a href="{{ url ('admin/serviece_agree') }}">Service Agreement</a>
+								</li>
+								<li>
+									<a href="{{ url ('admin/freelancer_agree') }}">Freelancer Agreement</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a class="collapsed" href="{{ url ('admin/settings') }}">

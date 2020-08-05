@@ -529,7 +529,8 @@ class TutorController extends Controller
     public function Freelanceragree()
 	{
         $user_id=\Sentinel::getUser()->id;
-        return view('web/freelancer_agree',compact('user_id'));
+        $freelancer = \App\Model\About::where("slug","freelancer")->first();
+        return view('web/freelancer_agree',compact('user_id', 'freelancer'));
     }
     public function Savecontract(Request $request)
 
@@ -537,12 +538,13 @@ class TutorController extends Controller
         try {
             $data = $request->input();
             $user_id=\Sentinel::getUser()->id;
-
+            
             TutorProfile::where('user_id', $user_id)->update(['contract' => $data['contract']]);
             
             $date = date("Y-m-d H:i:s");
             $user = User::find($user_id);
             $from_email = $user->email;
+          
             $email_template=EmailTemplate::first();
             $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
             $subject = "Service Agreement";  
@@ -562,7 +564,7 @@ class TutorController extends Controller
 
             // mail($admin_email,$subject,$message,$headers);
             // \Session::flash('success', 'Service Agreement updated and sent successfully');
-           
+            
             return Response(array('success' => '1', 'data' => null, 'errors' => null ));
         } catch (Exception $ex) {
             return View::make('errors.exception')->with('Message', $ex->getMessage());
@@ -570,11 +572,15 @@ class TutorController extends Controller
 
     }
     function tutor_makepdf($id) {
+        
         $down = TutorProfile::where('user_id', $id)->first()->contract;
+        
         $pdf = [
             'data' => $down,
         ];
+        
         $pdf = PDF::loadView('web.freelancer_agree_pdf', $pdf);
+        
         return $pdf->download('user'.$id.'-freelanceragreement.pdf');
     }
 }
