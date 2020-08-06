@@ -369,7 +369,8 @@ class UserController extends Controller
     public function Settings()
     {
         $settings=GlobalSettings::all();
-        return view('admin.settings',compact('settings'));
+        $newsletter=GlobalSettings::where('name','newsletter')->first();
+        return view('admin.settings',compact('settings','newsletter'));
     }
     public function updateSettings(Request $request)
     {

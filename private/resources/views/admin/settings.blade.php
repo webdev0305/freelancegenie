@@ -11,6 +11,7 @@
         <div class="form-wrap">
             @foreach($settings as $setting)
             <div class="form-group">
+                @if ($setting->name != 'newsletter')
                 <label for="disabledSelect">{{$setting->label}}</label>
                 <div class="row fields">
                     <div class="col-md-9 col-sm-9">
@@ -25,8 +26,14 @@
                         <button type="submit" class="btn btn-primary update">Update</button>
                     </div>
                 </div>
+                @endif
             </div>
             @endforeach
+            
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-wrap">
             <div class="form-group">
                 <label for="disabledSelect">Google Analytics</label>
                 <div class="row fields">
@@ -35,6 +42,20 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <a href="https://accounts.google.com" target="_blank" class="btn btn-primary" style="height:38px;width:107.15px"><i class="fa fa-link"></i> Link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="disabledSelect">{{$newsletter->label}}</label>
+                <div class="row fields">
+                    <div class="col-md-9 col-sm-9">
+                        <select name="{{$newsletter->name}}" class="form-control" >
+                            <option value="1" {{$newsletter->value==1? 'selected':''}}>Enabled</option>
+                            <option value="0" {{$newsletter->value==0? 'selected':''}}>Disabled</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button type="submit" class="btn btn-primary update" id="newsletter_update">Update</button>
                     </div>
                 </div>
             </div>
@@ -48,6 +69,23 @@
     $('.update').click(function () {
         var value = $(this).closest('.fields').find('input').val();
         var name = $(this).closest('.fields').find('input').attr('name');
+        $.ajax({
+            type: 'post',
+            url: '{{url("/admin/settings/update")}}',
+            data: {
+                '_token': '{{csrf_token()}}',
+                'name': name,
+                'value': value
+            }
+        }).success(function (result) {
+            console.log(result);
+            window.location.reload();
+        });
+    });
+    $('#newsletter_update').click(function () {
+        var value = $(this).closest('.fields').find('select').val();
+        var name = $(this).closest('.fields').find('select').attr('name');
+        
         $.ajax({
             type: 'post',
             url: '{{url("/admin/settings/update")}}',

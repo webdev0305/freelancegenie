@@ -679,7 +679,6 @@ class TutorsController extends Controller
 				 
 				 //return Response::json(['categories' => $sp,'spl' => $spl]);
                  return $spc;
-
 		}
 
     }

@@ -30,8 +30,10 @@
 						<form class="form-inline">
 							<input type="text" class="form-control mb-2 mr-sm-2" id="email" placeholder="Email Address">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<button type="button" id="invite_user_btn" class="btn btn-primary mb-2"><i
+							@if($info->name =="newsletter")
+							<button type="button" id="invite_user_btn" class="btn btn-primary mb-2" {{$info->value==0? 'disabled':''}}><i
 									style="display: none;" class="fa fa-spinner fa-spin"></i>Subscribe</button>
+							@endif		
 						</form>
 					</div>
 				</div>
@@ -41,8 +43,7 @@
 					<li><a href="https://twitter.com/fl_genie" target="_blank"><i class="fab fa-twitter"></i></a></li>
 					<li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
 					<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/freelance-genie-280911159/" target="_blank"><i
-								class="fab fa-linkedin-in"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/freelance-genie-280911159/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
 				</ul>
 			</div>
 
