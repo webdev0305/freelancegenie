@@ -12,9 +12,7 @@
 </section>
 
 <section id="tutor-view">
-
 	<div class="container">
-
 		<div class="persnl-info tutor_view_profile">
 			<div class="row">
 				<div class="col-sm-3">
@@ -59,7 +57,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row last_border_remove">
 				<div class="col-md-12">
 					<div class="persnl-info">
@@ -72,17 +69,16 @@
 										<div class="col-sm-6">
 											<div class="text-wrap listing">
 												<p>
-
-													<span>{{$categorie->name}}</span></p>
+													<span>{{$categorie->name}}</span>
+												</p>
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="text-wrap listing">
 												<p>
 													<span>Qualified:</span>
-													<span
-														class="">@if(isset($usersMeta->qualified_level[$keyCat]->level))
-														{{$usersMeta->qualified_level[$keyCat]->level}}@endif</span></p>
+													<span class="">@if(isset($usersMeta->qualified_level[$keyCat]->level)) {{$usersMeta->qualified_level[$keyCat]->level}}@endif</span>
+												</p>
 											</div>
 										</div>
 									</div>
@@ -103,25 +99,17 @@
 												</p>
 											</div>
 										</div>
-
-
 									</div>
-
-
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-
 					<div class="persnl-info">
 						<div class="row">
 							<div class="col-md-6">
 								<h3>Work Permit</h3>
 								<div class="text-wrap main_box">
 									<div class="row">
-
 										<div class="col-md-12">
 											<div class="text-wrap listing">
 												<p>
@@ -131,14 +119,14 @@
 												</p>
 											</div>
 										</div>
-
 									</div>
 									<div class="row">
 										<div class="col-md-4">
 											<div class="text-wrap listing">
 												<p>
 													<span>Permit No:</span>
-													<span>{{$usersMeta->tutor_profile->permit_no}}</span></p>
+													<span>{{$usersMeta->tutor_profile->permit_no}}</span>
+												</p>
 											</div>
 										</div>
 										<div class="col-md-4">
@@ -164,23 +152,18 @@
 								<h3>Spoken Languages</h3>
 								<div class="text-wrap main_box">
 									<div class="row">
-
 										<div class="col-md-6">
 											<div class="text-wrap listing">
-
 												@foreach($ttrLan as $lang)
 												<p><span class="multiple">{{$lang->name}}</span></p>
 												@endforeach
-
 											</div>
 										</div>
 										<!--<div class="col-md-6">
-										<div class="text-wrap listing">
-											
-											<p><span>Fluency: {{($usersMeta->tutor_profile->level_of_fluency == 0) ? "Basic understanding" : (($usersMeta->tutor_profile->level_of_fluency == 1)  ? "Semi-Fluent" : "Fluent")}}</span></p>
-											
-										</div>
-									</div>-->
+											<div class="text-wrap listing">
+												<p><span>Fluency: {{($usersMeta->tutor_profile->level_of_fluency == 0) ? "Basic understanding" : (($usersMeta->tutor_profile->level_of_fluency == 1)  ? "Semi-Fluent" : "Fluent")}}</span></p>
+											</div>
+										</div>-->
 									</div>
 								</div>
 							</div>
@@ -222,8 +205,7 @@
 											<div class="text-wrap listing">
 												<p>
 													<span>Any Medical conditions/Disabilities:</span>
-													<span
-														class="">{{$usersMeta->tutor_profile->medical_conditions == '1' ? 'YES' : 'NO'}}</span>
+													<span class="">{{$usersMeta->tutor_profile->medical_conditions == '1' ? 'YES' : 'NO'}}</span>
 												</p>
 												<p>{{$usersMeta->tutor_profile->medical_description}}</p>
 											</div>
@@ -234,14 +216,8 @@
 							</div>
 						</div>
 					</div>
-
-
-
 				</div>
 			</div>
-
-
-
 		</div>
 
 		{{--<div class="persnl-info">--}}
