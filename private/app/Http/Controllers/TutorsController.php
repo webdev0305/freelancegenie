@@ -587,7 +587,6 @@ class TutorsController extends Controller
         //$disciplines = CategoryUser::with('Disciplines')->select('disciplines_id')->where('user_id', decrypt($id))->groupBy('disciplines_id')->get();
         //echo '<pre>';print_r($disciplines);die('working here');echo '</pre>';
 		$jobs = json_decode(json_encode(UserJobs::with('userJobs')->where('user_id', decrypt($id))->get()));
-        var_dump('ghggjhghghghj');die();
         if(!empty(\Input::get('cat_id'))){
 		    $categories = Category::whereIn('id',\Input::get('specialist'))->get();
 		}else{

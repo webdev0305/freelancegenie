@@ -52,8 +52,10 @@
                         @else
                         <span class="verified">Verified</span>
                         @endif
-                        <p><span class="rating_no">{{$rating = number_format($user['rating'], 1)}}</span><img
-                                src="{{asset('images/photo/Star_rating_').$user['rating'].'.png'}}"></p>
+                        <p>
+                            <span class="rating_no">{{$rating = number_format($user['rating'], 1)}}</span>
+                            <img src="{{asset('images/photo/Star_rating_').$user['rating'].'.png'}}">
+                        </p>
                         <p class="sub-str">{{str_limit($user['about'], 100).'...'}}</p>
                         <div class="skills">
                             <div class="row">
@@ -65,15 +67,12 @@
                                     </p>
                                     {{--<p><strong>Country:</strong><span>{{$user['country']['name']}}</span></p>--}}
                                 </div>
-
                             </div>
                         </div>
                         <div class="skills">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-striped table-bordered table-responsive-lg"
-                                        style="width:100%">
-
+                                    <table class="table table-striped table-bordered table-responsive-lg" style="width:100%">
                                         <thead>
                                             <th>Skill</th>
                                             <th>Tutor Type</th>
@@ -93,65 +92,55 @@
                                                 <p><span>{{$user['qualified_level'][$i]['level']}}</span></p>
                                             </td>
                                             <td>
-                                                <p><span class="rate_color">@if(array_key_exists("rates",$user)){{'£'.$user['rates'][$i]}}
-                                                        @endif</span></p>
+                                                <p><span class="rate_color">@if(array_key_exists("rates",$user)){{'£'.$user['rates'][$i]}} @endif</span></p>
                                             </td>
                                         </tr>
                                         <!--<div class="row">
-					
-						<div class="col-sm-4">
-						<p><strong>Skill: </strong><span>{{$categorie['name']}}</span></p>
-						</div>
-						<div class="col-sm-4">
-						<p><strong>Tutor Type: </strong><span>{{$user['disciplines'][$i]['name']}}</span></p>
-						</div>
-						<div class="col-sm-2">
-						<p><strong>Level: </strong><span>{{$user['qualified_level'][$i]['level']}}</span></p>
-						</div>
-						<div class="col-sm-2">
-						<p><strong>Day Rate: </strong><span class="rate_color">@if(array_key_exists("rates",$user)){{'£'.$user['rates'][$i]}} @endif</span></p>
-						</div>
-					</div>-->
+                                            <div class="col-sm-4">
+                                            <p><strong>Skill: </strong><span>{{$categorie['name']}}</span></p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                            <p><strong>Tutor Type: </strong><span>{{$user['disciplines'][$i]['name']}}</span></p>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            <p><strong>Level: </strong><span>{{$user['qualified_level'][$i]['level']}}</span></p>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            <p><strong>Day Rate: </strong><span class="rate_color">@if(array_key_exists("rates",$user)){{'£'.$user['rates'][$i]}} @endif</span></p>
+                                            </div>
+                                        </div>-->
                                         @php $i++; @endphp
                                         @endforeach
-
                                     </table>
-
                                 </div>
-
                             </div>
                         </div>
-                        <?php //print_r($user);?>
                     </div>
                 </div>
-
-
                 <div class="skills">
                     <div class="row">
-                        <!--
-         <div class="col-sm-4">
-             @foreach($user['categories']  as $categorie)
-                 <p><strong>Skill:</strong><span>{{$categorie['name']}}</span></p>
-             @endforeach
-         </div>
-         <div class="col-sm-3">
-             @foreach($user['disciplines']  as $discipline)
-                 <p><strong>Type:</strong><span>{{$discipline['name']}}</span></p>
-             @endforeach
-         </div>
-         <div class="col-sm-2">
-             @foreach($user['qualified_level']  as $qualified_level)
-                 <p><strong>Level:</strong><span>{{$qualified_level['level']}}</span></p>
-             @endforeach
-         </div>
-         <div class="col-sm-3">
-         @if(array_key_exists("rates",$user))
-         @foreach($user['rates']  as $rate)
-         <p><strong>Day Rate:</strong><span class="rate_color">{{'£'.$rate}}</span></p>
-         @endforeach
-         @endif
-            
-         </div>-->
+                        <!-- <div class="col-sm-4">
+                            @foreach($user['categories']  as $categorie)
+                            <p><strong>Skill:</strong><span>{{$categorie['name']}}</span></p>
+                            @endforeach
+                        </div>
+                        <div class="col-sm-3">
+                            @foreach($user['disciplines']  as $discipline)
+                            <p><strong>Type:</strong><span>{{$discipline['name']}}</span></p>
+                            @endforeach
+                        </div>
+                        <div class="col-sm-2">
+                            @foreach($user['qualified_level']  as $qualified_level)
+                            <p><strong>Level:</strong><span>{{$qualified_level['level']}}</span></p>
+                            @endforeach
+                        </div>
+                        <div class="col-sm-3">
+                            @if(array_key_exists("rates",$user))
+                            @foreach($user['rates']  as $rate)
+                            <p><strong>Day Rate:</strong><span class="rate_color">{{'£'.$rate}}</span></p>
+                            @endforeach
+                            @endif
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -161,23 +150,20 @@
         @if ($usersMeta['last_page'] > '1')
         <ul class="pagination">
             @if ($usersMeta['prev_page_url'] != '')
-            <li class="page-item "><a class="page-link"
-                    href="{{$usersMeta['prev_page_url'] . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist')}}">Previous</a>
+            <li class="page-item "><a class="page-link" href="{{$usersMeta['prev_page_url'] . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist')}}">Previous</a>
             </li>
             @endif
-            @for($i = 1; $i <= $usersMeta['last_page']; $i++) <li
-                class="page-item {{$usersMeta['current_page'] == $i ? 'active' : ''}} "><a class="page-link"
-                    href="{{$usersMeta['path']. '?page=' . $i . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist') }}">{{$i}}</a>
-                </li>
-                @endfor
-                @if ($usersMeta['next_page_url'] != '')
-                <li class="page-item"><a class="page-link"
-                        href="{{$usersMeta['next_page_url'] . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist')}}">Next</a>
-                </li>
-                @endif
+            @for($i = 1; $i <= $usersMeta['last_page']; $i++) 
+            <li class="page-item {{$usersMeta['current_page'] == $i ? 'active' : ''}} ">
+                <a class="page-link" href="{{$usersMeta['path']. '?page=' . $i . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist') }}">{{$i}}</a>
+            </li>
+            @endfor
+            @if ($usersMeta['next_page_url'] != '')
+            <li class="page-item"><a class="page-link" href="{{$usersMeta['next_page_url'] . '&'. strstr($_SERVER['QUERY_STRING'], 'specialist')}}">Next</a>
+            </li>
+            @endif
         </ul>
         @endif
     </div>
-
 </section>
 @stop
