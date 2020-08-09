@@ -188,12 +188,6 @@
 					</div>
 
 
-
-
-
-
-
-
 					<div class="persnl-info">
 						<div class="row">
 							<div class="col-md-6">
