@@ -69,7 +69,7 @@ Route::get('/courses', function () {
     return View::make('web.courses');
 });
 Route::get('/care_courses', function () {
-$categories = \App\Model\Category::with('children')->where('disciplines_id',60)->get();
+    $categories = \App\Model\Category::with('children')->where('disciplines_id',60)->get();
     return View::make('web.care_courses',compact('categories'));
 });
 Route::get('/how_it_works', function () {

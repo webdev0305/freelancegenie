@@ -55,10 +55,10 @@ class TutorsController extends Controller
     {
 		if(!empty(\Input::get('disciplines'))){
 			$options_ids1=array("2","3","4","5","6","7","33","34","35","36","37","38","39","40","41","42","43","44");//Apprenticeships
-        $options_ids2=array("9","10","11","12","13","14");// Traineeships
-        $options_ids3=array("16","17","18","19");//Apprenticeships
-        $options_ids4=array("21","22","23","24");//HR
-        $disciplines_id=7;
+            $options_ids2=array("9","10","11","12","13","14");// Traineeships
+            $options_ids3=array("16","17","18","19");//Apprenticeships
+            $options_ids4=array("21","22","23","24");//HR
+            $disciplines_id=7;
         if(in_array(\Input::get('disciplines')[0],$options_ids1)){
             $disciplines_id=1;
         }
@@ -80,7 +80,7 @@ class TutorsController extends Controller
 		$categories = Category::with('children')->where('disciplines_id', '=', $disciplines_id)->get();
 		//$categories = Category::with('children')->get();
 		}else{
-		$categories = [];
+		    $categories = [];
 		}
         $levels = QualifiedLevel::with('childrenLevels')->orderBy('priority', 'asc')->get();
         $disciplines = Disciplines::with('childrenDisciplines')->get();
@@ -146,29 +146,29 @@ class TutorsController extends Controller
 		//$rating = DB::table('ratings')->where('tutor_id', 29)->get();
 		$i=0;
 		foreach($usersMeta['data'] as $user){
-		$tutor_id=$user['user_id'];
-		$rating = DB::select("SELECT COUNT(*) as records,SUM(objectives + delivery + professional + style + paperwork + tutor + training)
-		as total FROM ratings WHERE tutor_profile_user_id=$tutor_id");
-		if($rating[0]->records >0){
-		$star_rating=$rating[0]->total/(7*$rating[0]->records);
-		$star_rating = floor(($star_rating * 2) + 0.5) / 2;
-		}else{
-		$star_rating=0;
-		}
-		$usersMeta['data'][$i]['rating']=$star_rating;
-		foreach($user['categories']  as $categorie){
-			$disIds = CategoryUser::where('user_id',$tutor_id)->where('category_id', $categorie['pivot']['category_id'])->first();
-			$usersMeta['data'][$i]['rates'][]=$disIds->rate;
-		}
-		//echo $star_rating;
-		$i++;
+		    $tutor_id=$user['user_id'];
+		    $rating = DB::select("SELECT COUNT(*) as records,SUM(objectives + delivery + professional + style + paperwork + tutor + training)
+		        as total FROM ratings WHERE tutor_profile_user_id=$tutor_id");
+            if($rating[0]->records >0){
+                $star_rating=$rating[0]->total/(7*$rating[0]->records);
+                $star_rating = floor(($star_rating * 2) + 0.5) / 2;
+            }else{
+                $star_rating=0;
+            }
+		    $usersMeta['data'][$i]['rating']=$star_rating;
+            foreach($user['categories']  as $categorie){
+                $disIds = CategoryUser::where('user_id',$tutor_id)->where('category_id', $categorie['pivot']['category_id'])->first();
+                $usersMeta['data'][$i]['rates'][]=$disIds->rate;
+            }
+		    //echo $star_rating;
+		    $i++;
 		}
 
 		//echo '<pre>';print_r($usersMeta['data']);echo '</pre>';die;
         $user = \Sentinel::check();
-//        if (empty($user)) {
-//            \Session::put('CheckRediraction', $_SERVER['REQUEST_URI']);
-//        }
+        //if (empty($user)) {
+        //\Session::put('CheckRediraction', $_SERVER['REQUEST_URI']);
+        //}
 
         return View('web.tutor_lists', compact('usersMeta', 'categories', 'disciplines', 'countrys', 'levels', 'tutor_profiles'));
     }
@@ -578,7 +578,6 @@ class TutorsController extends Controller
      */
     public function show($id)
     {
-		
         $user = \Sentinel::check();
 		$usersMeta = json_decode(json_encode(User::with(['Country', 'TutorProfile', 'Categories','Disciplines', 'OrganisationsWork', 'QualifiedLevel'])->find(decrypt($id))));
         $array = array();
@@ -586,10 +585,11 @@ class TutorsController extends Controller
         $ttrLan = json_decode(json_encode(Language::whereIn('id', $usersMeta->tutor_profile->language_id != '' ? unserialize($usersMeta->tutor_profile->language_id) : $array)->get()));
         $ttrLocaWill = json_decode(json_encode(Country::whereIn('id', $usersMeta->tutor_profile->language_id != '' ? unserialize($usersMeta->tutor_profile->travel_location) : $array)->get()));
         //$disciplines = CategoryUser::with('Disciplines')->select('disciplines_id')->where('user_id', decrypt($id))->groupBy('disciplines_id')->get();
-       //echo '<pre>';print_r($disciplines);die('working here');echo '</pre>';
+        //echo '<pre>';print_r($disciplines);die('working here');echo '</pre>';
 		$jobs = json_decode(json_encode(UserJobs::with('userJobs')->where('user_id', decrypt($id))->get()));
-		if(!empty(\Input::get('cat_id'))){
-		$categories = Category::whereIn('id',\Input::get('specialist'))->get();
+        var_dump('ghggjhghghghj');die();
+        if(!empty(\Input::get('cat_id'))){
+		    $categories = Category::whereIn('id',\Input::get('specialist'))->get();
 		}else{
 			$categories=[];
 		}
