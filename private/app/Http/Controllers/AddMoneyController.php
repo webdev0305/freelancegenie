@@ -195,13 +195,15 @@ class AddMoneyController extends Controller
         $total=$jobs->total;
         $half_paid=$jobs->half_paid;
         //echo Input::get('job_id');echo '<pre>';print_r($jobs);die;
-         return view('booking',compact(['total','half_paid']));
-		 //return view('booking');
+        if($jobs->pay_method == 'credit')
+            return view('booking',compact(['total','half_paid']));
+        if($jobs->pay_method == 'bank')
+            return view('booking_bank',compact(['total','half_paid']));
+		//return view('booking');
     }
 	public function postPaymentBooking(Request $request)
     {		
 		$data = $request->input();
-        
 		$job_id  = $request->get('job_id');
 		$get_job =  Jobs::whereId($job_id)->first();
 		$job =  Jobs::whereId($job_id);
@@ -229,7 +231,7 @@ class AddMoneyController extends Controller
                 return Redirect::back();
             }
           
-          //$plan  =  Plan::find($subs['plan_id']);
+            //$plan  =  Plan::find($subs['plan_id']);
              $charge = $stripe->charges()->create([
                 'card' => $token['id'],
                 'currency' => 'gbp',
@@ -249,10 +251,10 @@ class AddMoneyController extends Controller
                 $payment->save();
                   
                 if($data['pending_paid'] == "1"){
-                $job->update(['half_paid' => "1"]);
+                    $job->update(['half_paid' => "1"]);
 				}
                 if($data['half_paid'] == "1"){
-				$job->update(['half_paid' => "0"]);
+				    $job->update(['half_paid' => "0"]);
                 }
 				
 				if($get_job->assignment != "0"){ // for assignment

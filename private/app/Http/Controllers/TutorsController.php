@@ -199,6 +199,7 @@ class TutorsController extends Controller
     {
         try {
             $data = $request->input();
+            
 			if(isset($data['care_tutor'])){ // care trainer
                 $care_tutor=1;
 				$status="1";
@@ -215,17 +216,16 @@ class TutorsController extends Controller
                 if ($validation->fails()) {
                     $errors = $validation->messages();
                     return Response::json(['errors' => $validation->errors()]);
-
                 }
 			}else{  // Direct tutor booking
-				$status="1";
+                $status="1";
+                $care_tutor=0;
 				$validation = \Validator::make($request->all(), ValidationRequest::$jobPost);
 				if ($validation->fails()) {
 					$errors = $validation->messages();
 					return Response::json(['errors' => $validation->errors()]);
-
 				}
-				$care_tutor=0;
+				
 			}
             /* if ($data['tutor_id'] != '') {
                 $ckeJob = Jobs::where('tutor_id', $data['tutor_id'])->where('employer_id', \Sentinel::getUser()->id)->first();
@@ -253,7 +253,8 @@ class TutorsController extends Controller
             $jobs->equipment_available = $data['equipment_available'];
             $jobs->equipment_available_onsite = $data['equipment_available_onsite'];
 			$jobs->equipment_info = isset($data['equipment_info'])?$data['equipment_info']:'';
-			$jobs->difficulty_info = isset($data['difficulty_info'])?$data['difficulty_info']:'';
+            $jobs->difficulty_info = isset($data['difficulty_info'])?$data['difficulty_info']:'';
+            $jobs->pay_method = $data['py_slct'];
 			if($care_tutor == 2){ // For Assignment
                 $msg=Config::get('message.options.ASSIGNMENT_SUBMITED');
                 $jobs->awarding = $data['awarding'];
@@ -298,16 +299,16 @@ class TutorsController extends Controller
 				if ($SubscriptionLimit){
 					$SubscriptionLimit->assignment=$SubscriptionLimit->assignment+1;
 					if(isset($data['premium'])){
-					$SubscriptionLimit->premium=$SubscriptionLimit->premium+1;
+					    $SubscriptionLimit->premium=$SubscriptionLimit->premium+1;
 					}
 				}else{
-				$SubscriptionLimit =new SubscriptionLimit;
-				$SubscriptionLimit->user_id=$user_id;
-				$SubscriptionLimit->subscription_code=$subs->subscription_code;
-				$SubscriptionLimit->assignment=1;
-				if(isset($data['premium'])){
-					$SubscriptionLimit->premium=1;
-					}
+                    $SubscriptionLimit =new SubscriptionLimit;
+                    $SubscriptionLimit->user_id=$user_id;
+                    $SubscriptionLimit->subscription_code=$subs->subscription_code;
+                    $SubscriptionLimit->assignment=1;
+                    if(isset($data['premium'])){
+                        $SubscriptionLimit->premium=1;
+                    }
 				}
             }else{
                 if ($SubscriptionLimit){
@@ -347,21 +348,21 @@ class TutorsController extends Controller
                     'job_id' => $jobs->id,
                     'filename' => $filename,
                     'originalname' =>$original,
-                    'logo'    =>1
+                    'logo' =>1
                 ]);
             }
 
-           $jobs->userJobs()->sync($data['tutor_id']);
-		   $email_template=EmailTemplate::first();
-		   $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
-		   $to="krishankmr.bbdit@gmail.com";
-		   // Always set content-type for all emails
+            $jobs->userJobs()->sync($data['tutor_id']);
+            $email_template=EmailTemplate::first();
+            $admin_email=GlobalSettings::where('name','admin_email')->first()->value;
+            $to="krishankmr.bbdit@gmail.com";
+            // Always set content-type for all emails
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= 'From: <'.$admin_email.'>' . "\r\n";
             $subject = "Freelance Genie Live Assignment";  
             $title = '<title>Freelance Genie Live Assignment</title>';
-                //Send Email to Admin				
+            //Send Email to Admin				
             $content = "<p>Thanks for posting assignment on Freelance Genie.</p>
                         <p>Our expert frerlancers will accept your assignment shortly.</p>		
             <p>Thanks</p>
@@ -369,7 +370,7 @@ class TutorsController extends Controller
             $message=str_replace('<title></title>',$title,$email_template->body);
             $message=str_replace('<p></p>',$content,$message);
             // mail($to, $subject, $message, $headers);
-			return Response::json(['care_tutor'=>$care_tutor,'job_id'=>$jobs->id,'success' => '1', 'message' => $msg]);
+			return Response::json(['care_tutor'=>$care_tutor,'job_id'=>$jobs->id,'success' => '1','pay_method'=>$jobs->pay_method, 'message' => $msg]);
 
         } catch (Exception $ex) {
             return View::make('errors.exception')->with('Message', $ex->getMessage());
@@ -618,23 +619,23 @@ class TutorsController extends Controller
     {
         $data = $request->input();
 
-       if($data['get_option'] == ''){
-           return Response::json(['status' => '0']);
-       }
-	   if(isset($data['tutor_id'])){
-        $disIds = CategoryUser::with('Categories')->where('user_id',decrypt($data['tutor_id']))->where('disciplines_id', $data['get_option'])->get();
-        foreach ($disIds as $disId) {
-            $categories[] = "<option value='" . $disId['categories']->id . "'>" . $disId['categories']->name . "</option>";
-//            $qualifiedlevel[] = "<option value='" . $disId['qualifiedlevel']->id . "'> " . $disId['qualifiedlevel']->level . "</option>";
+        if($data['get_option'] == ''){
+            return Response::json(['status' => '0']);
         }
-//        , 'qualifiedlevel' => $qualifiedlevel
-        return Response::json(['categories' => $categories]);
+	    if(isset($data['tutor_id'])){
+            $disIds = CategoryUser::with('Categories')->where('user_id',decrypt($data['tutor_id']))->where('disciplines_id', $data['get_option'])->get();
+            foreach ($disIds as $disId) {
+                $categories[] = "<option value='" . $disId['categories']->id . "'>" . $disId['categories']->name . "</option>";
+                // $qualifiedlevel[] = "<option value='" . $disId['qualifiedlevel']->id . "'> " . $disId['qualifiedlevel']->level . "</option>";
+            }
+            // , 'qualifiedlevel' => $qualifiedlevel
+            return Response::json(['categories' => $categories]);
 		}else{
-        $options_ids1=array("2","3","4","5","6","7","33","34","35","36","37","38","39","40","41","42","43","44");//Apprenticeships
-        $options_ids2=array("9","10","11","12","13","14");// Traineeships
-        $options_ids3=array("16","17","18","19");//Apprenticeships
-        $options_ids4=array("21","22","23","24");//HR
-        $disciplines_id=7;
+            $options_ids1=array("2","3","4","5","6","7","33","34","35","36","37","38","39","40","41","42","43","44");//Apprenticeships
+            $options_ids2=array("9","10","11","12","13","14");// Traineeships
+            $options_ids3=array("16","17","18","19");//Apprenticeships
+            $options_ids4=array("21","22","23","24");//HR
+            $disciplines_id=7;
         if(in_array($data['get_option'],$options_ids1)){
             $disciplines_id=1;
         }
@@ -656,33 +657,27 @@ class TutorsController extends Controller
 		$categories = Category::with('children')->where('disciplines_id', '=', $disciplines_id)->get();
 		//print_r($categories);die('here');
 		if($data['page']=='search_form'){
-        $spc='<select class="form-control" name="specialist[]" id="specialist">';		$spc.='<option value="">Select Specialism</option>';
+            $spc='<select class="form-control" name="specialist[]" id="specialist">';
+            $spc.='<option value="">Select Specialism</option>';
 		}
 		if($data['page']=='tutor_profile'){
-        $spc='<select class="form-control length" name="certificates_categorie['.$data['index_num'].']" id="certificates_'.$data['index_num'].'_categorie">';		$spc.='<option value="">Select Specialism</option>';
+            $spc='<select class="form-control length" name="certificates_categorie['.$data['index_num'].']" id="certificates_'.$data['index_num'].'_categorie">';		$spc.='<option value="">Select Specialism</option>';
 		}
 		foreach($categories as  $categorieItem){
-                     if(isset($categorieItem->children['0'])){
-					 $spc.='<optgroup label="'.$categorieItem->name.'"
-                                   data-max-options="1">';
-                            foreach($categorieItem->children as  $categorieChild){
-							//echo $categorieChild->name;
-									$spc.='<option value="'.$categorieChild->id.'">'.$categorieChild->name.'</option>';
-								}
-					 $spc.='</optgroup>';
-					 }
-					 
-                 }
-                 $spc.='</select>';
-                 
-				 
-				 //return Response::json(['categories' => $sp,'spl' => $spl]);
-                 return $spc;
+            if(isset($categorieItem->children['0'])){
+                $spc.='<optgroup label="'.$categorieItem->name.'" data-max-options="1">';
+                foreach($categorieItem->children as  $categorieChild){
+                    //echo $categorieChild->name;
+                    $spc.='<option value="'.$categorieChild->id.'">'.$categorieChild->name.'</option>';
+                }
+                $spc.='</optgroup>';
+			}
+        }
+        $spc.='</select>';
+        //return Response::json(['categories' => $sp,'spl' => $spl]);
+        return $spc;
 		}
-
     }
-
-
 
     public function getLevelByCat(Request $request)
     {

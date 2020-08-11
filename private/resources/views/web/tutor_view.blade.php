@@ -337,7 +337,6 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
 	<div class="modal-dialog modal-lg">
-
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
@@ -565,7 +564,6 @@
 								</div>
 							</div>
 							<div class="row">
-
 								<div class="col-md-6">
 									<div class="form-group ">
 										<label class="control-label " for="time_start">
@@ -580,8 +578,7 @@
 										<label class="control-label " for="time_end">
 											End Time<span class="asteriskField">*</span>
 										</label>
-										<input type="time" id="time_end" name="time_end" min="06:00" max="18:00"
-											required>
+										<input type="time" id="time_end" name="time_end" min="06:00" max="18:00" required>
 									</div>
 								</div>
 							</div>
@@ -591,14 +588,12 @@
 										<label class="control-label " for="description">
 											Description
 										</label>
-										<textarea class="form-control" name="description" value=""
-											id="description"></textarea>
+										<textarea class="form-control" name="description" value="" id="description"></textarea>
 										<span class="glyphicon glyphicon-user form-control-feedback"></span>
 										<span class="text-danger">
 											<span id="description-error"></span>
 										</span>
 									</div>
-
 								</div>
 							</div>
 							@php $care_cost=0;@endphp
@@ -1082,8 +1077,9 @@
 													<i class="far fa-credit-card"></i>
 													<div class="cstm-bc-cntr">
 														<label class="radio">
-															<input type="radio" name="py_slct" value="CREDIT CARD"
-																class="chk_py" checked="">CREDIT CARD</label>
+															<input type="radio" name="py_slct" value="credit"
+																class="chk_py" checked="">CREDIT/DEBIT CARD
+														</label>
 													</div>
 												</div>
 											</div>
@@ -1093,8 +1089,9 @@
 												<i class="fas fa-money-check-alt"></i>
 												<div class="cstm-bc-cntr">
 													<label class="radio">
-														<input type="radio" name="py_slct" value="BANK TRANSFER"
-															class="chk_py">BANK TRANSFER</label>
+														<input type="radio" name="py_slct" value="bank"
+															class="chk_py">BANK TRANSFER
+													</label>
 												</div>
 											</div>
 										</div>
@@ -1103,8 +1100,9 @@
 												<i class="fas fa-file-invoice-dollar"></i>
 												<div class="cstm-bc-cntr">
 													<label class="radio">
-														<input type="radio" name="py_slct" value="INVOICING"
-															class="chk_py">INVOICING</label>
+														<input type="radio" name="py_slct" value="invoice"
+															class="chk_py">INVOICING
+													</label>
 												</div>
 											</div>
 										</div>
@@ -1146,7 +1144,6 @@
 			</div>
 			<div class="modal-body">
 				<div class="text-wrap">
-
 					<p><span class="rating_no"></span><img id="rating_img" src=""></p>
 					<p id="comment"></p>
 				</div>
@@ -1167,8 +1164,6 @@
 <script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
 <link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 <script>
-
-	
 
 	$(document).ready(function () {
 		$('#date').multiDatesPicker({
@@ -1224,7 +1219,6 @@
 		var address_option = $("input[name='booking_address']:checked").val();
 		if (address_option && $('#address').val() != "" && $('#city').val() != "" && $('#street_name').val() !=
 			"" && $('#zip').val() != "") {
-
 			check_distance(tutor_id);
 			//priceAjax();
 		}
@@ -1335,17 +1329,13 @@
 					//    document.getElementById("qualified_levels").innerHTML = response.qualifiedlevel;
 				}
 			}
-
 		});
-
-
 	}
 
 
-	function fetch_select_cat(val) {
-
+	function fetch_select_cat(val) 
+	{
 		getLevels(val);
-
 	}
 
 	function getLevels(val) {
@@ -1485,6 +1475,7 @@
 					var job_id = data.job_id;
 					var total = data.total;
 					var care_tutor = data.care_tutor;
+					var pay_method = data.pay_method;
 					$('#insert_form').trigger("reset");
 					/*bootoast.toast({
 					    message: data.message
@@ -1493,8 +1484,7 @@
 						backdrop: 'static',
 						keyboard: false
 					})
-					window.location.href = "{{url('/booking')}}" + '?job_id=' + job_id +
-						'&care_tutor=' + care_tutor;
+					window.location.href = "{{url('/booking')}}" + '?job_id=' + job_id + '&care_tutor=' + care_tutor;
 				}
 			}
 		});

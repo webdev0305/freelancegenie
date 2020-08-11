@@ -25,14 +25,10 @@
 					<input type="hidden" id="pending_paid" name="pending_paid">
 					<input type="hidden" name="half_paid" value="{{$half_paid}}">
 					<div class='form-group  required'>
-						<label class='control-label'>Card Number</label>
+						<label class='control-label'>Email</label>
 						<div class="input-group">
-							<input autocomplete='off' required value="4242424242424242" class='form-control card-number'
-								size='20' type='number' name="card_no">
-							<div class="input-group-append">
-								<span class="input-group-text" id="image-strip"><img
-										src="{{asset('images/logo-stripe.png')}}" class="img-fluid"></span>
-							</div>
+							<input autocomplete='off' required  class='form-control card-number'
+								size='20' type='email' name="email">
 						</div>
 					</div>
 					<div class='form-row'>
