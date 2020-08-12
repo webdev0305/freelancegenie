@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
     {
          try {
 
-             $data = $request->input();
+            $data = $request->input();
             $validation = \Validator::make($data, ValidationRequest::$pass_reset);
 
             if ($validation->fails()) {

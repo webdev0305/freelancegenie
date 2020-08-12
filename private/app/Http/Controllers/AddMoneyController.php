@@ -190,16 +190,52 @@ class AddMoneyController extends Controller
         }
 
     }
-	 public function payBooking()
+	public function payBooking()
     {   $jobs = Jobs::find(Input::get('job_id'));
         $total=$jobs->total;
         $half_paid=$jobs->half_paid;
         //echo Input::get('job_id');echo '<pre>';print_r($jobs);die;
         if($jobs->pay_method == 'credit')
             return view('booking',compact(['total','half_paid']));
-        if($jobs->pay_method == 'bank')
-            return view('booking_bank',compact(['total','half_paid']));
-		//return view('booking');
+        if($jobs->pay_method == 'bank'){
+            \Stripe\Stripe::setApiKey('sk_test_51Fj4rvCxpWLiTHp6wrbUhCpC34d499CRyQWa1EcF407hn4fQERZVK4wPNce8sc0npZdjtY8WlLAgVJeF21bno2p200YyD2xyut');
+            $product = \Stripe\Product::create([
+                'name' => 'booking_tutor',
+            ]);
+            $total = $total * 100;
+            
+            $price = \Stripe\Price::create([
+                'product' => $product->id,
+                'unit_amount' => $total,
+                'currency' => 'gbp',
+            ]);
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51Fj4rvCxpWLiTHp6wrbUhCpC34d499CRyQWa1EcF407hn4fQERZVK4wPNce8sc0npZdjtY8WlLAgVJeF21bno2p200YyD2xyut'
+            );
+            $customer = $stripe->customers->create([
+                'description' => 'My First Test Customer (created for API docs)',
+            ]);
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['bacs_debit'],
+                'line_items' => [[
+                  'price' => $price->id,
+                  'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'customer' => $customer->id,
+                'payment_intent_data' => [
+                  'setup_future_usage' => 'off_session',
+                ],
+                'success_url' => 'https://example.com/success',
+                'cancel_url' => 'https://example.com/cancel',
+            ]);
+            $sessionid = $session->id;
+            if (!empty($sessionid))
+                return view('booking_bank',compact(['sessionid']));
+            else 
+                return Redirect::back()->with('errors', $errors);
+            var_dump($session);die();
+        }
     }
 	public function postPaymentBooking(Request $request)
     {		
