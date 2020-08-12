@@ -29,7 +29,13 @@
     </div>
 </section>
 
-@push('scripts')<script src="{{ asset("js/admin/formtowizard.js") }}" type="text/javascript"></script><script src="{{ asset("js/admin/tutor_certificates.js") }}" type="text/javascript"></script><script src="{{ asset("js/admin/tutor_work.js") }}" type="text/javascript"></script><script> $("#czContainer").czMore();</script><script> $("#czContainerWork").czMores();</script> <script>$('#disciplines').multiselect({
+@push('scripts')<script src="{{ asset('js/admin/formtowizard.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/admin/tutor_certificates.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/admin/tutor_work.js') }}" type="text/javascript"></script>
+<script> $("#czContainer").czMore();</script>
+<script> $("#czContainerWork").czMores();</script>
+<script>
+    $('#disciplines').multiselect({
             nonSelectedText: 'Select type',
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
