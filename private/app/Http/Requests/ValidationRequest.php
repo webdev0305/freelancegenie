@@ -204,6 +204,13 @@ class ValidationRequest extends FormRequest
         'sub_title' => 'required|min:2',
         'details' => 'required|min:2',
     );
+    public static $logo = array(
+        'company_name' => 'required|min:2|max:255',
+        'image' => 'required',
+    );
+    public static $logo_edit = array(
+        'company_name' => 'required|min:2|max:255',
+    );
 
     public static $assignJob = array(
         'tutor_assign' => 'required',

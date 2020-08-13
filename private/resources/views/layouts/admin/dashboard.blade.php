@@ -190,6 +190,9 @@
 								<li>
 									<a href="{{ url ('admin/emailtemplate') }}">Email Template</a>
 								</li>
+								<li>
+									<a href="{{ url ('admin/add_logo') }}">Add Logos</a>
+								</li>
 							</ul>
 						</div>
 					</div>

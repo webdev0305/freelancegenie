@@ -256,8 +256,7 @@ h2{
 					<p><i class="fas fa-angle-right"></i> Choose to Post, Browse or Book </p>                                       
 					<p><i class="fas fa-angle-right"></i> Quality, Affordability & Efficiency all in one place</p>
 					<p><i class="fas fa-angle-right"></i> Guaranteed Savings’ on ‘Time and Money </p>
-                    <a class="round-button" href="{{url('pricing')}}"><span>Sign Up</span><i
-                                class="fas fa-angle-double-right"></i></a>
+                    <a class="round-button" href="{{url('pricing')}}"><span>Sign Up</span><i class="fas fa-angle-double-right"></i></a>
                 </div>
 				<div class="tooltiptext">Do you need access to freelance tutors & Trainers. <br>Join Here</div>
                 </div>
@@ -312,41 +311,9 @@ h2{
 	</div>
 </section>
 <section class="customer-logos slider">
-      <div class="slide"><img src="web/images/plogo1.png"></div>
-      <div class="slide"><img src="web/images/plogo2.png"></div>
-      <div class="slide"><img src="web/images/plogo3.jpg"></div>
-      <div class="slide"><img src="web/images/plogo4.jpg"></div>
-      <div class="slide"><img src="web/images/plogo5.jpg"></div>
-      <div class="slide"><img src="web/images/plogo6.png"></div>
-      <div class="slide"><img src="web/images/plogo7.png"></div>
-      <div class="slide"><img src="web/images/plogo8.jpg"></div>
-      <div class="slide"><img src="web/images/plogo9.JPG"></div>
-      <div class="slide"><img src="web/images/plogo10.jpg"></div>
-      <div class="slide"><img src="web/images/plogo11.jpg"></div>
-      <div class="slide"><img src="web/images/plogo12.png"></div>
-      <div class="slide"><img src="web/images/plogo13.jpg"></div>
-      <div class="slide"><img src="web/images/plogo14.png"></div>
-      <div class="slide"><img src="web/images/plogo15.jpg"></div>
-      <div class="slide"><img src="web/images/plogo16.png"></div>
-      <div class="slide"><img src="web/images/plogo17.jpg"></div>
-      <div class="slide"><img src="web/images/plogo18.PNG"></div>
-      <div class="slide"><img src="web/images/plogo19.jpg"></div>
-      <div class="slide"><img src="web/images/plogo20.jpg"></div>
-      <div class="slide"><img src="web/images/plogo21.jpg"></div>
-      <div class="slide"><img src="web/images/plogo22.jpg"></div>
-      <div class="slide"><img src="web/images/plogo23.jpg"></div>
-      <div class="slide"><img src="web/images/plogo24.png"></div>
-      <div class="slide"><img src="web/images/new-1.png"></div>
-      <div class="slide"><img src="web/images/new-2.png"></div>
-      <div class="slide"><img src="web/images/new-3.png"></div>
-      <div class="slide"><img src="web/images/new-4.png"></div>
-      <div class="slide"><img src="web/images/new-5.png"></div>
-      <div class="slide"><img src="web/images/new-6.png"></div>
-      <div class="slide"><img src="web/images/new-7.png"></div>
-      <div class="slide"><img src="web/images/new-8.png"></div>
-      <div class="slide"><img src="web/images/new-9.png"></div>
-      <div class="slide"><img src="web/images/new-10.png"></div>
-      <div class="slide"><img src="web/images/new-11.png"></div>
+    @foreach($logos as $key=>$logo)
+    <div class="slide"><img src="images/company_logo/{{$logo->image}}"></div>
+    @endforeach
 </section>
 <div class="modal maiilModal" id="form_validation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

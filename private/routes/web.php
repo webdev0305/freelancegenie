@@ -246,13 +246,16 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     //     return View::make('web.termsandcondition');
     // });
     
-	Route::resource('emailtemplate', 'Admin\EmailTemplateController');
+    Route::resource('emailtemplate', 'Admin\EmailTemplateController');
+    Route::resource('add_logo', 'Admin\AddlogoController');
     Route::post('assign_job', 'Admin\JobController@assignJob');
     Route::resource('faq', 'Admin\FaqController');
     Route::resource('tutorplan', 'Admin\TutorplanController');
     Route::post('tutorplan/{id}', 'Admin\TutorplanController@update');
     Route::resource('employerplan', 'Admin\EmployerplanController');
     Route::post('employerplan/{id}', 'Admin\EmployerplanController@update');
+    Route::resource('logo', 'Admin\AddlogoController');
+    Route::post('logo/{id}', 'Admin\AddlogoController@update');
     Route::resource('countries', 'Admin\CountriesController');
     Route::get('upload', function () {
         $userdoc = \App\Model\UserDoc::where('user_id',\Sentinel::getUser()->id)->get();

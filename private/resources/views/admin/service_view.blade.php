@@ -12,7 +12,7 @@
                     <label for="email" class="control-label">Title</label>
 
                     <input id="title" type="text" maxlength="255" class="form-control" name="title" value="{{ $service->title }}" required
-                           autofocus>
+                           autofocus readonly>
                     @if ($errors->has('title'))
                         <span class="help-block">
                             <strong>{{ $errors->first('title') }}</strong>
