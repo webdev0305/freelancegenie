@@ -226,15 +226,24 @@ class AddMoneyController extends Controller
                 'payment_intent_data' => [
                   'setup_future_usage' => 'off_session',
                 ],
-                'success_url' => 'https://example.com/success',
-                'cancel_url' => 'https://example.com/cancel',
+                'success_url' => 'https://freelancegenie.co.uk/bank_alert',
+                'cancel_url' => 'https://freelancegenie.co.uk/care_courses',
             ]);
             $sessionid = $session->id;
-            if (!empty($sessionid))
+            if (!empty($sessionid)){
+                $payment=new Payment;
+                $payment->job_id = $jobs->id;
+                $payment->trans_id = '';
+                $payment->amount = $total;
+                $payment->balance_transaction = $sessionid;
+                $payment->captured = '0';
+                $payment->created = time();
+                $payment->currency = 'gbp';
+                $payment->save();
                 return view('booking_bank',compact(['sessionid']));
+            }
             else 
                 return Redirect::back()->with('errors', $errors);
-            var_dump($session);die();
         }
     }
 	public function postPaymentBooking(Request $request)
@@ -323,23 +332,84 @@ class AddMoneyController extends Controller
 	 
     
 	public function onAccount(Request $request)
-     {
-			$usrid  = decrypt($request->get('user_id'));
-			$subs =  Subscription::whereUserId($usrid)->first();
-			$subs->onaccount = 1;
-            $subs->save();
-			\Session::flash('success', 'Request for On Account subscription has been sent');
-			try{
-				$crtoken = new CreditToken;
-				$crtoken->user_id = $usrid == NULL ? NULL : $usrid;
-				$crtoken->token = 1;
-				$crtoken->token_year = date("Y");
-				$crtoken->save();
-				}
-		  catch(\Exception $e){
-				die($e->getMessage());
-				}
-			return Redirect::to('/');
-	}
+    {
+        $usrid  = decrypt($request->get('user_id'));
+        $subs =  Subscription::whereUserId($usrid)->first();
+        $subs->onaccount = 1;
+        $subs->save();
+        \Session::flash('success', 'Request for On Account subscription has been sent');
+        try{
+            $crtoken = new CreditToken;
+            $crtoken->user_id = $usrid == NULL ? NULL : $usrid;
+            $crtoken->token = 1;
+            $crtoken->token_year = date("Y");
+            $crtoken->save();
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+        return Redirect::to('/');
+    }
+
+    public function webHooks(Request $request)
+    {
+        // Set your secret key. Remember to switch to your live secret key in production!
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        \Stripe\Stripe::setApiKey('sk_test_51Fj4rvCxpWLiTHp6wrbUhCpC34d499CRyQWa1EcF407hn4fQERZVK4wPNce8sc0npZdjtY8WlLAgVJeF21bno2p200YyD2xyut');
+
+        // You can find your endpoint's secret in your webhook settings
+        $endpoint_secret = 'whsec_SuCyqvh063EI3992lMQ63ulLD2jsBUeD';
+
+        $payload = @file_get_contents('php://input');
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        $event = null;
+
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload, $sig_header, $endpoint_secret
+            );
+        } catch(\UnexpectedValueException $e) {
+            // Invalid payload
+            http_response_code(400);
+            exit();
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            http_response_code(400);
+            exit();
+        }
+        var_dump($event);die();
+        switch ($event->type) {
+            case 'checkout.session.completed':
+                $session = $event->data->object;
+
+                // Check if the order is paid (e.g. from a card payment)
+                $payment_intent = \Stripe\PaymentIntent::retrieve($session->payment_intent)
+                // $order_paid = $payment_intent->status == 'succeeded'
+
+                // Save an order in your database, marked as 'awaiting payment'
+                // create_order($session);
+
+                if ($order_paid) {
+                // Fulfill the purchase
+                fulfill_order($session);
+                }
+                break;
+
+            case 'checkout.session.async_payment_succeeded':
+                $session = $event->data->object;
+
+                // Fulfill the purchase
+                fulfill_order($session);
+                break;
+
+            case 'checkout.session.async_payment_failed':
+                $session = $event->data->object;
+
+                // Send an email to the customer asking them to retry their order
+                email_customer_about_failed_payment($session);
+                break;
+        }
+            http_response_code(200);
+
+    }
 
 }

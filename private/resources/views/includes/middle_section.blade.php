@@ -5,7 +5,7 @@
             <div class="col-md-3 tour">
                 <div class="text-wrap">
                     <i class="fas fa-chalkboard-teacher fa-fw" aria-hidden="true"></i>
-                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='1000'
+                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='<?php echo $available_tutor; ?>'
                          data-delay='1' data-increment="1">0
                     </div>
                     <p>Available Tutors</p>
@@ -14,7 +14,7 @@
             <div class="col-md-3 tutors">
                 <div class="text-wrap">
                     <i class="fas fa-user-edit"></i>
-                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='300'
+                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='<?php echo $tutors_book; ?>'
                          data-delay='1' data-increment="5">0
                     </div>
                     <p>Tutors Booked</p>
@@ -23,7 +23,7 @@
             <div class="col-md-3  teachers">
                 <div class="text-wrap">
                     <i class="fas fa-map-marker-alt"></i>
-                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='200'
+                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='<?php echo $service_location; ?>'
                          data-delay='1' data-increment="5">0
                     </div>
                     <p>Service Locations</p>
@@ -32,7 +32,7 @@
             <div class="col-md-3 labs">
                 <div class="text-wrap">
                     <i class="fas fa-user-tag"></i>
-                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='600'
+                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='<?php echo $specialism; ?>'
                          data-delay='1' data-increment="10">0
                     </div>
                     <p>Specialism</p>

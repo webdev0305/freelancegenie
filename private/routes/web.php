@@ -35,6 +35,7 @@ Route::get('/', function () { //basic routing
 Route::get('/register/{type}/{plan?}', function () { //using basic routing
     return View::make('auth.register');
 });
+
 Route::get('/pdf','EmployerController@generatePdf');
 Route::get('/viewpdf','EmployerController@viewPdf');
 Route::get('/employer_makepdf/{id}','EmployerController@employer_makepdf');
@@ -45,8 +46,12 @@ Route::get('booking/{id?}', array('as' => 'booking','uses' => 'AddMoneyControlle
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe'));
 Route::post('addmoney/booking', array('as' => 'addmoney.booking','uses' => 'AddMoneyController@postPaymentBooking'));
 Route::post('addmoney/onaccount', array('as' => 'addmoney.onaccount','uses' => 'AddMoneyController@onAccount'));
+Route::post('webhooks', 'AddMoneyController@webHooks');
 Route::get('/contact-us', function () { //using basic routing
     return View::make('web.contact_us');
+});
+Route::get('/bank_alert', function () { //using basic routing
+    return View::make('bank_alert');
 });
 Route::post('contact_us', 'UserController@contactUs');
 Route::post('ultimate', 'UserController@Ultimate');

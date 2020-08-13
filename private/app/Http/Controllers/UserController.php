@@ -9,6 +9,7 @@ use App\Model\Country;
 use App\Model\Disciplines;
 use App\Model\QualifiedLevel;
 use App\model\TutorProfile;
+use App\model\Jobs;
 use App\CreditToken;
 use App\User;
 use App\Model\Subscription;
@@ -32,7 +33,12 @@ class UserController extends Controller
         $countrys = Country::all();
         $about = About::select('id','shot')->first();
         $tutor_profiles = TutorProfile::distinct()->get(['zip']);
-        return View::make('web.index', compact('categories', 'disciplines', 'countrys', 'levels','about','categoriesSubs','tutor_profiles'));
+        $available_tutor = count(TutorProfile::all());
+        $service_location = count(Country::where('sub_country_id','<>','NULL')->get());
+        $tutors_book = count(Jobs::where('status','1')->get());
+        $specialism = count($categories);
+        // var_dump(count($service_location));die();
+        return View::make('web.index', compact('specialism','tutors_book','service_location','available_tutor','categories', 'disciplines', 'countrys', 'levels','about','categoriesSubs','tutor_profiles'));
     }
 
     public function quarterly(Request $request)
