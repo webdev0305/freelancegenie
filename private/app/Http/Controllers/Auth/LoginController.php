@@ -69,7 +69,7 @@ class LoginController extends Controller
                 Session::flash('error', Config::get('message.options.INLAVID_MAIL'));
                 return Redirect::back();
             }
-//Check User Activation
+            //Check User Activation
 
             $user = \Sentinel::findById($userData->id);
             $activation = Activation::exists($user);
@@ -77,14 +77,14 @@ class LoginController extends Controller
                 Session::flash('error', Config::get('message.options.USER_NOT_ACTIVATE'));
                 return Redirect::back();
             }
-//Check authenticate user
+            //Check authenticate user
             $authenticate_user = \Sentinel::authenticateAndRemember($request->all());
             if (empty($authenticate_user) && $authenticate_user == '') {
                 Session::flash('error', Config::get('message.options.LOGIN_INVALID'));
                 return Redirect::back();
             }
 
-//Check the roles of users
+            //Check the roles of users
             if ($user = \Sentinel::check()) {
                 \Sentinel::login($user, true);
                 if (\Sentinel::getUser()->roles()->first()->slug == 'admin') {
