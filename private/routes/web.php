@@ -12,6 +12,7 @@
 */
 use Illuminate\Support\Facades\Input;
 
+
 Auth::routes();
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');
@@ -58,7 +59,11 @@ Route::post('ultimate', 'UserController@Ultimate');
 Route::post('subscribe', 'UserController@subscribe');
 Route::get('/about', function () { //using basic routing
     $about = \App\Model\About::first();
-    return View::make('web.about', compact('about'));
+    $available_tutor = count(\App\Model\TutorProfile::all());
+    $service_location = count(\App\Model\Country::where('sub_country_id','<>','NULL')->get());
+    $tutors_book = count(\App\Model\Jobs::where('status','1')->get());
+    $specialism = count(\App\Model\Category::with('children')->get());
+    return View::make('web.about', compact('about','available_tutor','service_location','tutors_book','specialism'));
 });
     Route::get('/terms', function () { //using basic routing    
     return View::make('web.termsandcondition'); 
