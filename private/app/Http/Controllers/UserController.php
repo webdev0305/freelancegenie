@@ -10,7 +10,7 @@ use App\Model\Disciplines;
 use App\Model\QualifiedLevel;
 use App\model\TutorProfile;
 use App\model\Jobs;
-use App\model\Logo;
+use App\Logo;
 use App\CreditToken;
 use App\User;
 use App\Model\Subscription;
