@@ -200,6 +200,7 @@ class TutorsController extends Controller
         try {
             $data = $request->input();
             
+            
 			if(isset($data['care_tutor'])){ // care trainer
                 $care_tutor=1;
 				$status="1";

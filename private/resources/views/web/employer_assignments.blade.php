@@ -404,8 +404,7 @@
                                     <div class="form-group">
                                         <label>
                                             Do any of the Audience have any learning difficulties or disabilities that
-                                            we
-                                            need to be aware of?
+                                            we need to be aware of?
                                         </label>
 
                                         <div class="radio">
@@ -478,6 +477,7 @@
                                     href="{{url('terms')}}">terms & conditions</label>
                             <input type="button" id="insert" class="btn btn-success" name="assignment_sub"
                                 value="submit">
+                            <input type="hidden" name="py_slct" value="invoice">
                         </fieldset>
                     </div>
                 </form>

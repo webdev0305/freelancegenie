@@ -995,7 +995,6 @@
 								</div>
 							</div>
 
-
 							<div class="row">
 								<div id="difficulty_div" class="col-md-6 col-sm-6" style="display:none;">
 									<div class="form-group">
@@ -1064,6 +1063,7 @@
 										<label class="checkbox">
 											<input required="" class="" name="fifty" type="checkbox" id="fifty"><span>I
 												agree to 30days invoice terms</span>
+											<input type="hidden" name="py_slct" value="invoice">
 										</label>
 									</div>
 									@else
@@ -1484,7 +1484,13 @@
 						backdrop: 'static',
 						keyboard: false
 					})
-					window.location.href = "{{url('/booking')}}" + '?job_id=' + job_id + '&care_tutor=' + care_tutor;
+					if(pay_method != 'invoice')
+						window.location.href = "{{url('/booking')}}" + '?job_id=' + job_id + '&care_tutor=' + care_tutor;
+					else
+						$('#myModal').modal('hide');
+						bootoast.toast({
+							message: 'Book success!'
+						});
 				}
 			}
 		});
