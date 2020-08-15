@@ -48,6 +48,7 @@ Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMon
 Route::post('addmoney/booking', array('as' => 'addmoney.booking','uses' => 'AddMoneyController@postPaymentBooking'));
 Route::post('addmoney/onaccount', array('as' => 'addmoney.onaccount','uses' => 'AddMoneyController@onAccount'));
 Route::post('webhooks', 'AddMoneyController@webHooks');
+Route::get('webhooks', 'AddMoneyController@webHooks');
 Route::get('/contact-us', function () { //using basic routing
     return View::make('web.contact_us');
 });

@@ -20,7 +20,7 @@
 			</div>
             <div class='form-row'>
                 <div class='col-md-12'>
-                    <a class='form-control w-100 text-center btn btn-primary submit-button' href="{{url('/')}}" >Ok</a>
+                    <a class='form-control w-100 text-center btn btn-primary submit-button' href="{{url('/')}}" >Ok, Go to Dashboard</a>
                 </div>
             </div>
 		</div>

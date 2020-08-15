@@ -160,5 +160,5 @@
         </div>
     </div>
 </section>-->
-@include('includes.middle_section')
+
 @stop

@@ -112,7 +112,7 @@
 </div>
 
 
-@include('includes.middle_section')
+
 
 
 @push('scripts')

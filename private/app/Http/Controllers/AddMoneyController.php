@@ -352,20 +352,15 @@ class AddMoneyController extends Controller
 
     public function webHooks(Request $request)
     {
-        // Set your secret key. Remember to switch to your live secret key in production!
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
         \Stripe\Stripe::setApiKey('sk_test_51Fj4rvCxpWLiTHp6wrbUhCpC34d499CRyQWa1EcF407hn4fQERZVK4wPNce8sc0npZdjtY8WlLAgVJeF21bno2p200YyD2xyut');
-
-        // You can find your endpoint's secret in your webhook settings
+        
         $endpoint_secret = 'whsec_SuCyqvh063EI3992lMQ63ulLD2jsBUeD';
-
-        $payload = @file_get_contents('php://input');
+        $payload = file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
         $event = null;
-
         try {
             $event = \Stripe\Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
+              $payload, $sig_header, $endpoint_secret
             );
         } catch(\UnexpectedValueException $e) {
             // Invalid payload
@@ -376,39 +371,12 @@ class AddMoneyController extends Controller
             http_response_code(400);
             exit();
         }
-        var_dump($event);die();
-        switch ($event->type) {
-            case 'checkout.session.completed':
-                $session = $event->data->object;
-
-                // Check if the order is paid (e.g. from a card payment)
-                $payment_intent = \Stripe\PaymentIntent::retrieve($session->payment_intent)
-                // $order_paid = $payment_intent->status == 'succeeded'
-
-                // Save an order in your database, marked as 'awaiting payment'
-                // create_order($session);
-
-                if ($order_paid) {
-                // Fulfill the purchase
-                fulfill_order($session);
-                }
-                break;
-
-            case 'checkout.session.async_payment_succeeded':
-                $session = $event->data->object;
-
-                // Fulfill the purchase
-                fulfill_order($session);
-                break;
-
-            case 'checkout.session.async_payment_failed':
-                $session = $event->data->object;
-
-                // Send an email to the customer asking them to retry their order
-                email_customer_about_failed_payment($session);
-                break;
+        $type = $event['type'];
+        $object = $event['data']['object'];
+        if($type == 'checkout.session.async_payment_succeeded') {
+            Payment::where('balance_transaction', $object['id'])->update(['captured' => '1','trans_id' => $object['payment_intent']]);
         }
-            http_response_code(200);
+        http_response_code(200);
 
     }
 
