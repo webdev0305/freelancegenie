@@ -95,9 +95,9 @@ class LoginController extends Controller
 					//echo \URL::to('/').$data['search'];
 					//die('I am here');
 					if(isset($data['search'])){ // if employer is logged in after making a search
-					return Redirect::to(\URL::to('/tutors').$data['search']);	
+					    return Redirect::to(\URL::to('/tutors').$data['search']);	
 					}else{
-                     return Redirect::to(\URL::to('/').'/'.Session::get('CheckRediraction'));
+                        return Redirect::to(\URL::to('/').'/'.Session::get('CheckRediraction'));
 					}
                 }
             } else {

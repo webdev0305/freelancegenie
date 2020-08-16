@@ -22,7 +22,7 @@ class EmployerplanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::where('post_assignment','=','0')->get();;
+        $plans = Plan::where('post_assignment','=','0')->get();
         $plans =  json_decode(json_encode($plans));
         $count = '1';
 		//echo '<pre>';print_r($seo);die;

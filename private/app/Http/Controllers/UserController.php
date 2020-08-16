@@ -121,7 +121,7 @@ class UserController extends Controller
                 // More headers
                 $headers .= 'From: <webmaster@example.com>' . "\r\n";
                 $headers .= 'Cc: myboss@example.com' . "\r\n";
-                mail($to,$subject,$message,$headers);
+                // mail($to,$subject,$message,$headers);
             }
             echo '<pre>';print_r($user['plan'][0]['duration']);echo '</pre>';
         });
@@ -297,7 +297,7 @@ class UserController extends Controller
 
                 $headers .= 'From: <'.$data['email'].'>' . "\r\n";
 
-                mail($to,$subject,$message,$headers);
+                // mail($to,$subject,$message,$headers);
 
 
 
@@ -367,7 +367,7 @@ class UserController extends Controller
 
                 $headers .= 'From: <'.$data['email'].'>' . "\r\n";
 
-               mail($to,$subject,$message,$headers);
+            //    mail($to,$subject,$message,$headers);
 
         return Response::json(['success' => '1','message'=>'Your request has been submitted successfully.We will contact you shortly.']);
 

@@ -227,7 +227,7 @@ namespace App\Http\Controllers\Admin {
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				// More headers
 				$headers .= 'From: <'.$from.'>' . "\r\n";
-               mail($to,$subject,$message,$headers);
+            //    mail($to,$subject,$message,$headers);
     
 			}
 			$invoice=Invoice::whereIn('booking_no',$data['ids'])->update(['sent'=>2]);

@@ -23,6 +23,14 @@ use App\Http\Requests\ValidationRequest;
 use Illuminate\Support\Facades\Validator;
 use View;
 
+use Activation;
+use App\Http\Controllers\Controller;
+use Cartalyst\Sentinel\Sentinel;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+
+
 class AddMoneyController extends Controller
 {
     public function payWithStripe()
@@ -172,8 +180,15 @@ class AddMoneyController extends Controller
 				$headers .= 'From: <'.$admin_email.'>' . "\r\n";
 				//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
-				// mail($to,$subject,$message,$headers);
-                return Redirect::to($redirect);
+                // mail($to,$subject,$message,$headers);
+                if($plan_type ==1){
+                    return Redirect::to($redirect);
+                }
+                else{
+                    $user = \Sentinel::findById($user_id);
+                    \Sentinel::login($user, true);
+                    return Redirect::to(\URL::to('/').'/'.Session::get('CheckRediraction'));
+                }
             } else {
                 \Session::flash('error', 'Money not add in wallet!!');
                 return Redirect::back();

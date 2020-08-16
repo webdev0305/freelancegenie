@@ -128,7 +128,7 @@ class RegisterController extends Controller
 					<p>FL Genie</p>";
 					$message=str_replace('<title></title>',$title,$email_template->body);
 					$message=str_replace('<p></p>',$content,$message);
-					mail($to, $subject, $message, $headers);
+					// mail($to, $subject, $message, $headers);
 				} else {
                     $type = new \App\Model\EmployerProfile;
                     $type->user_id = $user->id;
