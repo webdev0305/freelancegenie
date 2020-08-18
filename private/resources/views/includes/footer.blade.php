@@ -58,6 +58,7 @@
 				<ul class="footer-menu">
 					<li class=""><a href="{{url('terms')}}">Terms of Service</a></li>
 					<li class=""><a href="{{url('policy')}}">Privacy Policy</a></li>
+					<li class=""><a href="{{url('sitemap')}}">Sitemap</a></li>
 				</ul>
 			</div>
 		</div>

@@ -76,6 +76,9 @@ Route::get('/pricing', function () {
     $pricing = \App\Model\Plan::where("post_assignment",">=","1")->get();
     return View::make('web.pricing',compact('pricing'));
 });
+Route::get('/sitemap', function () {
+    return View::make('web.sitemap');
+});
 Route::get('/courses', function () {
     return View::make('web.courses');
 });

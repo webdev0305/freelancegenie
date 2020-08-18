@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-6">
 			<div class="form-group ">
-				<label class="control-label " for="first_name">First Name</label>
+				<label class="control-label " for="first_name">Directors/Owners First Name</label>
 				<input class="form-control" id="first_name" value="{{$usersMeta->first_name}}" name="first_name"
 					type="text" />
 				@if ($errors->has('first_name'))
@@ -26,7 +26,7 @@
 		<div class="col-md-6 col-sm-6">
 			<div class="form-group ">
 				<label class="control-label " for="last_name">
-					Last Name
+					Directors/Owners Surname
 				</label>
 				<input class="form-control" id="last_name" value="{{$usersMeta->last_name}}" name="last_name"
 					type="text" />
