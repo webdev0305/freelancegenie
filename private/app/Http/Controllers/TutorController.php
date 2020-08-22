@@ -52,9 +52,12 @@ class TutorController extends Controller
     public function index()
     {	
         $user_id=\Sentinel::getUser()->id;
+
 		$user_email=\Sentinel::getUser()->email;
+        
 		$tutor_profile=TutorProfile::where('user_id',$user_id)->first(['certificate_issued']);
-		//print_r($tutor_profile);die('here');
+
+		// print_r($tutor_profile);die('here');
 		//echo date('Y-m-d',strtotime($tutor_profile->certificate_issued));
 		$date_before_year=date('Y-m-d',strtotime("+24 months",strtotime($tutor_profile->certificate_issued)));
 		$date_before_sixm=date('Y-m-d',strtotime("+30 months",strtotime($tutor_profile->certificate_issued)));
@@ -69,14 +72,14 @@ class TutorController extends Controller
 		}
 		//die('working here');
 		$jobs = UserJobs::with('userJobs','Students');
+
 		$user= User::whereId($user_id)->first();
         if (!empty(input::get('date'))) {
-        $jobs=$jobs->whereHas('Jobs', function($query) {
-              $date=input::get('date');
-              $query->where('from_date', '<=',$date);
-              $query->where('to_date', '>=',$date);
-              
-        });
+            $jobs=$jobs->whereHas('Jobs', function($query) {
+                $date=input::get('date');
+                $query->where('from_date', '<=',$date);
+                $query->where('to_date', '>=',$date);
+            });
         }
         
         $jobs=$jobs->where('user_id', $user_id)->orderBy('id','desc')->get();
@@ -415,7 +418,9 @@ class TutorController extends Controller
     public function GetSwap($id)
     {
         $jobs = Jobs::find(decrypt($id));
+        var_dump($jobs);die('***************');
         $qualifiedLevels = QualifiedLevel::find($jobs['qualified_levels_id'])->id;
+        
         $categoriesGet = Category::find($jobs['category_id'])->id;
         $disciplinesGet = Disciplines::find($jobs['sub_disciplines_id'])->id;
 		$usersMeta = TutorProfile::with(array('User' => function ($query) {

@@ -175,6 +175,7 @@ Route::group(['middleware' => 'tutor'], function () {
         $globaldoc = \App\Model\UserDoc::where('global',1)->get();
         return View::make('web.upload_form',compact('userdoc','globaldoc'));
     });
+    
     Route::resource('/tutor', 'TutorController');
     Route::match(['put', 'patch'], 'tutor_update/{tutor}', 'Admin\TutorController@update');
     Route::post('tutor/change_job_status', 'TutorController@ChangeJobStatus');
