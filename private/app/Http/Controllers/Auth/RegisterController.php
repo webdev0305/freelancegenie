@@ -116,7 +116,7 @@ class RegisterController extends Controller
 					<p>FL Genie</p>";
 					$message=str_replace('<title></title>',$title,$email_template->body);
 					$message=str_replace('<p></p>',$content,$message);
-					mail($admin_info_email, $subject, $message, $headers);
+					// mail($admin_info_email, $subject, $message, $headers);
 					//Send Email to Tutor
 					$to = $data['email'];				
 					$content = "<p>Welcome ".$data['first_name']." 
@@ -140,7 +140,7 @@ class RegisterController extends Controller
                     $subs->save();
 					// $title = '<title>Employer Signup</title>';
 					// $subject = "Employer Signup";
-     //                //Send Email to Admin
+                    //Send Email to Admin
 					// $content = 	"<p>An Employer has been Signup.Below are the details:</p>
 					// Name: ".$data['first_name']." ".$data['last_name']."<br>
 					// Email: ".$data['email']."<br>				
@@ -161,8 +161,8 @@ class RegisterController extends Controller
 					// mail($to, $subject, $message, $headers);
 			        return Redirect::to('subscription/'.encrypt($user->id));
                 }
-
-                Session::flash('error', Config::get('message.options.REGISTERED_USER'));
+                Session::flash('success', Config::get('message.options.REGISTERED_USER'));
+                return redirect('/login');
             } else {
                 Session::flash('error', Config::get('message.options.REGISTERED_NOT_USER'));
 

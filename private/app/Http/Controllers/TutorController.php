@@ -373,11 +373,11 @@ class TutorController extends Controller
             return Response::json(['errors' => 'Please select tutor']);
         }
 		foreach($data['tutor_assign'] as $tutor_assign){
-		$swp_req=new SwapRequests;
-		$swp_req->job_id = decrypt($data['job_id']);
-		$swp_req->from_tutor_id = $data['tutor_id'];
-		$swp_req->to_tutor_id = $tutor_assign;
-		$swp_req->save();		
+            $swp_req=new SwapRequests;
+            $swp_req->job_id = decrypt($data['job_id']);
+            $swp_req->from_tutor_id = $data['tutor_id'];
+            $swp_req->to_tutor_id = $tutor_assign;
+            $swp_req->save();		
 		}
 		return Response::json(['success' => '1', 'message' => 'Swap Request Sent Successfully']);
     }
@@ -418,9 +418,8 @@ class TutorController extends Controller
     public function GetSwap($id)
     {
         $jobs = Jobs::find(decrypt($id));
-        var_dump($jobs);die('***************');
-        $qualifiedLevels = QualifiedLevel::find($jobs['qualified_levels_id'])->id;
         
+        $qualifiedLevels = QualifiedLevel::find($jobs['qualified_levels_id'])->id;
         $categoriesGet = Category::find($jobs['category_id'])->id;
         $disciplinesGet = Disciplines::find($jobs['sub_disciplines_id'])->id;
 		$usersMeta = TutorProfile::with(array('User' => function ($query) {

@@ -28,8 +28,7 @@
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#date_modal">My Calendar</button>
         <a target="_blank" href="{{url('tutor/tutor_swap')}}" class="btn btn-info btn-lg">Swap Requests</a>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#availability_mod">Set
-            Availability</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#availability_mod">Set Availability</button>
 
         <table id="" class="table table-striped table-bordered table-responsive-lg" style="width:100%">
             <thead>
