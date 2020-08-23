@@ -49,26 +49,26 @@
 			?>
                 @foreach($jobs as $key=>$job)
                 <?php $date = explode(',', $job->date);
-            $date_from = $date['0'];
-            $date_from = str_replace('/', '-', $date_from);
-            $date_from = strtotime($date_from);
-            $date_to = end($date);
-            $date_to = str_replace('/', '-', $date_to);
-			$date_to = strtotime($date_to);
-			$current_date=date("m/d/Y");
-            $current_date=strtotime($current_date);
-            		
-			if($current_date >= $date_from && $current_date <= $date_to){
-				$attended_date=date("m/d/Y");
-			}else{
-				$attended_date='';
-			}
-			$outstanding_amt=0;
-            if($job->half_paid == 1){
-                $outstanding_amt=$job->total/2;
-            }
-			
-			?>
+                    $date_from = $date['0'];
+                    $date_from = str_replace('/', '-', $date_from);
+                    $date_from = strtotime($date_from);
+                    $date_to = end($date);
+                    $date_to = str_replace('/', '-', $date_to);
+                    $date_to = strtotime($date_to);
+                    $current_date=date("m/d/Y");
+                    $current_date=strtotime($current_date);
+                            
+                    if($current_date >= $date_from && $current_date <= $date_to){
+                        $attended_date=date("m/d/Y");
+                    }else{
+                        $attended_date='';
+                    }
+                    $outstanding_amt=0;
+                    if($job->half_paid == 1){
+                        $outstanding_amt=$job->total/2;
+                    }
+                    
+                ?>
                 <tr>
                     <td>{{$key+1}}</td>
                     <td>{{$job->id}}</td>

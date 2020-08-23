@@ -635,12 +635,7 @@
 
 
     $(document).ready(function () {
-        //$('#example').DataTable();
-        oTable = $('#example').DataTable({
-            //"dom": 'Bfrtip',
-            // "buttons": [ 'excel', 'pdf', 'print'],
-            //"buttons": [ 'excel','print'],
-        });
+        oTable = $('#example').DataTable();
     });
 
 
