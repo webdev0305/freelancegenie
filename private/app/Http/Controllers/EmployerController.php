@@ -44,7 +44,7 @@ class EmployerController extends Controller
         $status = '0';
         $subs =  Subscription::with('plan')->whereUserId($user_id)->first();
         $SubscriptionLimit =  SubscriptionLimit::where('subscription_code',$subs->subscription_code)->first();
-        return view('web/employer_dashboard',compact('jobs','status','subs','SubscriptionLimit'));
+        return view('web.employer_dashboard',compact('jobs','status','subs','SubscriptionLimit'));
 
     }
     function generatePdf(Request $request) {
