@@ -152,60 +152,31 @@ class EmployerController extends Controller
     }
 
     public function ChangeJobStatus(Request $request)
-
     {
-
         $data = $request->input();
-
-        
-
         $jobs = Jobs::where(['id'=>$data['jobid']])->first();
-
-        //print_r($jobs);die('here');
-
+        // print_r($jobs);die('here');
         if($jobs->status==4){
-
             Session::flash('success', Config::get('message.options.ALREADY_FTA'));
-
             return Redirect::back();
-
         }
-
         $jobs->status=$data['status'];
-
         $jobs->save();
-
-       
-
-       
-
-       $tuPro = User::whereId($jobs->tutor_id)->first();
-
-       $tuPro->fta = 1;
-
-       if($tuPro->fta_count==2){
-
+        $tuPro = User::whereId($jobs->tutor_id)->first();
+        // print_r($tuPro->fta_count);die();
+        $tuPro->fta = 1;
+        if($tuPro->fta_count==3){
             $tuPro->block=1;
-
             $tuPro->block_date=date("Y-m-d H:i:s");
-
-       }
-
-       $tuPro->fta_count = $tuPro->fta_count+1;
-
-       $tuPro->save();
-
-       $empPro = User::whereId($jobs->employer_id)->first();
-
-       $empPro->fta_count = $empPro->fta_count+1;
-
-       $empPro->save();
-
+        }
+        $tuPro->fta_count = $tuPro->fta_count+1;
+        $tuPro->save();
+        $empPro = User::whereId($jobs->employer_id)->first();
+        $empPro->fta_count = $empPro->fta_count+1;
+        $empPro->save();
         Session::flash('success', Config::get('message.options.UPDATE_SUCCESS'));
-
         return Redirect::back();
-
-    }
+     }
 
     public function assignments()
     {

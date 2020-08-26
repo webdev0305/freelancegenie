@@ -37,6 +37,12 @@ Route::get('/register/{type}/{plan?}', function () { //using basic routing
     return View::make('auth.register');
 });
 
+
+
+Route::get('/pay','AddMoneyController@pay');
+
+
+
 Route::get('/pdf','EmployerController@generatePdf');
 Route::get('/viewpdf','EmployerController@viewPdf');
 Route::get('/employer_makepdf/{id}','EmployerController@employer_makepdf');

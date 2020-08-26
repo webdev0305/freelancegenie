@@ -395,4 +395,8 @@ class AddMoneyController extends Controller
 
     }
 
+    public function pay(){
+        return View::make('payment_method');
+    }
+
 }

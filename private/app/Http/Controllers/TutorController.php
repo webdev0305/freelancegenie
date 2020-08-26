@@ -96,8 +96,9 @@ class TutorController extends Controller
 	public function Swapdata()
     {	
         $user_id=\Sentinel::getUser()->id;
+        // var_dump($user_id);die();
         $tutor_request=SwapRequests::with('Jobs','User')->where(['to_tutor_id'=>$user_id,'status'=>0])->get();
-        //echo '<pre>';print_r($tutor_request);
+        // echo '<pre>';print_r($tutor_request);
         //die;
         return view('web/tutor_swap', compact('tutor_request'));
     }

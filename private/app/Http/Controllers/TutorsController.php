@@ -250,6 +250,7 @@ class TutorsController extends Controller
             $jobs->wipe_board = $data['wipe_board'];
             $jobs->onsite_projector = $data['onsite_projector'];
             $jobs->flip_chart_and_stand = $data['flip_chart_and_stand'];
+            
             $jobs->disabilities = $data['disabilities'];
             $jobs->equipment_available = $data['equipment_available'];
             $jobs->equipment_available_onsite = $data['equipment_available_onsite'];
