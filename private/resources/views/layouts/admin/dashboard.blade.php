@@ -4,7 +4,7 @@
 <div id="wrapper">
 	<div class="main-head">
 		<div class="logo-wrap">
-			<img src="{{asset('web/images/logo2.png')}}" alt="Logo" class="img-responsive">
+			<img src="{{asset('web/images/logo_new2.png')}}" alt="Logo" class="img-responsive">
 		</div>
 	</div>
 

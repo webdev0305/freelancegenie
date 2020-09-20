@@ -8,7 +8,7 @@
 	<meta name="description" content="@yield('pageDescription')">
 	<meta name="keyword" content="@yield('pageKeyword')">
 
-	<link rel="shortcut icon" href="{{asset('web/images/favicon.png')}}" type="image/x-icon" />
+	<link rel="shortcut icon" href="{{asset('web/images/new_favicon.png')}}" type="image/x-icon" />
 	
 	<link rel="stylesheet" href="{{ asset('assets/web/stylesheets/styles.css') }}" />
 	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />-->

@@ -36,43 +36,35 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-	//echo 'rating store funaction';
-	 //dd('I am here in store function');
-	$data = $request->input();
-	//print_r($data);
-	//die('I am here');
-         $rating = new Rating;
+	    $data = $request->input();
+        $check = Rating::where('job_id',$data['job_id'])->first();
+        if($check != false){
+            $rating = new Rating;
             $rating->objectives = $data['objectives'] == NULL ? NULL : $data['objectives'];
-			//print_r($rating);
-			$rating->job_id = $data['job_id'];
+            $rating->job_id = $data['job_id'];
             $rating->delivery = $data['delivery'];
             $rating->professional = $data['professional'];
             $rating->style = $data['style'];
             $rating->paperwork = $data['paperwork'];
-			//print_r($rating);
-			//$rating->employer_id = 2;
             $rating->employer_id = \Sentinel::getUser()->id;
-			$rating->tutor_profile_user_id = $data['tutor_id'];
+            $rating->tutor_profile_user_id = $data['tutor_id'];
             $rating->tutor = $data['tutor'];
-			
-           
             $rating->training = $data['training'];
             $rating->comment = $data['comment'];
-			//print_r($rating);
-			//die('I am here');
-			$rating->save();
-			$res[] = [
+            $rating->save();
+            $res[] = [
                "success"=>1,
                "message"=>'Rating Submitted Successfully',
-           ];
-		  // print_r($rating);
-			//die('I am here');
-       return  json_encode($res);
-			//print_r($rating);
-            //return Response::json(['success' => '1', 'message' => Config::get('message.options.JOB_SUBMITED')]);
-			 //return Response::json(['success' => '1', 'message' =>'Rating Submitted Successfully']);
-			 
-
+            ];
+            return  json_encode($res);
+        }else{
+            $res[] = [
+               "success"=>1,
+               "message"=>'Rating Already Submitted. You cannot rate again.',
+            ];
+            return  json_encode($res);
+        }
+        
     }
 
     /**

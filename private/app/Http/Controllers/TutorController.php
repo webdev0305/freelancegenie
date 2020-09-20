@@ -246,55 +246,59 @@ class TutorController extends Controller
 	public function Invoice($id)
     {
 		$invoice=Jobs::with('Invoice')->where('id',$id)->first();
-		//echo '<pre>';print_r($invoice);
-		return view('web/invoice', compact('invoice'));
+        $mileage=GlobalSettings::where('name','mileage')->first()->value;
+		return view('web/invoice', compact('invoice','mileage'));
 	}
 	public function JobData(Request $request)
-    {	$data = $request->input();
+    {	
+        $data = $request->input();
 		$job_id=$data['jobid'];
         $jobs = Jobs::where('id', $job_id)->orderBy('id','desc')->first();
 		$date = explode(',', str_replace('/', '-', str_replace(' ', '', $jobs->date)));
-		//print_r($date);die;
 		$current_date=date("d-m-Y");
 		if (in_array($current_date, $date)){
-				$attended_date=date("d/m/Y");
-			}else{
-				$attended_date='';
-			}
+			$attended_date=date("d/m/Y");
+		}else{
+			$attended_date='';
+		}
 		
 		return Response::json(['success' => '1','jobs'=>$jobs,'attended_date'=>$attended_date]);
     }
 	public function InsertInvoice(Request $request)
-    {	$data = $request->input();
-		$invoice=new Invoice;
-		$invoice->booking_no=$data['booking_no'];
-		$invoice->rate=$data['rate'];
-		$invoice->user_id=$data['user_id'];
-		$invoice->date=$data['attended'];
-		$invoice->save();
+    {	
+        $data = $request->input();
+        $flag = Invoice::where(['booking_no'=>$data['booking_no'],'date'=>$data['attended']])->first();
+        if($flag == false){
+            $invoice=new Invoice;
+            $invoice->booking_no=$data['booking_no'];
+            $invoice->rate=$data['rate'];
+            $invoice->user_id=$data['user_id'];
+            $invoice->date=$data['attended'];
+            $invoice->save();
+        }
         //$jobs = UserJobs::with('userJobs')->where('job_id', $job_id)->orderBy('id','desc')->get();
 		//return Redirect::back();
 		return Response::json(['success' => '1','message' => 'Record Inserted Successfully']);
     }
     public function InvoiceSent(Request $request)
-    {	$data = $request->input();
-        //print_r($data);die;
+    {	
+        $data = $request->input();
 		$invoice_no=mt_rand(1000, 100000);
         $user=User::find($data['tutor_id']);
-		//$invoice=Invoice::where('booking_no',$data['jobid'])->first();
 		$invoice=Invoice::where(['booking_no'=>$data['jobid'],'invoice_no'=>0]);
 		$invoice->update(['sent' => 1, 'invoice_no' => $invoice_no]);
 		if($user->fta==1){
-		$invoice->update(['fta_deduct' => 1]);
-        $user->fta = $user->fta-1;
-        $user->save();
+    		$invoice->update(['fta_deduct' => 1]);
+            $user->fta = $user->fta-1;
+            $user->save();
         }
 		return Response::json(['success' => '1','message' => Config::get('message.options.UPDATE_SUCCESS')]);
     }
     
 	public function InsertRegister(Request $request)
-    {	$data = $request->input();
-        //print_r($data);die;
+    {	
+        $data = $request->input();
+        
         $students=Students::where('job_id',$data['job_students'])->first();
         //print_r($students);die('here');
        if($students){
@@ -311,10 +315,10 @@ class TutorController extends Controller
     }
     
     public function StudentsData(Request $request)
-    {	$data = $request->input();
+    {	
+        $data = $request->input();
 		$job_id=$data['jobid'];
         $student = Students::where('job_id', $job_id)->first();
-        
 		return Response::json(['success' => '1','job_id' =>$job_id,'student'=>json_decode($student->stuinfo)]);
         //return $student;
     }
@@ -322,7 +326,6 @@ class TutorController extends Controller
     public function ChangeJobStatus(Request $request)
     {
         $data = $request->input();
-        
         if(isset($data['tutor_id'])){
             $job=new userJobs;
             $job->user_id=$data['tutor_id'];
@@ -355,7 +358,7 @@ class TutorController extends Controller
             $job->save();*/
             //echo decrypt($data['jobid']);
             //echo $data['jobid'];die;
-            $jobs = Jobs::where(['id'=>$data['jobid']])->first();
+            $jobs = Jobs::where(['id'=>decrypt($data['jobid'])])->first();
             //print_r($jobs);
             //die('here');
             $jobs->status=$data['status'];
@@ -417,8 +420,8 @@ class TutorController extends Controller
 
     public function GetSwap($id)
     {
-        $jobs = Jobs::find(decrypt($id));
         
+        $jobs = Jobs::find(decrypt($id));
         $qualifiedLevels = QualifiedLevel::find($jobs['qualified_levels_id'])->id;
         $categoriesGet = Category::find($jobs['category_id'])->id;
         $disciplinesGet = Disciplines::find($jobs['sub_disciplines_id'])->id;
@@ -448,14 +451,25 @@ class TutorController extends Controller
 
         foreach ($usersMetas as $usersMeta) {
             if($usersMeta['user']->id != \Sentinel::check()->id) {
-           $data[] = [
-               "label"=>$usersMeta["user"]->first_name,
-               "value"=>$usersMeta["user"]->id,
-			   "job_id"=>decrypt($id),
-           ];
+                $uuid = TutorProfile::where(['user_id'=> $usersMeta["user"]->id])->first()->uuid;
+                $tutor_id = $usersMeta["user"]->id;
+                $rating = DB::select("SELECT COUNT(*) as records,SUM(objectives + delivery + professional + style + paperwork + tutor + training)
+                as total FROM ratings WHERE tutor_profile_user_id=$tutor_id");
+                if($rating[0]->records >0){
+                    $star_rating=$rating[0]->total/(7*$rating[0]->records);
+                    $star_rating = floor(($star_rating * 2) + 0.5) / 2;
+                }else{
+                    $star_rating=0;
+                }
+                $data[] = [
+                    "label"=>'ID num: '.$uuid.', Review: '.$star_rating,
+                    "value"=>$usersMeta["user"]->id,
+    			    "job_id"=>decrypt($id),
+                ];
 
             }
         }
+        // var_dump($data);die();
         return  json_encode($data);
     }
 

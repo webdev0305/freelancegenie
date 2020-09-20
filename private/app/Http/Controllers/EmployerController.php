@@ -48,13 +48,17 @@ class EmployerController extends Controller
 
     }
     function generatePdf(Request $request) {
+        $certificate = GlobalSettings::where('name','cer_image')->first()->value;
+        $sign = GlobalSettings::where('name','sign_image')->first()->value; 
         $data = [
             'stuname' => $request->stuname,
             'sirname' => $request->sirname,
             'job_title' => str_replace(',', '', $request->job_title),
-            'date' => date("Y-m-d")
+            'date' => date("Y-m-d"),
+            'certificate' => $certificate,
+            'sign' => $sign
         ];
-
+        // return view('web.certificate_pdf', compact('data'));
         $pdf = PDF::loadView('web.certificate_pdf', $data);
         return $pdf->download($request->stuname.'-'.$request->sirname.'-certificate.pdf');
     }

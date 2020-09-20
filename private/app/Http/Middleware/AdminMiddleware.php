@@ -16,6 +16,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         $user = \Sentinel::check();
+        
         if (!empty($user) && $user != '') {
             if (\Sentinel::getUser()->roles()->first()->slug == 'admin') {
                 $response = $next($request);

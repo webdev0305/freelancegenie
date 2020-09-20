@@ -1,13 +1,15 @@
 <form class="form-inline" method="get" action="tutors">
     <style>
-        label.radio:hover input{
-            transform: scale(1.5);
+        label.radio:hover {
+            transform: scale(1.3);
+            transition: all 300ms;
+            margin-right:200px
+        }
+        label.checkbox:hover {
+            transform: scale(1.3);
             transition: all 300ms;
         }
-        label.checkbox:hover input{
-            transform: scale(1.5);
-            transition: all 300ms;
-        }
+        
         
     </style>
     <div class="form-group ">

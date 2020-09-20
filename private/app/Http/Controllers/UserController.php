@@ -376,13 +376,56 @@ class UserController extends Controller
     } 
     public function Settings()
     {
+        
         $settings=GlobalSettings::all();
         $newsletter=GlobalSettings::where('name','newsletter')->first();
-        return view('admin.settings',compact('settings','newsletter'));
+        $certificate = GlobalSettings::where('name','cer_image')->first();
+        $sign = GlobalSettings::where('name','sign_image')->first();
+        return view('admin.settings',compact('settings','newsletter','certificate','sign'));
     }
     public function updateSettings(Request $request)
     {
         $settings=GlobalSettings::where('name',$request->name)->update(['value'=>$request->value]);
+        Session::flash('success','Updated successfully');
+        return Response(array('success' => '1', 'errors' => ''));
+    }
+
+    public function updateSettings_cert(Request $request)
+    {
+        
+        if($request->file('file')){
+            $photo = $request->file('file');
+            $name = rand(1,100);
+            $name = $name.time();
+            $imagename = $name.'.'.$photo->getClientOriginalExtension();
+            $destinationPath = public_path('/'); 
+            if (!is_dir($destinationPath)) {
+                mkdir($destinationPath, 0700, true);
+            }
+            $photo->move($destinationPath, $imagename);
+        }
+
+        $settings=GlobalSettings::where('name','cer_image')->update(['value'=>$imagename]);
+        Session::flash('success','Updated successfully');
+        return Response(array('success' => '1', 'errors' => ''));
+    }
+
+    public function updateSettings_sign(Request $request)
+    {
+        
+        if($request->file('file')){
+            $photo = $request->file('file');
+            $name = rand(1,100);
+            $name = $name.time();
+            $imagename = $name.'.'.$photo->getClientOriginalExtension();
+            $destinationPath = public_path('/'); 
+            if (!is_dir($destinationPath)) {
+                mkdir($destinationPath, 0700, true);
+            }
+            $photo->move($destinationPath, $imagename);
+        }
+
+        $settings=GlobalSettings::where('name','sign_image')->update(['value'=>$imagename]);
         Session::flash('success','Updated successfully');
         return Response(array('success' => '1', 'errors' => ''));
     }

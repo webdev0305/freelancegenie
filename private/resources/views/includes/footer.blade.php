@@ -30,10 +30,12 @@
 						<form class="form-inline">
 							<input type="text" class="form-control mb-2 mr-sm-2" id="email" placeholder="Email Address">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							@foreach($settings_info as $info)
 							@if($info->name =="newsletter")
 							<button type="button" id="invite_user_btn" class="btn btn-primary mb-2" {{$info->value==0? 'disabled':''}}><i
 									style="display: none;" class="fa fa-spinner fa-spin"></i>Subscribe</button>
-							@endif		
+							@endif
+							@endforeach	
 						</form>
 					</div>
 				</div>

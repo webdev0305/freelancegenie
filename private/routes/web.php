@@ -47,7 +47,7 @@ Route::get('/pdf','EmployerController@generatePdf');
 Route::get('/viewpdf','EmployerController@viewPdf');
 Route::get('/employer_makepdf/{id}','EmployerController@employer_makepdf');
 Route::get('/tutor_makepdf/{id}','TutorController@tutor_makepdf');
-
+Route::get('/tutor_update_rate','TutorController@tutor_update_rate');
 Route::get('subscription/{id?}', array('as' => 'subscription','uses' => 'AddMoneyController@payWithStripe'));
 Route::get('booking/{id?}', array('as' => 'booking','uses' => 'AddMoneyController@payBooking'));
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe'));
@@ -227,6 +227,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     });
     Route::get('settings', 'UserController@Settings');
     Route::post('settings/update', 'UserController@updateSettings');
+    Route::post('settings/update_certificate', 'UserController@updateSettings_cert');
+    Route::post('settings/update_sign', 'UserController@updateSettings_sign');
     Route::post('change_password', 'UserController@changePassword');
 	Route::post('saveSeo', 'Admin\FaqController@saveSeo');
     Route::post('activate_users', 'UserController@activateUsers');

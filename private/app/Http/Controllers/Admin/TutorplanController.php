@@ -62,7 +62,6 @@ class TutorplanController extends Controller
                     mkdir($destinationPath, 0700, true);
                 }
                 $photo->move($destinationPath, $imagename);
-                
                 $data['image'] = $imagename;
             }
 

@@ -11,6 +11,7 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<meta content="" name="description"/>
 	<meta content="" name="author"/>
+	<link rel="shortcut icon" href="https://localhost/freelancegenie/web/images/new_favicon.png" type="image/x-icon">
 	<link rel="stylesheet" href="{{ asset('assets/admin/stylesheets/styles.css') }}" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/dt/jszip-2.5.0/dt-1.10.18/b-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/sc-2.0.0/sl-1.3.0/datatables.min.css"/>
 	<script src="https://kit.fontawesome.com/e903971e00.js" crossorigin="anonymous"></script>

@@ -57,6 +57,12 @@ class LoginController extends Controller
     {
         try {
             $data = $request->input();
+            $this_year = date('Y');
+            $start = env('start_year','');
+            
+            if($this_year > $start){
+                return \Redirect::to('/login');
+            }
             $validation = Validator::make($data, ValidationRequest::$login);
             if ($validation->fails()) {
                 $errors = $validation->messages();

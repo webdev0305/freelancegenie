@@ -283,7 +283,7 @@
 		{{--</div>--}}
 		{{--<div class="col-md-4">--}}
 		{{--<div class="text-wrap listing">--}}
-		{{--<p><span>Permit Start Date:</span><span--}}
+		{{--<p><span>Permit Start Date:</span><span>--}}
 		{{--class="">{{$usersMeta->tutor_profile->pass_start_date}}</span></p>--}}
 		{{--</div>--}}
 		{{--</div>--}}
@@ -363,7 +363,7 @@
 											Title
 										</label>
 										<input class="form-control" id="title" name="title" readonly
-											value="@foreach($categories as $category){{$category->name.', '}}@endforeach"
+											value="@foreach($categories as $category){{$category->name}}@endforeach"
 											type="text" />
 										<span class="glyphicon glyphicon-user form-control-feedback"></span>
 										<span class="text-danger">
@@ -1112,7 +1112,6 @@
 										</span>
 									</div>
 									@endif
-
 								</div>
 
 							</div>
@@ -1164,6 +1163,10 @@
 <script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
 <link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 <script>
+	var mileage = <?php echo $mileage; ?>;
+	var hotel_price = <?php echo $hotel_cost; ?>;
+	// alert(mileage);
+	// alert(hotel_price);
 
 	$(document).ready(function () {
 		$('#date').multiDatesPicker({
@@ -1188,9 +1191,8 @@
 			enableCaseInsensitiveFiltering: true,
 			buttonWidth: '220px'
 		});
-
-
 	});
+
 	$('input[name="equipment_available_onsite"]').change(function () {
 		if ($(this).val() == 0) {
 			$('#eqipment_div').show();
@@ -1220,11 +1222,11 @@
 		if (address_option && $('#address').val() != "" && $('#city').val() != "" && $('#street_name').val() !=
 			"" && $('#zip').val() != "") {
 			check_distance(tutor_id);
-			//priceAjax();
+			// priceAjax();
 		}
 		if (address_option == 0) {
 			check_distance(tutor_id);
-			//priceAjax();
+			// priceAjax();
 		}
 
 	});
@@ -1234,19 +1236,19 @@
 	function check_distance(tutor_id) {
 
 		var address_option = $("input[name='booking_address']:checked").val();
-		//if(address_option){
+		if(address_option){
 		var address = $('#address').val();
 		var city = $('#city').val();
 		var street_name = $('#street_name').val();
 		var zip = $('#zip').val();
 		var country = $('#country').val();
-		//}else{
+		}else{
 
-		//}
+		}
 
 		var booking_days = parseInt($('#date').multiDatesPicker('getDates').length);
 
-		//alert(booking_days);
+		// alert(booking_days);
 
 
 		$.ajax({
@@ -1505,36 +1507,36 @@
 		var tutor_cost = booking_days * $('#rate').val();
 		//console.log(booking_days);
 
-		//alert(dates);
+		// alert(tutor_cost);
 		var distance_text = $('#distance').val();
 		//alert(distance_text);
 		$('#cost').text('Tutor Cost: £' + tutor_cost);
 		var total_additional = 0;
 		@if(!empty(\Input::get('cat_id')))
 		//alert('cond1');
-		var travel_cost = 2 * booking_days * parseFloat(distance_text) * 0.30;
+		var travel_cost = 2 * booking_days * parseFloat(distance_text) * mileage;
 		total_additional = travel_cost;
-		total_additional = 0; /*temporary*/
+		// total_additional = 0; /*temporary*/
 		/* temporary commented nned to check anf fixed*/
-		//$('#additional_cost').html('Travel Cost from Tutor Venue to Booking Venue: £'+travel_cost.toFixed(2));
+		$('#additional_cost').html('Travel Cost from Tutor Venue to Booking Venue: £'+travel_cost.toFixed(2));
 		@else
 		//alert('cond2');
 		if ($('#use_time').val() != "") {
 			if ($('#use_time').val() > 7200) { //Add hotel cost when travel time is more than 2 hours
 				//alert('cond3');
-				var hotel_cost = 50 * booking_days;
+				var hotel_cost = hotel_price * booking_days;
 
 				//alert(parseInt(distance_text));
-				var travel_cost = 2 * parseInt(distance_text) * 0.30;
+				var travel_cost = 2 * parseInt(distance_text) * mileage;
 				var hot_booking_dist = 15;
-				var travel_cost_hot_booking = 2 * booking_days * hot_booking_dist * 0.30;
+				var travel_cost_hot_booking = 2 * booking_days * hot_booking_dist * mileage;
 				total_additional = hotel_cost + travel_cost + travel_cost_hot_booking;
 				$('#additional_cost').html('Hotel Cost: £' + hotel_cost.toFixed(2) +
 					' <br>Travel Cost from Tutor Venue to Hotel: £' + travel_cost.toFixed(2) +
 					' <br>Travel Cost from Hotel to Booking Address: £' + travel_cost_hot_booking.toFixed(2));
 			} else {
 				//alert('cond4');
-				var travel_cost = 2 * booking_days * parseInt(distance_text) * 0.30;
+				var travel_cost = 2 * booking_days * parseInt(distance_text) * mileage;
 				$('#additional_cost').html('Travel Cost from Tutor Venue to Booking Venue: £' + travel_cost.toFixed(2));
 				total_additional = travel_cost;
 			}

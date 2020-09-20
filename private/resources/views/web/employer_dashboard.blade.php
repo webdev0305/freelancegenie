@@ -9,9 +9,7 @@
     </div>
 </section>
 <section class="plan_details_employer">
-
     <div class="button_details"><i class="fas fa-arrow-alt-circle-left"></i></div>
-
     <div class="inner_plan_details">
         <h4>Plan Details</h4>
         <p><strong>Plan:</strong> {{$subs->plan->title}}</p>
@@ -26,7 +24,6 @@
     </div>
 </section>
 <section class="inner-cotent">
-
     <div class="container">
         @include('message.message')
         <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -44,9 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php //echo '<pre>';print_r ($jobs);echo '</pre>';
-			//die('checking here');
-			?>
+                <?php //echo '<pre>';print_r ($jobs);echo '</pre>';	?>
                 @foreach($jobs as $key=>$job)
                 <?php $date = explode(',', $job->date);
                     $date_from = $date['0'];
@@ -67,7 +62,6 @@
                     if($job->half_paid == 1){
                         $outstanding_amt=$job->total/2;
                     }
-                    
                 ?>
                 <tr>
                     <td>{{$key+1}}</td>
@@ -102,42 +96,35 @@
                     <td>
                         <!--<button type="button" class="dbs btn btn-success mr-1" data-id="{{$job->tutor_id}}"  data-status="1"  data-toggle="modal" data-target="#dbs">Check DBS Record
                         </button>-->
-                        <button type="button" class="dbs btn btn-success mr-1" data-id="{{$job->id}}">Request DBS Update
-                        </button>
+                        <button type="button" class="dbs btn btn-success mr-1" data-id="{{$job->id}}">Request DBS Update </button>
                         @if($status == '3')
-                        <button type="button" class="btn btn-success mr-1 rating" data-id="{{$job->tutor_id}}"
-                            data-job_id="{{$job->id}}" data-status="1" data-toggle="modal" data-target="#rating">Rate
-                            Tutor
+                        <button type="button" class="btn btn-success mr-1 rating" data-id="{{$job->tutor_id}}" data-job_id="{{$job->id}}" data-status="1" data-toggle="modal" data-target="#rating">
+                            Rate Tutor
                         </button>
-                        <button type="button" class="update_register_btn btn btn-success float-left mr-1"
-                            data-id="{{$job->id}}" data-status="2" data-toggle="modal"
-                            data-target="#update_register">View Register
+                        <button type="button" class="update_register_btn btn btn-success float-left mr-1" data-id="{{$job->id}}" data-status="2" data-toggle="modal" data-target="#update_register">
+                            View Register
                         </button>
                         @endif
                         @if($status != '3')
-                        <button type="button" id="rptb" class="btn btn-success mr-1" data-id="{{$job->tutor_id}}"
-                            data-job_id="{{$job->id}}" data-status="1" data-toggle="modal" data-target="#rptm">Report
-                            Problem
+                        <button type="button" id="rptb" class="btn btn-success mr-1" data-id="{{$job->tutor_id}}" data-job_id="{{$job->id}}" data-status="1" data-toggle="modal" data-target="#rptm">
+                            Report Problem
                         </button>
                         @endif
-                        @if($status == '1' && $current_date >= $date_from && $current_date <= $date_to) <button
-                            type="button" id="failed_to_attend" class="failed_to_attend btn btn-success mr-1" data-id="{{$job->tutor_id}}"
+                        @if($status == '1' && $current_date >= $date_from && $current_date <= $date_to) 
+                        <button type="button" id="failed_to_attend" class="failed_to_attend btn btn-success mr-1" data-id="{{$job->tutor_id}}"
                             data-job_id="{{$job->id}}" data-status="4" data-toggle="modal" data-target="#session_fail">
                             Failed to Attend
-                            </button>
-                            @endif
+                        </button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
-
             </tbody>
-
         </table>
     </div>
 </section>
 
-<div class="modal fade maiilModal" id="update_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade maiilModal" id="update_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,50 +133,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
                 <form method="POST" id="update_registerform">
                     {{ csrf_field() }}
-
                     <input type="hidden" name="job_students" id="job_students">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="well clearfix first-well">
                                 <div id="first">
-                                    <!-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group ">
-                                    <label class="control-label " for="levels">
-                                        First Name
-                                    </label>
-                                    <input disabled type="text" class="stuname form-control" name="stuinfo_stuname">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group ">
-                                    <label class="control-label " for="levels">
-                                        Surname
-                                    </label>
-                                    <input disabled type="text" class="rollno form-control" name="stuinfo_rollno">
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                            <div class="btnPlus" style="cursor: pointer;"><i title="Download Certificate" class="fa fa-download" aria-hidden="true"></i></div>
-                        </div>
-                        </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!--<input type="submit" name="register" id="register" value="Submit" class="btn btn-success"/>-->
                 </form>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -626,7 +586,7 @@
                 console.log(data);
                 $('#insert_rate').trigger("reset");
                 bootoast.toast({
-                    message: "Rating saved successfully"
+                    message: data.message
                 });
                 $('#rating').modal('toggle');
 
@@ -731,7 +691,6 @@
             success: function (data) {
                 if (data.errors) {
                     $('#title-error').html(data.errors);
-
                 }
                 if (data.success) {
                     $('#first').html('');

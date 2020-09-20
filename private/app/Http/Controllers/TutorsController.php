@@ -199,16 +199,19 @@ class TutorsController extends Controller
     {
         try {
             $data = $request->input();
-            
-            
+            // var_dump($data);die();
+            $jobs = new Jobs;
 			if(isset($data['care_tutor'])){ // care trainer
                 $care_tutor=1;
-				$status="1";
+				$status="0";
                 $validation = \Validator::make($request->all(), ValidationRequest::$carejobPost);
                 if ($validation->fails()) {
                     $errors = $validation->messages();
                     return Response::json(['errors' => $validation->errors()]);
                 }
+                $jobs->category_id = Category::where('name',$data['title'])->first()->id;
+                $jobs->qualified_levels_id = CategoryUser::where(['user_id'=>$data['tutor_id'], 'category_id'=>$jobs->category_id])->first()->qualified_levels_id;
+                $jobs->sub_disciplines_id = CategoryUser::where(['user_id'=>$data['tutor_id'], 'category_id'=>$jobs->category_id])->first()->disciplines_id;
 			}elseif(isset($data['assignment'])){ // Assignment
                 $care_tutor=2;
 				$status="0";
@@ -219,7 +222,7 @@ class TutorsController extends Controller
                     return Response::json(['errors' => $validation->errors()]);
                 }
 			}else{  // Direct tutor booking
-                $status="1";
+                $status="0";
                 $care_tutor=0;
 				$validation = \Validator::make($request->all(), ValidationRequest::$jobPost);
 				if ($validation->fails()) {
@@ -235,7 +238,11 @@ class TutorsController extends Controller
                 }
             }*/
 			$user_id =\Sentinel::getUser()->id;
-            $jobs = new Jobs;
+
+            
+
+            
+
             $jobs->tutor_id = $data['tutor_id'] == NULL ? NULL : $data['tutor_id'];
 			$msg=Config::get('message.options.JOB_SUBMITED');// msg for tutor booking successfully
 			if(!$care_tutor){// Direct booking
@@ -275,7 +282,7 @@ class TutorsController extends Controller
 			$jobs->title = $data['title'];
 			$jobs->booking_address = $data['booking_address'];
 			$jobs->distance = $data['distance_value'];
-			$jobs->hotel_charges = 50;
+			$jobs->hotel_charges = GlobalSettings::where('name','hotel_cost')->first()->value;
 
 			if($jobs->booking_address){
                 $jobs->address = $data['address'];
@@ -422,7 +429,7 @@ class TutorsController extends Controller
         $tutor_id=$data['tutor_id'];
         //$tutor_profiles = json_decode(json_encode(User::with(['Country','TutorProfile'])->find($tutor_id)));
         $tutor_profiles = TutorProfile::select('address','city','street_name','country_id','zip')->where('user_id',$tutor_id)->first();
-        //echo '<pre>';print_r($tutor_profiles);
+        // echo '<pre>';print_r($tutor_profiles);
         $ohouse_no= $tutor_profiles['address'];
         $ocity=Country::where(['id'=>$tutor_profiles->country_id])->first()->name;
         $ostreet=$tutor_profiles->street_name;
@@ -437,17 +444,17 @@ class TutorsController extends Controller
             $street= $data['street_name'];
             $country= $data['country'];
             $zip= $data['zip'];
-            }else{
+        }else{
             $employer_id=\Sentinel::getUser()->id;
             $employer_profiles = json_decode(json_encode(User::with(['CountryEmployer', 'EmployerProfile'])->find($employer_id)));
-        //$employer_profiles = EmployerProfile::select('address','city','street_name','country_id','zip')->where('user_id',$employer_id)->first();
-        //echo '<pre>';print_r($employer_profiles);die;
-        $house_no= $employer_profiles->employer_profile->company_address;
-        $city=Country::where(['id'=>$employer_profiles->employer_profile->comp_country_id])->first()->name;
-        $street=$employer_profiles->employer_profile->comp_street_name;
-        $country=$employer_profiles->employer_profile->comp_city;
-        $zip=$employer_profiles->employer_profile->comp_postcode;
-            }
+            //$employer_profiles = EmployerProfile::select('address','city','street_name','country_id','zip')->where('user_id',$employer_id)->first();
+            //echo '<pre>';print_r($employer_profiles);die;
+            $house_no= $employer_profiles->employer_profile->company_address;
+            $city=Country::where(['id'=>$employer_profiles->employer_profile->comp_country_id])->first()->name;
+            $street=$employer_profiles->employer_profile->comp_street_name;
+            $country=$employer_profiles->employer_profile->comp_city;
+            $zip=$employer_profiles->employer_profile->comp_postcode;
+        }
         $destination = urlencode($house_no.','.$city.','.$street.','.$zip.','.$country);
         $url="https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destination&units=imperial&key=AIzaSyCrnv5HH8NgX42n_80dG61HSgmMouEFfjE";
         $ch = curl_init();
@@ -608,13 +615,15 @@ class TutorsController extends Controller
 		$rating = DB::select("SELECT COUNT(*) as records,SUM(objectives + delivery + professional + style + paperwork + tutor + training)
 		as total FROM ratings WHERE tutor_profile_user_id=$tutor_id");
 		if($rating[0]->records >0){
-		$star_rating=$rating[0]->total/(7*$rating[0]->records);
-		$star_rating = floor(($star_rating * 2) + 0.5) / 2;
+    		$star_rating=$rating[0]->total/(7*$rating[0]->records);
+    		$star_rating = floor(($star_rating * 2) + 0.5) / 2;
 		}else{
-		$star_rating=0;
+		    $star_rating=0;
 		}
 		$usersMeta->rating=$star_rating;
-		return View('web.tutor_view', compact('usersMeta', 'ttrLan', 'ttrLocaWill', 'dates', 'categories'));
+        $mileage=GlobalSettings::where('name','mileage')->first()->value;
+        $hotel_cost=GlobalSettings::where('name','hotel_cost')->first()->value;
+		return View('web.tutor_view', compact('usersMeta', 'ttrLan', 'ttrLocaWill', 'dates', 'categories', 'mileage', 'hotel_cost'));
     }
 
     public function getOption(Request $request)

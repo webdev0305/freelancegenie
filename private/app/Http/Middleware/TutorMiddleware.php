@@ -20,6 +20,8 @@ class TutorMiddleware
         if (!empty($user) && $user != '') {
             //echo '<pre>';print_r(\Sentinel::getUser());
             //echo \Sentinel::getUser()->block;
+            
+            
             if(\Sentinel::getUser()->block){
                 Session::flash('success','Your profile has been blocked for six months');
                 return \Redirect::to('/dashboard?block=1');

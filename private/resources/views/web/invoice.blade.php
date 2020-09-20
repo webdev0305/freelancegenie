@@ -29,29 +29,30 @@ tr:nth-child(odd) {
 <section class="inner-cotent">
     <div class="container">
         @include('message.message')
-		<?php //echo '<pre>';print_r($jobs);echo '</pre>';?>
+		<?php //echo '<pre>';print_r($invoice);echo '</pre>';?>
+        <?php //echo '<pre>';print_r($mileage);echo '</pre>';?>
 		<?php $booking_days=count(explode(',',$invoice->date));?>
         <table id="example" class="table table-striped table-bordered table-responsive-lg" style="width:100%">
             <thead>
-            <tr>
-                <th>Booking Id</th>
-				<th>Booking Dates</th>
-				<th>Attended Date</th>
-				<th>Tutor Rate</th>
-				<?php if($invoice->hotel_charges >0){?>
-				<th>Hotel Charges</th>
-				<th>Travel Cost Hotel to Booking Venue</th>
-				<?php }else{ ?>
-				<th>Travel Cost Tutor Venue to Booking Venue</th>
-				<?php } ?>
-				<th>Cost per Day</th>
-			</tr>
+                <tr>
+                    <th>Booking Id</th>
+    				<th>Booking Dates</th>
+    				<th>Attended Date</th>
+    				<th>Tutor Rate</th>
+    				<?php if($invoice->hotel_charges >0){?>
+    				<th>Hotel Charges</th>
+    				<th>Travel Cost Hotel to Booking Venue</th>
+    				<?php }else{ ?>
+    				<th>Travel Cost Tutor Venue to Booking Venue</th>
+    				<?php } ?>
+    				<th>Cost per Day</th>
+    			</tr>
             </thead>
             <tbody>
-			@php ($subtotal=0 & $travel_cost_h=0 & $travel_cost=0);
-			if(sizeof($invoice['Invoice'])>0){ @endphp
-             @foreach($invoice['Invoice'] as $key=>$inv)
-			 @if($inv->sent == "1") <!-- Only last sent invoice-->
+    			@php ($subtotal=0 & $travel_cost_h=0 & $travel_cost=0);
+    			if(sizeof($invoice['Invoice'])>0){ @endphp
+                @foreach($invoice['Invoice'] as $key=>$inv)
+    			@if($inv->sent == "1") <!-- Only last sent invoice-->
 				<tr>
                     <td>{{$inv->booking_no}}</td>
 					<td>{{$invoice->date}}</td>
@@ -60,55 +61,50 @@ tr:nth-child(odd) {
 					<?php if($invoice->hotel_charges >0){
 					$hot_booking_dist=15;?>
 					<td>{{'£'.$invoice->hotel_charges}}</td>
-					
-					<td>{{'£'.$travel_cost=2*$hot_booking_dist*0.30}}</td>
-					<?php }else{
-					?><td>{{'£'.$travel_cost=2*$invoice->distance*0.30}}</td>
+					<td>{{'£'.$travel_cost=2*$hot_booking_dist*$mileage}}</td>
+					<?php }else{ ?>
+                    <td>{{'£'.$travel_cost=2*$invoice->distance*$mileage}}</td>
 					<?php }?>
 					<td>{{'£'.$day_total=$inv->rate+$travel_cost+$invoice->hotel_charges}}</td>
-					
                 </tr>
 				
 				@php $subtotal+=$day_total;@endphp
 				@endif
-			 @endforeach
-			 <?php if($invoice->hotel_charges >0){?>
-			 <tr class="subtotal">
-    <td colspan="5"></td>
-    <td>Travel Cost Tutor - Booking Venue</td>
-    <td>{{'£'.$travel_cost_h=2*$invoice->distance*0.30}}</td>
-  </tr>
-  <?php }?>
-			 
-			
-  <tr class="subtotal">
-    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
-    <td>Subtotal</td>
-    <td>{{'£'.$subtotal=$subtotal+$travel_cost_h}}</td>
-  </tr>
-  <tr>
-   <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
-    <td>20% VAT</td>
-    <td>{{'£'.$vat=20/100*$subtotal}}</td>
-  </tr>
-  <tr class="subtotal">
-    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
-    <td>Total</td>
-    <td>{{'£'.$total=$subtotal+$vat}}</td>
-  </tr>
-  <tr class="subtotal">
-    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
-    <td>FTA Deduction(10%)</td>
-    <td>{{'£'.$fta_deduct=10/100*$total}}</td>
-  </tr>
-  <tr class="subtotal">
-    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
-    <td>Amount Payable</td>
-    <td>{{'£'.$total=$total-$fta_deduct}}</td>
-  </tr>
-  @php } @endphp
+			    @endforeach
+			    <?php if($invoice->hotel_charges >0){?>
+			    <tr class="subtotal">
+                    <td colspan="5"></td>
+                    <td>Travel Cost Tutor - Booking Venue</td>
+                    <td>{{'£'.$travel_cost_h=2*$invoice->distance*$mileage}}</td>
+                </tr>
+                <?php }?>
+                <tr class="subtotal">
+                    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
+                    <td>Subtotal</td>
+                    <td>{{'£'.$subtotal=$subtotal+$travel_cost_h}}</td>
+                </tr>
+                <tr>
+                    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
+                    <td>20% VAT</td>
+                    <td>{{'£'.$vat=20/100*$subtotal}}</td>
+                </tr>
+                <tr class="subtotal">
+                    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
+                    <td>Total</td>
+                    <td>{{'£'.$total=$subtotal+$vat}}</td>
+                </tr>
+                <tr class="subtotal">
+                    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
+                    <td>FTA Deduction(10%)</td>
+                    <td>{{'£'.$fta_deduct=10/100*$total}}</td>
+                </tr>
+                <tr class="subtotal">
+                    <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
+                    <td>Amount Payable</td>
+                    <td>{{'£'.$total=$total-$fta_deduct}}</td>
+                </tr>
+                @php } @endphp
             </tbody>
-
         </table>
     </div>
 

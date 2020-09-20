@@ -56,7 +56,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
-            $data = $request->input();
+            
+            
             
             $validation = Validator::make($data, ValidationRequest::$login);
             if ($validation->fails()) {
@@ -85,6 +86,7 @@ class LoginController extends Controller
                 return Redirect::back();
             }
 
+            
             //Check the roles of users
             if ($user = \Sentinel::check()) {
                 \Sentinel::login($user, true);

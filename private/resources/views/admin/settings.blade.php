@@ -16,11 +16,6 @@
                 <div class="row fields">
                     <div class="col-md-9 col-sm-9">
                         <input name="{{$setting->name}}" value="{{$setting->value}}" class="form-control" type="text">
-                        @if ($errors->has('admin_email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('admin_email') }}</strong>
-                        </span>
-                        @endif
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <button type="submit" class="btn btn-primary update">Update</button>
@@ -55,7 +50,35 @@
                         </select>
                     </div>
                     <div class="col-md-3 col-sm-3">
-                        <button type="submit" class="btn btn-primary update" id="newsletter_update">Update</button>
+                        <button type="submit" class="btn btn-primary " id="newsletter_update">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="disabledSelect">{{$certificate->label}}</label>
+                <div class="row fields">
+                    <div class="col-md-3 col-sm-3">
+                        <input name="{{$certificate->name}}" value="{{$certificate->value}}" class="form-control" type="text" readonly>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <input type="file" id="file" name="file" class="btn">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button type="submit" class="btn btn-primary" id="cer_image_update">Update</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="disabledSelect">{{$sign->label}}</label>
+                <div class="row fields">
+                    <div class="col-md-3 col-sm-3">
+                        <input name="{{$sign->name}}" value="{{$sign->value}}" class="form-control" type="text" readonly>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <input type="file" id="file_sign" name="file_sign" class="btn">
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <button type="submit" class="btn btn-primary" id="sign_image_update">Update</button>
                     </div>
                 </div>
             </div>
@@ -97,6 +120,62 @@
         }).success(function (result) {
             console.log(result);
             window.location.reload();
+        });
+    });
+
+    $('#cer_image_update').click(function () {
+        var type = 'POST';
+        var url = "{{url('/admin/settings/update_certificate')}}";
+        var form_data = new FormData();
+        var file = $("#file").prop("files")[0];
+        form_data.append('file', file);
+        form_data.append('_token', $('input[name=_token]').val());
+        $.ajax({
+            type: type,
+            url: url,
+            dataType: 'text',  // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            
+            success: function (data) {
+                var data = JSON.parse(data);
+                if (data.success == '0') {
+                    alert(data.errors);
+                }
+                if (data.success == '1') {
+                    location.reload();
+                }
+            }
+        });
+    });
+
+    $('#sign_image_update').click(function () {
+        var type = 'POST';
+        var url = "{{url('/admin/settings/update_sign')}}";
+        var form_data = new FormData();
+        var file = $("#file_sign").prop("files")[0];
+        form_data.append('file', file);
+        form_data.append('_token', $('input[name=_token]').val());
+        $.ajax({
+            type: type,
+            url: url,
+            dataType: 'text',  // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            
+            success: function (data) {
+                var data = JSON.parse(data);
+                if (data.success == '0') {
+                    alert(data.errors);
+                }
+                if (data.success == '1') {
+                    location.reload();
+                }
+            }
         });
     });
 </script>

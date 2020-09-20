@@ -136,23 +136,23 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/emp_reg_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_reg_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_reg_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_reg_4.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_5.png"
+												<img class="d-block w-100" src="web/images/emp_reg_5.png"
 													alt="Third slide">
 											</div>
 										</div>
@@ -198,19 +198,19 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/emp_log_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_log_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_log_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_log_4.png"
 													alt="Fourth slide">
 											</div>
 										</div>
@@ -253,15 +253,15 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/emp_cqc_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_cqc_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_cqc_3.png"
 													alt="Third slide">
 											</div>
 										</div>
@@ -297,27 +297,27 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/emp_src_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_src_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_src_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_src_4.png"
 													alt="Fourth slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_src_5.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_src_6.png"
 													alt="Fourth slide">
 											</div>
 										</div>
@@ -368,31 +368,31 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/emp_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/emp_liv_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_liv_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_liv_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_liv_4.png"
 													alt="Fourth slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/emp_liv_5.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/emp_liv_6.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/emp_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/emp_liv_7.png"
 													alt="Fourth slide">
 											</div>
 										</div>
@@ -449,27 +449,27 @@
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-												<img class="d-block w-100" src="web/images/reg_screenshot_1.png"
+												<img class="d-block w-100" src="web/images/tut_reg_1.png"
 													alt="First slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/reg_screenshot_2.png"
+												<img class="d-block w-100" src="web/images/tut_reg_2.png"
 													alt="Second slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/reg_screenshot_3.png"
+												<img class="d-block w-100" src="web/images/tut_reg_3.png"
 													alt="Third slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/reg_screenshot_4.png"
+												<img class="d-block w-100" src="web/images/tut_reg_4.png"
 													alt="Fouth slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/reg_screenshot_5.png"
+												<img class="d-block w-100" src="web/images/tut_reg_5.png"
 													alt="Fifth slide">
 											</div>
 											<div class="carousel-item">
-												<img class="d-block w-100" src="web/images/reg_screenshot_5.png"
+												<img class="d-block w-100" src="web/images/tut_reg_6.png"
 													alt="Fifth slide">
 											</div>
 										</div>

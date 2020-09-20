@@ -30,7 +30,7 @@
         <a target="_blank" href="{{url('tutor/tutor_swap')}}" class="btn btn-info btn-lg">Swap Requests</a>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#availability_mod">Set Availability</button>
 
-        <table id="" class="table table-striped table-bordered table-responsive-lg" style="width:100%">
+        <table id="example" class="table table-striped table-bordered table-responsive-lg" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
@@ -48,16 +48,19 @@
                 @php ($i = 1) @endphp
                 @foreach($jobs as $key=>$job)
                 <?php 
+
+                    $time = explode(':', $job['userjobs']->time_start);
+                    $time = 3600*$time['0'] + 60*$time['1'];
                     $date = explode(',', $job['userjobs']->date);
                     $date_from = str_replace('/', '-', $date['0']);
                     $date_from = strtotime($date_from);
                     $date_to = end($date);
                     $date_to = str_replace('/', '-', $date_to);
-                    $date_to = strtotime($date_to);
+                    $date_to = strtotime($date_to)+$time;
                     $current_date=date("d-m-Y");
                     $current_day=date("D");
                     $current_date=strtotime($current_date);
-                    echo ($date_from);
+                    
                     if($current_date >= $date_from && $current_date <= $date_to){
                         $attended_date=date("m/d/Y");
                     }else{
@@ -69,8 +72,7 @@
                 <tr>
                     <td>{{$i}}</td>
                     <td>{{$job['userjobs']->id}}</td>
-                    <td><a target="_blank"
-                            href="tutor/job_detail/{{$job['userjobs']->id}}">{{$job['userjobs']->title}}</a></td>
+                    <td><a target="_blank" href="tutor/job_detail/{{$job['userjobs']->id}}">{{$job['userjobs']->title}}</a></td>
                     <td>{{$job['userjobs']->description}}</td>
                     <td>{{$job['userjobs']->date}}</td>
                     <td>{{'Start Time: '.$job['userjobs']->time_start.' End Time: '.$job['userjobs']->time_end}}</td>
@@ -90,7 +92,7 @@
                         {{'Completed'}}
                         @endif
                         @if($status == '4')
-                        {{'FTA'}}
+                        <i class="fa fa-warning" style="font-size:24px;color:red"></i> {{'FTA'}}
                         @endif
                         @if($status == '5')
                         {{'Cancelled'}}
@@ -108,13 +110,14 @@
                     <td>{{-- $status --}}
 
                         @if($current_date <= $date_from && $status=="0" ) 
-                        <button type="button" class="announce btn btn-success float-left mr-1" data-id="{{encrypt($job['userjobs']->id)}}" data-status="1" data-toggle="modal" data-target="#deleteMerchant">
+                        <button type="button" class="announce btn btn-success float-left mr-1 accept" data-id="{{encrypt($job['userjobs']->id)}}" data-status="1" data-toggle="modal" data-target="#accept">
                             Accept
                         </button>
                         @endif
 
                         @if($status == "0")
-                        <button type="button" class="announce btn btn-danger float-left mr-1" data-id="{{encrypt($job['userjobs']->id)}}" data-status="2" data-toggle="modal" data-target="#deleteMerchant">
+                        <button type="button" class="announce btn btn-danger float-left mr-1 reject" data-id="{{encrypt($job['userjobs']->id)}}" 
+                            data-status="2" data-toggle="modal" data-target="#reject">
                             Reject
                         </button>
                         @endif
@@ -123,13 +126,13 @@
                         <button type="button" class="update_record_btn btn btn-success float-left mr-1" data-id="{{$job['userjobs']->id}}" data-status="2" data-toggle="modal" data-target="#update_record">
                             Confirm Arrival
                         </button>
-                        <button type="button" class="update_register_btn btn btn-success float-left mr-1" data-id="{{$job['userjobs']->id}}" data-target="#update_register">
+                        <button type="button" class="update_register_btn btn btn-success float-left mr-1" data-id="{{$job['userjobs']->id}}" data-toggle="modal" data-target="#update_register">
                             Update Register
                         </button>
                         @endif
 
                         @if(($status == "6" || $status == "1") && $current_date >= $date_to)
-                        <button type="button" class="announce btn btn-success float-left mr-1" data-id="{{$job['userjobs']->id}}" data-status="3" data-toggle="modal" data-target="#deleteMerchant">
+                        <button type="button" class="announce btn btn-success float-left mr-1 job_done" data-id="{{encrypt($job['userjobs']->id)}}" data-status="3" data-toggle="modal" data-target="#job_done">
                             Job Done
                         </button>
                         @endif
@@ -146,7 +149,7 @@
                         </button>
                         @endif
 
-                        @if((($status == '6' && $job['userjobs']->assignment) || (!$job['userjobs']->assignment && $status=='1')) && ($current_date < strtotime('-1 Day',$date_from))) 
+                        @if((($status == '6' && $job['userjobs']->assignment) || (!$job['userjobs']->assignment && $status=='1')) && ($current_date < strtotime('-2 Day',$date_from))) 
                         <button type="button" class="swap btn btn-primary float-left mr-1" data-id="{{encrypt($job['userjobs']->id)}}">
                             Swap Tutor
                         </button>
@@ -160,8 +163,65 @@
             </tbody>
         </table>
     </div>
-    <div class="modal fade maiilModal" id="deleteMerchant" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade maiilModal" id="accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Job Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-wrap">
+                        <p>Are you sure to accept this Booking?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-secondary" data-method="delete" style="cursor:pointer;"
+                        onclick="$(this).find('form').submit();">Submit
+                        <form action="{{url('tutor/change_job_status')}}" method="POST" style="display:none">
+                            <input type="hidden" id="jobid_a" name="jobid" value="">
+                            <input type="hidden" id="status_a" name="status" value="">
+                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        </form>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade maiilModal" id="reject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Job Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-wrap">
+                        <p>Are you sure to reject this Booking?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-secondary" data-method="delete" style="cursor:pointer;"
+                        onclick="$(this).find('form').submit();">Submit
+                        <form action="{{url('tutor/change_job_status')}}" method="POST" style="display:none">
+                            <input type="hidden" id="jobid_r" name="jobid" value="">
+                            <input type="hidden" id="status_r" name="status" value="">
+                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        </form>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade maiilModal" id="job_done" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -180,8 +240,8 @@
                     <a class="btn btn-secondary" data-method="delete" style="cursor:pointer;"
                         onclick="$(this).find('form').submit();">Submit
                         <form action="{{url('tutor/change_job_status')}}" method="POST" style="display:none">
-                            <input type="hidden" id="jobid" name="jobid" value="">
-                            <input type="hidden" id="status" name="status" value="">
+                            <input type="hidden" id="jobid_j" name="jobid" value="">
+                            <input type="hidden" id="status_j" name="status" value="">
                             <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                         </form>
                     </a>
@@ -190,8 +250,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade maiilModal" id="update_record" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade maiilModal" id="update_record" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -221,7 +280,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" name="insert" id="insert" value="Submit" class="btn btn-success" />
+                        <input type="submit" name="insert" id="insert_c" value="Submit" class="btn btn-success" />
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -230,8 +289,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade maiilModal" id="update_register" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade maiilModal" id="update_register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -467,11 +525,11 @@
                 if (data.success) {
                     $('#first').html('');
                     var obj=data.student;
-                    console.log(data);
-                    //alert(data.student[0].stuname);
+                    // console.log(data);
+                    // alert(data.student[1].stuname);
                     $.each( obj, function( key, value ) {
                         //key--;
-                        $('#first').append('<div class="row"><div class="col-md-6"><div class="form-group "> <label class="control-label " for="levels"> First Name </label> <input type="text" class="stuname form-control" name="stuinfo['+key+'][stuname]" value="'+value[" stuname"]+'"> </div></div><div class="col-md-5"><div class="form-group "> <label class="control-label " for="levels"> Surname </label> <input type="text" class="rollno form-control" name="stuinfo['+key+'][rollno]" value="'+value[" rollno"]+'"> </div></div><div class="col-md-1"><div class="btnPlus" style="cursor: pointer;"><i class="fa fa-plus-circle" aria-hidden="true"></i></div></div></div>');
+                        $('#first').append('<div class="row"><div class="col-md-6"><div class="form-group "> <label class="control-label " for="levels"> First Name </label> <input type="text" class="stuname form-control" name="stuinfo['+key+'][stuname]" value="'+value["stuname"]+'"> </div></div><div class="col-md-5"><div class="form-group "> <label class="control-label " for="levels"> Surname </label> <input type="text" class="rollno form-control" name="stuinfo['+key+'][rollno]" value="'+value["rollno"]+'"> </div></div><div class="col-md-1"><div class="btnPlus" style="cursor: pointer;"><i class="fa fa-plus-circle" aria-hidden="true"></i></div></div></div>');
                     });
                 }
             }
@@ -602,12 +660,21 @@
     });
 
     $(document).ready(function(){
-        $(".announce").click(function(e){ // Click to only happen on announce links
-            $("#jobid").val($(this).data('id'));
-            $("#status").val($(this).data('status'));
-            $('#deleteMerchant').modal('show');
+        $(".accept").click(function(e){ // Click to only happen on announce links
+            $("#jobid_a").val($(this).data('id'));
+            $("#status_a").val($(this).data('status'));
+            $('#accept').modal('show');
         });
-
+        $(".reject").click(function(e){ // Click to only happen on announce links
+            $("#jobid_r").val($(this).data('id'));
+            $("#status_r").val($(this).data('status'));
+            $('#reject').modal('show');
+        });
+        $(".job_done").click(function(e){ // Click to only happen on announce links
+            $("#jobid_j").val($(this).data('id'));
+            $("#status_j").val($(this).data('status'));
+            $('#job_done').modal('show');
+        });
     });
 
     $('.invoice_sent').click(function (event) {

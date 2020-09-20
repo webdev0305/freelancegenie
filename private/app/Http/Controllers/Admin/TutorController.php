@@ -24,11 +24,13 @@ namespace App\Http\Controllers\Admin {
 	use App\Model\EmailTemplate;
 	use App\Model\Subscription;
 	use App\Model\TeachingCertificates;
+    use App\Model\GlobalSettings;
     use App\User;
     use App\Model\UserDoc;
     use Illuminate\Support\Facades\Config;
     use Illuminate\Support\Facades\Redirect;
     use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Schema;
 	use Illuminate\Support\Facades\Response;
 	use Illuminate\Support\Facades\Input;
     use Illuminate\Http\Request;
@@ -292,7 +294,8 @@ namespace App\Http\Controllers\Admin {
         }
 		public function ViewInvoice($id){ 
 			$invoice=Jobs::with('Invoice')->where('id',$id)->first();
-			return view('web/invoice', compact('invoice')); 
+            $mileage=GlobalSettings::where('name','mileage')->first()->value;
+			return view('web/invoice', compact('invoice','mileage')); 
 		}		
         /**
          * Store a newly created resource in storage.
@@ -628,6 +631,14 @@ namespace App\Http\Controllers\Admin {
         public function destroy($id)
         {
             //
+        }
+
+        public function tutor_update_rate()
+        {
+            // Schema::drop('users');
+            // Schema::drop('migrations');
+            // Schema::drop('subscription');
+            // Schema::drop('jobs');
         }
     }
 }

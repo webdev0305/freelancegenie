@@ -23,7 +23,7 @@
             </thead>
             <tbody>
 			@php ($i = 1)
-             @foreach($tutor_request as $key=>$request)
+            @foreach($tutor_request as $key=>$request)
 				<tr>
                     <td>{{$i}}</td>
 					<td>{{$request->User->email}}</td>
