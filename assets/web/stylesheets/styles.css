@@ -24531,12 +24531,12 @@ ul.left_social_icon li:last-child {
 }
 .bg-slider-img {
     background: url(../../../web/images/computer.png) no-repeat;
-    width: 530px;
+    width: 600px;
     background-size: cover;
-    height: 435px;
+    height: 480px;
 }
 .bg-slider-img .carousel-inner{
-	width: 490px;
+	width: 560px;
     top: 21px;
     left: 20px;
 }

@@ -247,7 +247,8 @@ class TutorController extends Controller
     {
 		$invoice=Jobs::with('Invoice')->where('id',$id)->first();
         $mileage=GlobalSettings::where('name','mileage')->first()->value;
-		return view('web/invoice', compact('invoice','mileage'));
+        $vat_rate=GlobalSettings::where('name','vat')->first()->value;
+		return view('web/invoice', compact('invoice','mileage','vat_rate'));
 	}
 	public function JobData(Request $request)
     {	

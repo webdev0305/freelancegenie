@@ -252,7 +252,6 @@ namespace App\Http\Controllers\Admin {
         }
         public function invoice()
         {
-           
            //$invoice = Invoice::where('sent',"1")->get(); // commented on 28-09-2019
 		   $invoice=Jobs::with('Invoice')->whereHas('Invoice', function ($q) {
             $q->where('invoices.sent', '=', "1");
@@ -293,9 +292,10 @@ namespace App\Http\Controllers\Admin {
            return View('admin.sent_invoice', compact('invoice'));
         }
 		public function ViewInvoice($id){ 
-			$invoice=Jobs::with('Invoice')->where('id',$id)->first();
+            $invoice=Jobs::with('Invoice')->where('id',$id)->first();
             $mileage=GlobalSettings::where('name','mileage')->first()->value;
-			return view('web/invoice', compact('invoice','mileage')); 
+            $vat_rate=GlobalSettings::where('name','vat')->first()->value;
+			return view('web/invoice', compact('invoice','mileage','vat_rate')); 
 		}		
         /**
          * Store a newly created resource in storage.

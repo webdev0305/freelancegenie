@@ -53,35 +53,88 @@ class TutorsController extends Controller
     }*/
     public function index()
     {
-		if(!empty(\Input::get('disciplines'))){
+        if(!empty(\Input::get('disciplines'))){
 			$options_ids1=array("2","3","4","5","6","7","33","34","35","36","37","38","39","40","41","42","43","44");//Apprenticeships
             $options_ids2=array("9","10","11","12","13","14");// Traineeships
             $options_ids3=array("16","17","18","19");//Apprenticeships
             $options_ids4=array("21","22","23","24");//HR
             $disciplines_id=7;
-        if(in_array(\Input::get('disciplines')[0],$options_ids1)){
-            $disciplines_id=1;
-        }
-         if(in_array(\Input::get('disciplines')[0],$options_ids2)){
-            $disciplines_id=8;
-        }
-        if(in_array(\Input::get('disciplines')[0],$options_ids3)){
-            $disciplines_id=1;
-        }
-        if(in_array(\Input::get('disciplines')[0],$options_ids4)){
-            $disciplines_id=20;
-        }
-        if(\Input::get('disciplines')[0]==61){// Social Care
-            $disciplines_id=61;
-        }
-		if(\Input::get('disciplines')[0]==60){// Care Courses
-            $disciplines_id=60;
-        }
-		$categories = Category::with('children')->where('disciplines_id', '=', $disciplines_id)->get();
-		//$categories = Category::with('children')->get();
+
+            if(in_array(\Input::get('disciplines')[0],$options_ids1)){
+                $disciplines_id=1;
+            }
+            if(in_array(\Input::get('disciplines')[0],$options_ids2)){
+                $disciplines_id=8;
+            }
+            if(in_array(\Input::get('disciplines')[0],$options_ids3)){
+                $disciplines_id=1;
+            }
+            if(in_array(\Input::get('disciplines')[0],$options_ids4)){
+                $disciplines_id=20;
+            }
+            if(\Input::get('disciplines')[0]==61){// Social Care
+                $disciplines_id=61;
+            }
+    		if(\Input::get('disciplines')[0]==60){// Care Courses
+                $disciplines_id=60;
+            }
+    		$categories = Category::with('children')->where('disciplines_id', '=', $disciplines_id)->get();
+    		//$categories = Category::with('children')->get();
 		}else{
-		    $categories = [];
+            $categories = Input::get('specialist');
+            $count_categories = count($categories);
+            $string_cat = '';
+            foreach ($categories as $key => $value) {
+                if($key==0)
+                    $string_cat =$value;
+                else
+                    $string_cat = $string_cat.','.$value;
+            }
+            
+            $id = DB::select("SELECT COUNT(*) count_category, user_id FROM category_user WHERE category_id In (".$string_cat.") Group By user_id Having count_category = ".$count_categories."");
+            // print_r($id[0]->user_id);die();
+            $levels = QualifiedLevel::with('childrenLevels')->orderBy('priority', 'asc')->get();
+            $disciplines = Disciplines::with('childrenDisciplines')->get();
+            $countrys = Country::with('children')->get();
+            $tutor_profiles = TutorProfile::distinct()->get(['zip']);//to get dinstinct record
+            $usersMeta = TutorProfile::with(array('User' => function ($query) {
+                $query->select('id', 'email', 'first_name', 'last_name', 'photo');
+            }, 'Disciplines','Country', 'Categories', 'QualifiedLevel','Rating'))->select('id','zip', 'user_id', 'uuid', 'country_id', 'about', 'status');
+            $usersMeta = $usersMeta->WhereHas('User', function ($query) {
+                $query->where('users.availability', 1);
+            });
+            foreach ($id as $key => $value) {
+                $usersMeta=$usersMeta->where('user_id', $id[$key]->user_id);
+            }
+            // $usersMeta=$usersMeta->where('user_id', $id);
+            // var_dump($usersMeta);die();
+            // $usersMeta = $usersMeta->WhereHas('Categories', function ($query) {
+            //     $query->whereIn('categories.id', !empty(Input::get('specialist')) ? Input::get('specialist') : []);
+            // });
+            $usersMeta = $usersMeta->paginate(10)->toArray();
+            $i=0;
+            foreach($usersMeta['data'] as $user){
+                $tutor_id=$user['user_id'];
+                $rating = DB::select("SELECT COUNT(*) as records,SUM(objectives + delivery + professional + style + paperwork + tutor + training)
+                    as total FROM ratings WHERE tutor_profile_user_id=$tutor_id");
+                if($rating[0]->records >0){
+                    $star_rating=$rating[0]->total/(7*$rating[0]->records);
+                    $star_rating = floor(($star_rating * 2) + 0.5) / 2;
+                }else{
+                    $star_rating=0;
+                }
+                $usersMeta['data'][$i]['rating']=$star_rating;
+                foreach($user['categories']  as $categorie){
+                    $disIds = CategoryUser::where('user_id',$tutor_id)->where('category_id', $categorie['pivot']['category_id'])->first();
+                    $usersMeta['data'][$i]['rates'][]=$disIds->rate;
+                }
+                //echo $star_rating;
+                $i++;
+            }
+            
+            return View('web.tutor_lists', compact('usersMeta', 'categories', 'disciplines', 'countrys', 'levels', 'tutor_profiles'));
 		}
+
         $levels = QualifiedLevel::with('childrenLevels')->orderBy('priority', 'asc')->get();
         $disciplines = Disciplines::with('childrenDisciplines')->get();
         $countrys = Country::with('children')->get();
@@ -89,26 +142,22 @@ class TutorsController extends Controller
 
         $usersMeta = TutorProfile::with(array('User' => function ($query) {
             $query->select('id', 'email', 'first_name', 'last_name', 'photo');
-
         }, 'Disciplines','Country', 'Categories', 'QualifiedLevel','Rating'))->select('id','zip', 'user_id', 'uuid', 'country_id', 'about', 'status');
         $usersMeta = $usersMeta->WhereHas('User', function ($query) {
-                $query->where('users.availability', 1);
-            });
-		if (!empty(input::get('id'))) {
+            $query->where('users.availability', 1);
+        });
+		if (!empty(Input::get('id'))) {
 			$usersMeta=$usersMeta->where('user_id', !empty(input::get('id')) ? input::get('id') : '');
-
         }
 
-       /*  if (!empty(input::get('zip'))) {
+        /* if (!empty(input::get('zip'))) {
 			$usersMeta=$usersMeta->whereIn('zip', !empty(input::get('zip')) ? input::get('zip') : []);
-
         }*/
 		if (!empty(input::get('disciplines'))) {
             $usersMeta = $usersMeta->WhereHas('Disciplines', function ($query) {
                 $query->whereIn('disciplines.id', !empty(input::get('disciplines')) ? input::get('disciplines') : []);
             });
         }
-
         if (!empty(input::get('location'))) {
             $usersMeta = $usersMeta->WhereHas('Country', function ($query) {
                 $query->whereIn('countries.id', !empty(input::get('location')) ? input::get('location') : []);
@@ -124,14 +173,11 @@ class TutorsController extends Controller
                 $query->whereIn('name', !empty(input::get('subcat')) ? input::get('subcat') : []);
             });
         }*/
-        
         if (!empty(input::get('level'))) {
             $usersMeta = $usersMeta->WhereHas('QualifiedLevel', function ($query) {
                 $query->whereIn('qualified_levels.id', !empty(input::get('level')) ? input::get('level') : []);
             });
         }
-
-
 		/*if (!empty(input::get('subcat'))) {
             $usersMeta = $usersMeta->WhereHas('Categories', function ($query) {
                 $query->where('id', decrypt(input::get('subcat')));

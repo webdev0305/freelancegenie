@@ -94,6 +94,12 @@
 	.screenshot_block:first-child {
 		margin: 0;
 	}
+	.active_cir h2 {
+		font-size: 15px !important;
+	}
+	.active_cir h2 p {
+		font-size: 15px !important;
+	}
 </style>
 <section class="inner-page-title"
 	style="background: url(web/images/care_course_main.jpg) no-repeat scroll center center;">
@@ -132,7 +138,7 @@
 						</div>
 						<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -158,7 +164,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators1" data-slide-to="0"
 											class="active_cir active">
@@ -194,7 +200,7 @@
 						</div>
 						<div id="carouselExampleIndicators2" class="carousel slide" data-ride="carouse2">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -216,7 +222,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators2" data-slide-to="0"
 											class="active_cir active">
@@ -249,7 +255,7 @@
 						</div>
 						<div id="carouselExampleIndicators3" class="carousel slide" data-ride="carouse3">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -267,7 +273,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators3" data-slide-to="0"
 											class="active_cir active">
@@ -293,7 +299,7 @@
 						</div>
 						<div id="carouselExampleIndicators4" class="carousel slide" data-ride="carouse4">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -323,7 +329,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators4" data-slide-to="0"
 											class="active_cir active">
@@ -364,7 +370,7 @@
 						</div>
 						<div id="carouselExampleIndicators5" class="carousel slide" data-ride="carouse2">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -398,7 +404,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators5" data-slide-to="0"
 											class="active_cir active">
@@ -445,7 +451,7 @@
 						<h2>HOW TO REGISTER</h2>
 						<div id="carouselExampleIndicators6" class="carousel slide" data-ride="carouse6">
 							<div class="row screenshot_block">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<div class="bg-slider-img">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -475,7 +481,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<div class="carousel-indicators how-it-indicator">
 										<div data-target="#carouselExampleIndicators6" data-slide-to="0"
 											class="active_cir active">

@@ -12,6 +12,8 @@
             @foreach($settings as $setting)
             <div class="form-group">
                 @if ($setting->name != 'newsletter')
+                @if ($setting->name != 'cer_image')
+                @if ($setting->name != 'sign_image')
                 <label for="disabledSelect">{{$setting->label}}</label>
                 <div class="row fields">
                     <div class="col-md-9 col-sm-9">
@@ -21,6 +23,8 @@
                         <button type="submit" class="btn btn-primary update">Update</button>
                     </div>
                 </div>
+                @endif
+                @endif
                 @endif
             </div>
             @endforeach

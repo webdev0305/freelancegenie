@@ -86,7 +86,7 @@ tr:nth-child(odd) {
                 <tr>
                     <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
                     <td>20% VAT</td>
-                    <td>{{'£'.$vat=20/100*$subtotal}}</td>
+                    <td>{{'£'.$vat=$vat_rate/100*$subtotal}}</td>
                 </tr>
                 <tr class="subtotal">
                     <td colspan="<?php if($invoice->hotel_charges >0){echo 5;}else{echo 4;}?>"></td>
