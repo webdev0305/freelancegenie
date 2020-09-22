@@ -84,7 +84,7 @@
                         {{'Completed'}}
                         @endif
                         @if($status == '4')
-                        {{'FTA'}}
+                        <i class="fa fa-warning" style="font-size:24px;color:red"></i> {{'FTA'}}
                         @endif
                         @if($status == '5')
                         {{'Cancelled'}}

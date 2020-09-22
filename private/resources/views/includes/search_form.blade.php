@@ -9,8 +9,6 @@
             transform: scale(1.3);
             transition: all 300ms;
         }
-        
-        
     </style>
     <div class="form-group ">
         <select class="form-control" name="disciplines[]" id="disciplines" onchange="fetch_select(this.value);">

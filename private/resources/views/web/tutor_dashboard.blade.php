@@ -232,7 +232,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-wrap">
-                        <p>Please make sure you have submitted the Student Register.</p>
+                        <p>Please make sure you have submitted the Student Register.<br> You can click the "Update Register"button to register your students</p>
                     </div>
                 </div>
                 <div class="modal-footer">

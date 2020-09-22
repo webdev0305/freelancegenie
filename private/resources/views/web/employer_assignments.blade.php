@@ -474,7 +474,7 @@
                                 </div>
                             </div>
                             <label class="checkbox"><input type="checkbox" name="" id="">I agree <a
-                                    href="{{url('terms')}}">terms & conditions</label>
+                                    href="{{url('terms')}}" target="_blank">terms & conditions</label>
                             <input type="button" id="insert" class="btn btn-success" name="assignment_sub"
                                 value="submit">
                             <input type="hidden" name="py_slct" value="invoice">

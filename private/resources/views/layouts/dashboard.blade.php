@@ -115,6 +115,12 @@
                     <!--<li class="tutor dropdown">
 							<a href="{{url('register/tutor')}}"><span>For Tutor</span></a>
 						</li>-->
+                    <style>
+                        .dropdown .dropdown-menu a:hover {
+                            transform: scale(1.2);
+                            transition: all 300ms;
+                        }
+                    </style>
                     <li class="tutor dropdown">
                         <a class=" tooltip_custom" href="#" id="navbardrop" data-toggle="dropdown"><span>For
                                 Tutor</span>
